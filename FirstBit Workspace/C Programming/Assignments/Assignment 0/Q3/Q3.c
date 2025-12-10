@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallition
+	//initialization
 	float celsius = 3;
 	
 	//declaration
@@ -18,3 +18,4 @@ void main(){
 	printf("Temperature after conversion in fahrenheit is %.1f degrees",fahrenheit);
 	
 }
+
