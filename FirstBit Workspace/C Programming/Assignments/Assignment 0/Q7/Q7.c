@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallization
+	//initialization
 	int minutes = 250;
 	
 	//declaration
@@ -19,3 +19,4 @@ void main(){
 	printf("%d hours and %d minutes",hours, rmin);
 	
 }
+
