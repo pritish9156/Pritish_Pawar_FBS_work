@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallization
+	//initialization
 	float base = 4, height = 10;
 	
 	//declaration
@@ -17,3 +17,4 @@ void main(){
 	printf("Area of triangle is %.2f",areaOfTriangle);
 	
 }
+
