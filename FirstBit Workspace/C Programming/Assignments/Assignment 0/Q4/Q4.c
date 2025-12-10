@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//inintiallization
+	//initialization
 	int num1 = 10;
 	int num2 = 50;
 	
@@ -27,3 +27,4 @@ void main(){
 	printf("number 2 = %d",num2);
 	
 }
+
