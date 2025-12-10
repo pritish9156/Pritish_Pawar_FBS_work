@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallizaiton
+	//initialization
 	float length = 4, width = 5.6;
 	
 	//declaration
@@ -17,3 +17,4 @@ void main(){
 	printf("perimeter of rectangle is %.2f",perimeterOfRectangle);
 	
 }
+
