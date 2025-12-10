@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallization
+	//initialization
 	int num = 2;
 	
 	//declaration
@@ -19,3 +19,4 @@ void main(){
 	printf("\ncube of %d is %d",num, cube);
 	
 }
+
