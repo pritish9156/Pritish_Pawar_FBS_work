@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallization
+	//initialization
 	int sub1 = 40, sub2 = 65, sub3 = 70, sub4 = 80, sub5 = 50;
 	
 	//declaration
@@ -26,3 +26,4 @@ void main(){
 	printf("Percentage = %.2f%%",percentage);
 	
 }
+
