@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//Multi-Line initiallization
+	//Multi-Line initialization
 	float Pi = 3.14, radius = 3;
 	
 	//Declaration 
@@ -17,3 +17,4 @@ void main(){
 	printf("Area of a circle is %.2f",AreaOfCircle);
 	
 }
+
