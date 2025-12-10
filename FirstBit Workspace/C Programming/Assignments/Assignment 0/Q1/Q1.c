@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//initiallization
+	//initialization
 	int integer1 = 20;
 	int integer2 = 30;
 	
@@ -17,3 +17,4 @@ void main(){
 	//printing result on output screen
 	printf("Addition of %d and %d is %d",integer1, integer2, Addition_result);
 }
+
