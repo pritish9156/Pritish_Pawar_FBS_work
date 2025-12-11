@@ -4,7 +4,7 @@
 
 void main(){
 	
-	//variable initiallization
+	//variable initialization
 	int number = 4;
 	
 	//using conditional operator
@@ -14,3 +14,4 @@ void main(){
 		printf("%d is an odd number",number);
 
 }
+
