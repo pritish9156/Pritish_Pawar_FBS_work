@@ -15,24 +15,6 @@ The repository is **structured to support multiple programming modules**, includ
 
 ---
 
-## 📂 Repository Structure
-
-The repository will grow module-wise as training progresses.
-Pritish_Pawar_FBS_work/
-│
-├── C/
-│ ├── Assignments/
-│ └── Tests/
-│
-├── Java/
-│ ├── Assignments/
-│ └── Tests/
-│
-├── (Future)
-│
-└── README.md
-
-
 > Each module contains topic-wise programs, assignments, and evaluation tasks.
 
 ---
