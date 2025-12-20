@@ -22,11 +22,21 @@ The repository is **structured to support multiple programming modules**, includ
 ## 🧠 Modules Covered
 
 ### 🔹 C Programming
-- Basics of C
-- Control statements
-- Looping structures
-- Number-based programs
-- Logical problem solving
+- **Current Status:** In Progress
+- **Topics Covered:**
+  - Basics of C
+  - Control statements
+  - Looping structures
+  - Number-based programs
+  - Logical problem solving
+- **Assignments:**
+  - **Assignment 0:** Introduction to C basics
+  - **Assignment 1:** Control statements and decision-making
+  - **Assignment 2:** Looping structures and patterns
+  - **Assignment 3:** Advanced logical problems
+  - **Assignment 4:** Functions and modular programming
+  - **Assignment 5:** Comprehensive problem-solving
+  - **Assignment 6:** Functions with/without parameters and return types
 
 ### 🔹 Java Programming *(Upcoming)*
 - Core Java concepts
@@ -66,21 +76,27 @@ The repository is **structured to support multiple programming modules**, includ
 1. Clone the repository:
    ```bash
    git clone https://github.com/pritish9156/Pritish_Pawar_FBS_work.git
-
+   ```
 2. Navigate to the required module folder:
-   cd Pritish_Pawar_FBS_work/C
-
+   ```bash
+   cd Pritish_Pawar_FBS_work/C Programming/Assignments
+   ```
 3. Compile and run programs as per module instructions.
 
-📈 Current Status
-      ✅ C Programming – In Progress
-      ⏳ Java Programming – Upcoming
-      ⏳ Full Stack Modules – Planned
+---
+
+## 📈 Current Status
+
+- ✅ **C Programming:** In Progress
+- ⏳ **Java Programming:** Upcoming
+- ⏳ **Full Stack Modules:** Planned
+
+---
 
 This repository will be continuously updated as new modules, assignments, and tests are completed.
 
-👤 Author
-  Pritish Pawar
-    FirstBit Solutions Trainee
-    Aspiring Full Stack Developer
-🔗 GitHub: [pritish9156](https://github.com/pritish9156)
+👤 **Author:**
+
+- **Name:** Pritish Pawar
+- **Role:** FirstBit Solutions Trainee, Aspiring Full Stack Developer
+- **GitHub:** [pritish9156](https://github.com/pritish9156)
