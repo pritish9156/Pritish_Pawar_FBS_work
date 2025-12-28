@@ -1,5 +1,6 @@
 //Reverse the given array
 #include<stdio.h>
+void reverseArray(int[], int);
 void main(){
 	
 	int arr[10];
@@ -13,10 +14,26 @@ void main(){
 	for(int i=0;i<10;i++)
 		printf("%d ",arr[i]);
 		
-	int arr_length = sizeof(arr)/sizeof(arr[0]);
+	int n = sizeof(arr) / sizeof(arr[0]);
+		
+	reverseArray(arr,n);
 		
 	printf("\n\nReversed Array: ");
-	for(int i=arr_length-1;i>=0;i--)
+	for(int i=0;i<10;i++)
 		printf("%d ",arr[i]);
 		
+		
+}
+
+void reverseArray(int arr[], int size) {
+    int start = 0;
+    int end = size - 1;
+    while (start < end) {
+        int temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
+
+        start++;
+        end--;
+    }
 }
