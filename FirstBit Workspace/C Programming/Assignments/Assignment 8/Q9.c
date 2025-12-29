@@ -1,39 +1,29 @@
-//Reverse the given array
+//reverse the given array
 #include<stdio.h>
-void reverseArray(int[], int);
 void main(){
+	int arr[5];
 	
-	int arr[10];
+	printf("Enter the elements in the array: ");
+	for(int i=0;i<5;i++){
+		scanf("%d", &arr[i]);
+	}
 	
-	//storing numbers in a array
-	printf("Enter 10 numbers to store in a array: ");
-	for(int i=0;i<10;i++)
-		scanf("%d",&arr[i]);
-		
-	printf("\nYour array: ");
-	for(int i=0;i<10;i++)
-		printf("%d ",arr[i]);
-		
-	int n = sizeof(arr) / sizeof(arr[0]);
-		
-	reverseArray(arr,n);
-		
+	printf("\n\nArray: ");
+	for(int i=0;i<5;i++){
+		printf("%d ", arr[i]);
+	}
+	
 	printf("\n\nReversed Array: ");
-	for(int i=0;i<10;i++)
-		printf("%d ",arr[i]);
-		
-		
-}
-
-void reverseArray(int arr[], int size) {
-    int start = 0;
-    int end = size - 1;
-    while (start < end) {
-        int temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-
-        start++;
-        end--;
-    }
+	int end=4;
+	for(int i=0;i<end;i++){
+		int temp = arr[i];
+		arr[i]=arr[end];
+		arr[end]=temp;
+		end--;
+	}
+	
+	for(int i=0;i<5;i++){
+		printf("%d ", arr[i]);
+	}
+	
 }
