@@ -1,0 +1,58 @@
+8. Write an SQL statement to create a table employees including columns
+employee_id, first_name, last_name, email, phone_number hire_date, job_id,
+salary, commission, manager_id and department_id and make sure that, the
+employee_id column does not contain any duplicate value at the time of
+insertion and the foreign key columns combined by department_id and
+manager_id columns contain only those unique combination values, which
+combinations are exists in the departments table.
+
+
+solutions: 
+
+
+mysql> create table employees(employee_id int unique, first_name varchar(30), last_name varchar(30), email varchar(30), phone_number int, hire_date date, job_id int, salary decimal(7,2), commission decimal(7,2), manager_id decimal(6,0), department_id decimal(4,0),foreign key(job_id) references jobs(job_id) ,foreign key(department_id,manager_id) references department(department_id,manager_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc employees;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| employee_id   | int          | YES  | UNI | NULL    |       |
+| first_name    | varchar(30)  | YES  |     | NULL    |       |
+| last_name     | varchar(30)  | YES  |     | NULL    |       |
+| email         | varchar(30)  | YES  |     | NULL    |       |
+| phone_number  | int          | YES  |     | NULL    |       |
+| hire_date     | date         | YES  |     | NULL    |       |
+| job_id        | int          | YES  | MUL | NULL    |       |
+| salary        | decimal(7,2) | YES  |     | NULL    |       |
+| commission    | decimal(7,2) | YES  |     | NULL    |       |
+| manager_id    | decimal(6,0) | YES  |     | NULL    |       |
+| department_id | decimal(4,0) | YES  | MUL | NULL    |       |
++---------------+--------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+
+mysql> show create table employees;
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table     | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| employees | CREATE TABLE `employees` (
+  `employee_id` int DEFAULT NULL,
+  `first_name` varchar(30) DEFAULT NULL,
+  `last_name` varchar(30) DEFAULT NULL,
+  `email` varchar(30) DEFAULT NULL,
+  `phone_number` int DEFAULT NULL,
+  `hire_date` date DEFAULT NULL,
+  `job_id` int DEFAULT NULL,
+  `salary` decimal(7,2) DEFAULT NULL,
+  `commission` decimal(7,2) DEFAULT NULL,
+  `manager_id` decimal(6,0) DEFAULT NULL,
+  `department_id` decimal(4,0) DEFAULT NULL,
+  UNIQUE KEY `employee_id` (`employee_id`),
+  KEY `job_id` (`job_id`),
+  KEY `department_id` (`department_id`,`manager_id`),
+  CONSTRAINT `employees_ibfk_1` FOREIGN KEY (`job_id`) REFERENCES `jobs` (`job_id`),
+  CONSTRAINT `employees_ibfk_2` FOREIGN KEY (`department_id`, `manager_id`) REFERENCES `department` (`department_id`, `manager_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)

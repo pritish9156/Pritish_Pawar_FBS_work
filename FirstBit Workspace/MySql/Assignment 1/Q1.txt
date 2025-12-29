@@ -1,0 +1,22 @@
+1. Login to MySQL and view all databases already present. You should get
+following result :
+
+solution:-
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| classmanagement    |
+| face_recognizer    |
+| fbs_mysql          |
+| information_schema |
+| invoice_app        |
+| javafullstack      |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.02 sec)

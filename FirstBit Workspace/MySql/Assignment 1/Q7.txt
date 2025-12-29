@@ -1,0 +1,31 @@
+7. Create a Department table with following structure
+
+solution:
+
+
+mysql> create table department(department_id decimal(4,0) not null default 0, department_name varchar(30) not null, manager_id decimal(6,0) not null default 0, location_id decimal(4,0), primary key(department_id,manager_id));
+Query OK, 0 rows affected (0.03 sec)
+
+
+2) second way using alter command
+
+
+mysql> create table department(department_id decimal(4,0) not null default 0, department_name varchar(30) not null, manager_id decimal(6,0) not null default 0, location_id decimal(4,0));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> alter table department
+    -> add primary key(department_id,manager_id);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc department;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| department_id   | decimal(4,0) | NO   | PRI | 0       |       |
+| department_name | varchar(30)  | NO   |     | NULL    |       |
+| manager_id      | decimal(6,0) | NO   | PRI | 0       |       |
+| location_id     | decimal(4,0) | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+

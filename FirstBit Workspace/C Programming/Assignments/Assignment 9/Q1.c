@@ -1,21 +1,26 @@
 //Find minimum and maximum number in array.
 #include<stdio.h>
+void arrayInputOutput(int*, int);
 void minMaxOfArray(int*, int);
 void main(){
 	
 	int arr[10];
 	
-	//storing numbers in a array
-	printf("Enter 10 numbers to store in a array: ");
-	for(int i=0;i<10;i++)
-		scanf("%d",&arr[i]);
-		
-	printf("\nYour array: ");
-	for(int i=0;i<10;i++)
-		printf("%d ",arr[i]);
-		
+	arrayInputOutput(arr,10);
 	minMaxOfArray(arr,10);
 		
+}
+
+void arrayInputOutput(int* ptr, int size){
+	
+	//storing numbers in a array
+	printf("Enter 10 numbers to store in a array: ");
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
+		
+	printf("\nYour array: ");
+	for(int i=0;i<size;i++)
+		printf("%d ",ptr[i]);
 }
 
 void minMaxOfArray(int* ptr, int size){

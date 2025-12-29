@@ -1,20 +1,27 @@
 //Search the given number in array.
 #include<stdio.h>
+void searchArray(int*, int);
+void arrayInputOutput(int*, int);
+
 void main(){
 	
 	int arr[10];
 	
+	arrayInputOutput(arr,10);
+	searchArray(arr,10);
+		
+}
+
+void arrayInputOutput(int* ptr, int size){
+	
 	//storing numbers in a array
 	printf("Enter 10 numbers to store in a array: ");
-	for(int i=0;i<10;i++)
-		scanf("%d",&arr[i]);
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
 		
 	printf("\nYour array: ");
-	for(int i=0;i<10;i++)
-		printf("%d ",arr[i]);
-		
-	searchArray(arr,10);
-	
+	for(int i=0;i<size;i++)
+		printf("%d ",ptr[i]);
 }
 
 void searchArray(int* ptr, int size){
