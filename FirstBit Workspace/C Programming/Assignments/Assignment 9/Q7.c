@@ -6,7 +6,6 @@ brr[5]={10,20,30, 40, 50}
 crr[5]={11,22,33,44,55}*/
 #include<stdio.h>
 void arrayInputOutput(int*, int);
-void primeNumberArray(int*, int);
 void sumOfArrayInThird(int*, int*, int);
 void main(){
 	
