@@ -22,13 +22,15 @@ The repository is **structured to support multiple programming modules**, includ
 ## 🧠 Modules Covered
 
 ### 🔹 C Programming
-- **Current Status:** In Progress
+- **Current Status:** Completed Assignments 0 to 13
 - **Topics Covered:**
   - Basics of C
   - Control statements
   - Looping structures
   - Number-based programs
   - Logical problem solving
+  - Functions with/without parameters and return types
+  - Advanced modular programming
 - **Assignments:**
   - **Assignment 0:** Introduction to C basics
   - **Assignment 1:** Control statements and decision-making
@@ -37,6 +39,7 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 4:** Functions and modular programming
   - **Assignment 5:** Comprehensive problem-solving
   - **Assignment 6:** Functions with/without parameters and return types
+  - **Assignment 7 to 13:** Advanced programming tasks
 
 ### 🔹 Java Programming *(Upcoming)*
 - Core Java concepts
@@ -49,6 +52,15 @@ The repository is **structured to support multiple programming modules**, includ
 - Backend development
 - Database integration
 - Real-world projects
+
+### 🔹 MySQL *(Newly Added)*
+- **Current Status:** In Progress
+- **Topics Covered:**
+  - Basic SQL queries
+  - Database creation and management
+  - CRUD operations
+- **Assignments:**
+  - **Assignment 1:** Introduction to MySQL and basic queries
 
 ---
 
@@ -87,9 +99,10 @@ The repository is **structured to support multiple programming modules**, includ
 
 ## 📈 Current Status
 
-- ✅ **C Programming:** In Progress
+- ✅ **C Programming:** Completed Assignments 0 to 13
 - ⏳ **Java Programming:** Upcoming
 - ⏳ **Full Stack Modules:** Planned
+- ⏳ **MySQL:** In Progress
 
 ---
 
