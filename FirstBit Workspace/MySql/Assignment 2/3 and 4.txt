@@ -1,0 +1,53 @@
+3) Drop the Member table
+4) Create the table Member again as per the schema description with the
+following constraints.
+	a. Member_Id – Primary Key
+	b. Membership_type - ‘Lifetime’,’ Annual’, ‘Half Yearly’,’ Quarterly’
+
+
+mysql> drop table member;
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table Member(member_id int primary key, member_name varchar(30) not null, member_address varchar(50) not null, acc_open_date date not null,
+    -> membership_type varchar(20), fees_paid int, max_books_allowed int default 0, penalty_amount decimal(7,2));
+Query OK, 0 rows affected (0.03 sec)
+
+
+mysql> alter table member modify column membership_type varchar(20) check(membership_type='Lifetime' or membership_type='Annual' or membership_type='Half Yearly' or membership_type='Quarterly');
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+mysql> desc member;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| member_id         | int          | NO   | PRI | NULL    |       |
+| member_name       | varchar(30)  | NO   |     | NULL    |       |
+| member_address    | varchar(50)  | NO   |     | NULL    |       |
+| acc_open_date     | date         | NO   |     | NULL    |       |
+| membership_type   | varchar(20)  | YES  |     | NULL    |       |
+| fees_paid         | int          | YES  |     | NULL    |       |
+| max_books_allowed | int          | YES  |     | 0       |       |
+| penalty_amount    | decimal(7,2) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+mysql> show create table member;
+---------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
++--------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| member | CREATE TABLE `member` (
+  `member_id` int NOT NULL,
+  `member_name` varchar(30) NOT NULL,
+  `member_address` varchar(50) NOT NULL,
+  `acc_open_date` date NOT NULL,
+  `membership_type` varchar(20) DEFAULT NULL,
+  `fees_paid` int DEFAULT NULL,
+  `max_books_allowed` int DEFAULT '0',
+  `penalty_amount` decimal(7,2) DEFAULT NULL,
+  PRIMARY KEY (`member_id`),
+  CONSTRAINT `member_chk_1` CHECK (((`membership_type` = _cp850'Lifetime') or (`membership_type` = _cp850'Annual') or (`membership_type` = _cp850'Half Yearly') or (`membership_type` = _cp850'Quarterly')))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
++--------+--------------------------------------------------------------------------------------------------------------------------------

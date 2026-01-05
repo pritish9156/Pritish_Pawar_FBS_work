@@ -1,0 +1,67 @@
+5) Modify the table Member increase the width of the member name to 30
+characters.
+6) Add a column named as Reference of Char(30) to Issue table.
+
+7) Delete/Drop the column Reference from Issue.
+
+8) Rename the table Issue to Lib_Issue.
+
+
+
+
+mysql> alter table member modify column member_name char(30);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc member;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| member_id         | int          | NO   | PRI | NULL    |       |
+| member_name       | char(30)     | YES  |     | NULL    |       |
+| member_address    | varchar(50)  | NO   |     | NULL    |       |
+| acc_open_date     | date         | NO   |     | NULL    |       |
+| membership_type   | varchar(20)  | YES  |     | NULL    |       |
+| fees_paid         | int          | YES  |     | NULL    |       |
+| max_books_allowed | int          | YES  |     | 0       |       |
+| penalty_amount    | decimal(7,2) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+mysql> alter table issue add column reference char(30);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc issue;
++--------------+----------+------+-----+---------+-------+
+| Field        | Type     | Null | Key | Default | Extra |
++--------------+----------+------+-----+---------+-------+
+| lib_issue_id | int      | NO   | PRI | NULL    |       |
+| book_no      | int      | YES  | MUL | NULL    |       |
+| member_id    | int      | YES  | MUL | NULL    |       |
+| issue_date   | date     | NO   |     | NULL    |       |
+| return_date  | date     | NO   |     | NULL    |       |
+| reference    | char(30) | YES  |     | NULL    |       |
++--------------+----------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+mysql> alter table issue drop column reference;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc issue;
++--------------+------+------+-----+---------+-------+
+| Field        | Type | Null | Key | Default | Extra |
++--------------+------+------+-----+---------+-------+
+| lib_issue_id | int  | NO   | PRI | NULL    |       |
+| book_no      | int  | YES  | MUL | NULL    |       |
+| member_id    | int  | YES  | MUL | NULL    |       |
+| issue_date   | date | NO   |     | NULL    |       |
+| return_date  | date | NO   |     | NULL    |       |
++--------------+------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> rename table issue to Lib_issue;
+Query OK, 0 rows affected (0.03 sec)

@@ -1,0 +1,88 @@
+11) Modify the column Member_name. Decrease the width of the member
+name to 20 characters. (If it does not allow state the reason for that)
+
+12) Try to insert a record with Max_Books_Allowed = 110, Observe the
+error that comes.
+
+13) Generate another table named Member101 using a Create command
+
+along with a simple SQL query on member table.
+14) Add the constraints on columns max_books_allowed and penalty_amt
+as follows
+	a. max_books_allowed < 100
+	b. penalty_amt maximum 1000
+	Also give names to the constraints.
+
+
+
+
+
+mysql> alter table member modify column member_name char(20);
+Query OK, 7 rows affected (0.13 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> desc member;
++-------------------+--------------+------+-----+---------+-------+
+| Field             | Type         | Null | Key | Default | Extra |
++-------------------+--------------+------+-----+---------+-------+
+| member_id         | int          | NO   | PRI | NULL    |       |
+| member_name       | char(20)     | YES  |     | NULL    |       |
+| member_address    | varchar(50)  | NO   |     | NULL    |       |
+| acc_open_date     | date         | NO   |     | NULL    |       |
+| membership_type   | varchar(20)  | YES  |     | NULL    |       |
+| fees_paid         | int          | YES  |     | NULL    |       |
+| max_books_allowed | int          | YES  |     | 0       |       |
+| penalty_amount    | decimal(7,2) | YES  |     | NULL    |       |
++-------------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+mysql> alter table member add constraint max_books_allowed check(max_books_allowed<100);
+Query OK, 8 rows affected (0.13 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> alter table member add constraint penalty_amt check(penalty_amount<=1000);
+Query OK, 8 rows affected (0.08 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+
+mysql> show create table member;
+-------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
++--------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| member | CREATE TABLE `member` (
+  `member_id` int NOT NULL,
+  `member_name` char(20) DEFAULT NULL,
+  `member_address` varchar(50) NOT NULL,
+  `acc_open_date` date NOT NULL,
+  `membership_type` varchar(20) DEFAULT NULL,
+  `fees_paid` int DEFAULT NULL,
+  `max_books_allowed` int DEFAULT '0',
+  `penalty_amount` decimal(7,2) DEFAULT NULL,
+  PRIMARY KEY (`member_id`),
+  CONSTRAINT `max_books_allowed` CHECK ((`max_books_allowed` < 100)),
+  CONSTRAINT `member_chk_1` CHECK (((`membership_type` = _utf8mb4'Lifetime') or (`membership_type` = _utf8mb4'Annual') or (`membership_type` = _utf8mb4'Half Yearly') or (`membership_type` = _utf8mb4'Quarterly'))),
+  CONSTRAINT `penalty_amt` CHECK ((`penalty_amount` <= 1000))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci |
+
+
+mysql> table member;
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type | fees_paid | max_books_allowed | penalty_amount |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
+|         2 | Garima Sen   | Pune           | 2026-01-05    | Annual          |      1000 |                 3 |           NULL |
+|         3 | Ramesh Pawar | Pune           | 2023-01-10    | Quarterly       |      6000 |                 2 |           NULL |
+|         4 | Shivam Gupta | Wagholi        | 2021-03-11    | Quarterly       |      6000 |                 4 |           NULL |
+|         5 | Shiva Tiwari | Swargate       | 2020-03-11    | Lifetime        |     25000 |                 5 |           NULL |
+|         6 | Mansi Jain   | Pune           | 2020-03-11    | Quarterly       |      6000 |                 1 |         100.00 |
+|         7 | Swati Gupta  | Pune           | 2025-02-23    | Quarterly       |      6000 |                 2 |         200.50 |
+|         8 | Sapna sharma | Pune           | 2025-02-23    | lifetime        |     25000 |                10 |         100.50 |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> insert into member values(8,'Sapna sharma','Pune','25-02-23','lifetime',25000,110,100.50);
+ERROR 3819 (HY000): Check constraint 'max_books_allowed' is violated.
+
+mysql> insert into member values(8,'Sapna sharma','Pune','25-02-23','lifetime',25000,10,10000.50);
+ERROR 3819 (HY000): Check constraint 'penalty_amt' is violated.

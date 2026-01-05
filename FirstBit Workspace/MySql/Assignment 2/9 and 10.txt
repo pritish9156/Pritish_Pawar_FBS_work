@@ -1,0 +1,50 @@
+
+9) Insert following data in table Member
+10) Insert at least 5 records with suitable data.
+
+
+
+
+
+mysql> insert into member values(1,'Richa Sharma','Pune','05-12-10','Lifetime',25000,5,50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into member values(2,'Garima Sen','Pune','26-01-05','Annual',1000,3,Null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table member;
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type | fees_paid | max_books_allowed | penalty_amount |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
+|         2 | Garima Sen   | Pune           | 2026-01-05    | Annual          |      1000 |                 3 |           NULL |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into member values(3,'Ramesh Pawar','Pune','23-01-10','Quarterly',6000,2,Null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into member values(4,'Shivam Gupta','Wagholi','21-03-11','Quarterly',6000,4,Null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into member values(5,'Shiva Tiwari','Swargate','20-03-11','Lifetime',25000,5,Null);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into member values(6,'Mansi Jain','Pune','20-03-11','Quarterly',6000,1,100);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into member values(7,'Swati Gupta','Pune','25-02-23','Quarterly',6000,2,200.50);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table member;
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type | fees_paid | max_books_allowed | penalty_amount |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
+|         2 | Garima Sen   | Pune           | 2026-01-05    | Annual          |      1000 |                 3 |           NULL |
+|         3 | Ramesh Pawar | Pune           | 2023-01-10    | Quarterly       |      6000 |                 2 |           NULL |
+|         4 | Shivam Gupta | Wagholi        | 2021-03-11    | Quarterly       |      6000 |                 4 |           NULL |
+|         5 | Shiva Tiwari | Swargate       | 2020-03-11    | Lifetime        |     25000 |                 5 |           NULL |
+|         6 | Mansi Jain   | Pune           | 2020-03-11    | Quarterly       |      6000 |                 1 |         100.00 |
+|         7 | Swati Gupta  | Pune           | 2025-02-23    | Quarterly       |      6000 |                 2 |         200.50 |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+

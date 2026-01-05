@@ -1,0 +1,67 @@
+15) Drop the table books.
+
+16) Create table Books again as per the schema description with the
+following constraints.
+a. Book_No – Primary Key
+b. Book_Name – Not Null
+c. Category – System, Fiction, Database, RDBMS, Others.
+
+17) Insert data in Book table as follows:
+
+18) Insert more records in Book table.
+19) View the data in the tables using simple SQL query.
+
+20) Insert into Book following data.
+	105, National Geographic, Adis Scott, 1000, Science
+
+
+
+
+
+
+mysql> drop table books;
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> create table books(book_no int primary key, book_name varchar(30) not null, author_name varchar(30), cost decimal(7,2), category char(10) check(category='system' or category='fiction' or category='database' or category='rdbms' or category='others'));
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> insert into books values(101,'Let us C','Denis Ritchie',450,'system'),
+    -> (102,'Oracle - complete Ref','Loni',550,'database'),
+    -> (103,'Mastering SQL','Loni',250,'database'),
+    -> (104,'PL SQL - Ref','Scott Urman',750,'database');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> table books;
++---------+-----------------------+---------------+--------+----------+
+| book_no | book_name             | author_name   | cost   | category |
++---------+-----------------------+---------------+--------+----------+
+|     101 | Let us C              | Denis Ritchie | 450.00 | system   |
+|     102 | Oracle - complete Ref | Loni          | 550.00 | database |
+|     103 | Mastering SQL         | Loni          | 250.00 | database |
+|     104 | PL SQL - Ref          | Scott Urman   | 750.00 | database |
++---------+-----------------------+---------------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> insert into books values(105,'Python','robert son',1000,'system'),
+    -> (106,'stefen on iland','stefen hokins',550,'fiction'),
+    -> (107,'Robotics','Mark Ritchi',850,'others');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> table books;
++---------+-----------------------+---------------+---------+----------+
+| book_no | book_name             | author_name   | cost    | category |
++---------+-----------------------+---------------+---------+----------+
+|     101 | Let us C              | Denis Ritchie |  450.00 | system   |
+|     102 | Oracle - complete Ref | Loni          |  550.00 | database |
+|     103 | Mastering SQL         | Loni          |  250.00 | database |
+|     104 | PL SQL - Ref          | Scott Urman   |  750.00 | database |
+|     105 | Python                | robert son    | 1000.00 | system   |
+|     106 | stefen on iland       | stefen hokins |  550.00 | fiction  |
+|     107 | Robotics              | Mark Ritchi   |  850.00 | others   |
++---------+-----------------------+---------------+---------+----------+
+7 rows in set (0.00 sec)
+
+mysql> insert into books values(108,'National Geographic','Adis Scott',1000,'science');
+ERROR 3819 (HY000): Check constraint 'books_chk_1' is violated.
