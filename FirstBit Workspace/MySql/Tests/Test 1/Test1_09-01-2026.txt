@@ -1,0 +1,73 @@
+solutions of questions
+
+Q1) select name,salary from employees order by salary desc;
+
+Q2) select * from employees order by salary desc limit 5;
+
+Q3) select * from employees limit 5 offset 3;
+
+Q4) select dept,count(empid) from employees group by dept;
+
+Q5) select dept,avg(salary) from employees group by dept having avg(salary) > 50000;
+
+Q6) select product_name as "list of product" from employees where product_name like "%Laptop%";
+
+Q7) select left(student_name,3) from student;
+
+Q8) select * from students where name like "A%";
+
+Q9) select month,sum(order_id) as "total number of orders" from product group by month having sum(order_id) > 100;
+
+Q10) select category, sum(sales_amount), avg(sales_amount) from sales group by category having sum(sales_amount) > 100000;
+
+Q11) select * from employees where salary between 30000 and 60000;
+
+Q12) select * from employees where department not in("HR","Admin");
+
+Q13) select * from students where email_id is Null;
+
+Q14) select * from employees where deptno in(1,3);
+
+second method select * from employees where deptno = 1 or deptno = 3;
+
+Q15) select * fromm employees where age > 25 and salary < 50000;
+
+Q16) select dept,max(salary) from employees group by dept;
+
+Q17) select city, count(stud_id) from student group by city;
+
+Q18) select min(salary), max(salary), avg(salary) from employees;
+
+Q19) select dept,count(empid) from employees group by dept having count(empid) > 5;
+
+Q20) select dept,sum(salary) from employees group by dept order by sum(salary) desc;
+
+Q21) select ucase(name) from employees;
+
+Q22) select name, length(name) as "length of names" from employees;
+
+Q23) select right(student_name,2) from student;
+
+Q24) select * from employees order by salary limit 3;
+
+Q25) select price,product_name from product_order order by price asc, product_name desc;
+
+Q26) group by
+
+Q27) count()
+
+Q28) is null
+
+Q29) order by
+
+Q30) check a range of values
+
+Q31) avg()
+
+Q32) group by
+
+Q33) limit
+
+Q34) like
+
+Q35) total number of rows
