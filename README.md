@@ -22,7 +22,7 @@ The repository is **structured to support multiple programming modules**, includ
 ## 🧠 Modules Covered
 
 ### 🔹 C Programming
-- **Current Status:** Completed Assignments 0 to 13
+- **Current Status:** Completed Assignments 0 to 14
 - **Topics Covered:**
   - Basics of C
   - Control statements
@@ -31,6 +31,8 @@ The repository is **structured to support multiple programming modules**, includ
   - Logical problem solving
   - Functions with/without parameters and return types
   - Advanced modular programming
+  - String manipulation
+  - Custom string functions
 - **Assignments:**
   - **Assignment 0:** Introduction to C basics
   - **Assignment 1:** Control statements and decision-making
@@ -39,7 +41,9 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 4:** Functions and modular programming
   - **Assignment 5:** Comprehensive problem-solving
   - **Assignment 6:** Functions with/without parameters and return types
-  - **Assignment 7 to 13:** Advanced programming tasks
+  - **Assignment 7 to 14:** Advanced programming tasks, including string operations and custom implementations
+- **Tests:**
+  - Test 1 to Test 6
 
 ### 🔹 Java Programming *(Upcoming)*
 - Core Java concepts
@@ -53,14 +57,18 @@ The repository is **structured to support multiple programming modules**, includ
 - Database integration
 - Real-world projects
 
-### 🔹 MySQL *(Newly Added)*
+### 🔹 MySQL
 - **Current Status:** In Progress
 - **Topics Covered:**
   - Basic SQL queries
   - Database creation and management
   - CRUD operations
 - **Assignments:**
-  - **Assignment 1:** Introduction to MySQL and basic queries
+  - **Assignment 0:** Introduction to MySQL basics
+  - **Assignment 1:** Basic SQL queries
+  - **Assignment 2:** Advanced database operations
+- **Tests:**
+  - Test 1
 
 ---
 
@@ -91,7 +99,7 @@ The repository is **structured to support multiple programming modules**, includ
    ```
 2. Navigate to the required module folder:
    ```bash
-   cd Pritish_Pawar_FBS_work/C Programming/Assignments
+   cd Pritish_Pawar_FBS_work/FirstBit Workspace/C Programming/Assignments
    ```
 3. Compile and run programs as per module instructions.
 
@@ -99,7 +107,7 @@ The repository is **structured to support multiple programming modules**, includ
 
 ## 📈 Current Status
 
-- ✅ **C Programming:** Completed Assignments 0 to 13
+- ✅ **C Programming:** Completed Assignments 0 to 14
 - ⏳ **Java Programming:** Upcoming
 - ⏳ **Full Stack Modules:** Planned
 - ⏳ **MySQL:** In Progress
