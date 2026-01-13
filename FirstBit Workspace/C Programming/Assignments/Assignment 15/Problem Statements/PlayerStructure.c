@@ -1,6 +1,7 @@
 //Player Project
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 //Date structure for player date of birth
 typedef struct Date{
@@ -259,12 +260,13 @@ void displayPlayer(Player* player,int size){
 }
 
 int searchPlayer(Player* player,int size){
-	int searchChoice, searchId;
+	int searchChoice;
 	printf("\n1.Using Player Id\n2.Using Player Name\n");
 	printf("\nEnter Your Choice: ");
 	scanf("%d",&searchChoice);
 	
 	if(searchChoice==1){
+		int searchId;
 		printf("Enter player id: ");
 		scanf("%d",&searchId);
 		
@@ -275,7 +277,17 @@ int searchPlayer(Player* player,int size){
 		return -1;
 		
 	}else if(searchChoice==2){
+		char searchName[30];
+		printf("Enter Player name: ");
+		fflush(stdin);
+		gets(searchName);
+		fflush(stdin);
 		
+		for(int i=0; i<size; i++){
+			if(strcasecmp(searchName,player[i].name))
+				return i;
+		}
+		return -1;
 	}else{
 		printf("\nWrong choice -- not avilable\n");
 		return -1;
@@ -295,6 +307,46 @@ int updatePlayer(Player* player,int size){
 	}
 }
 
+void sortPlayer(Player* player, int size){
+	int sortChoice;
+	Player* sortedPlayer = (Player*)malloc(size*sizeof(Player));
+	for(int i=0;i<size;i++){
+		sortedPlayer[i]=player[i];
+	}
+	printf("\nSelect Your choice how would you like to sort your Data\n");
+	printf("\n\t1.Sort - Player Score\n\t2.Sort - Player Match Played\n\t3.Sort - Player Best Performance Score");
+	printf("\n\nEnter Your Choice: ");
+	scanf("%d",&sortChoice);
+	
+	switch(sortChoice){
+		case 1:{
+			printf("\n\n\t-------------Player Data According to player Score---------------\n");
+			for(int i=0;i<size;i++){
+				for(int j=size-1; j>i; j--){
+					if(sortedPlayer[i].performance.score>sortedPlayer[j].performance.score){
+						int temp = sortedPlayer[i].performance.score;
+						sortedPlayer[i].performance.score = sortedPlayer[j].performance.score;
+						sortedPlayer[j].performance.score = temp;
+					}
+				}	
+			}
+			
+			break;
+		}
+		case 2:{
+			
+			break;
+		}
+		case 3:{
+			
+			break;
+		}
+		default:
+			printf("\nWrong Choice -- Please Try Again\n");
+	}
+	
+}
+
 void main(){
 	int size, choice, flow=0;
 	printf("\t\t===========================================================");
@@ -305,7 +357,7 @@ void main(){
 	Player* player = (Player*)malloc(sizeof(Player)*size);
 	
 	do{
-		printf("\n\t1.Add players\n\t2.Display Players\n\t3.Search Player\n\t4.Update Player\n\t5.Delete Player\n\t6.Close Software\n");
+		printf("\n\t1.Add players\n\t2.Display Players\n\t3.Search Player\n\t4.Update Player\n\t5.Delete Player\n\t6.Sort Player Data\n\t7.Close Software\n");
 		printf("\nEnter Your Choice: ");
 		scanf("%d",&choice);
 		
@@ -340,14 +392,17 @@ void main(){
 				updatePlayer(player,size);
 				break;
 			case 5:
-				
+				//deletePlayer(Player,size);
 				break;
 			case 6:
+				sortPlayer(player,size);
+				break;
+			case 7:
 				printf("\n\n\tSoftware Closed Successfully");
 				break;
 			default:
 				printf("\n\t-----------Wrong Choice please try again-------------\n");
 		}
 		
-	}while(choice!=6);
+	}while(choice!=7);
 }
