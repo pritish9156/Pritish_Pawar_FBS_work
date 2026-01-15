@@ -1,16 +1,24 @@
 //write a program in c to find two maximum number in array
 #include<stdio.h>
 void main(){
-	int arr[] = {1,2,10,4,5};
+	int arr[] = {110,40,12,350,5};
 	
-	int firstMax=arr[0], secondMax=arr[0];
-	for(int i=0; i<5; i++){
-		if(arr[i]>firstMax)
-			firstMax=arr[i];
-		for(int j=0; j<5; j++){
-			if(arr[j]<firstMax)
-				secondMax=arr[j];
+	int firstMax, secondMax, arraylen;
+	
+	arraylen = sizeof(arr)/sizeof(arr[0]);
+	
+	for(int i=0; i<arraylen; i++){
+		for(int j=i+1; j<arraylen; j++){
+			if(arr[i]>=arr[j]){
+				int temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp;
+			}
 		}
 	}
-	printf("first Max: %d, second Max: %d",firstMax,secondMax);
+
+	firstMax = arr[arraylen-1];
+	secondMax = arr[arraylen-2];
+	
+	printf("\nfirst Max: %d, second Max: %d",firstMax,secondMax);
 }

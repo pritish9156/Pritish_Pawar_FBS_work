@@ -1,12 +1,20 @@
 //reverse the given array
 #include<stdio.h>
-void main(){
-	int arr[5];
+#include<stdlib.h>
+int* storeArrayInHeap(int size){
 	
-	printf("Enter the elements in the array: ");
-	for(int i=0;i<5;i++){
-		scanf("%d", &arr[i]);
-	}
+	int* ptr = (int*)malloc(size*sizeof(int));
+	
+	//storing numbers in a array
+	printf("Enter %d numbers to store in a array: ",size);
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
+		
+	return ptr;
+}
+
+void main(){
+	int* arr = storeArrayInHeap(5);
 	
 	printf("\n\nArray: ");
 	for(int i=0;i<5;i++){

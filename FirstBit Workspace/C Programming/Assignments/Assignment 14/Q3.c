@@ -13,16 +13,15 @@ void displayAdmin(admin);
 void main(){
 	admin a1,a2;
 	//store admin data
-	a1 = storeAdmin();
-	a2 = storeAdmin();
+	a1 = storeAdmin(a1);
+	a2 = storeAdmin(a2);
 	
 	//display admin data
 	displayAdmin(a1);
 	displayAdmin(a2);
 }
 
-admin storeAdmin(){
-	admin temp;
+admin storeAdmin(admin temp){
 	printf("Enter details for admin ");
 	printf("\nEnter admin id: ");
 	scanf("%d",&temp.id);

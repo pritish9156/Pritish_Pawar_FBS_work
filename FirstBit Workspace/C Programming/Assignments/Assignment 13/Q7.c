@@ -6,21 +6,35 @@ brr[5]={10,20,30, 40, 50}
 crr[5]={11,22,33,44,55}*/
 
 #include<stdio.h>
+#include<stdlib.h>
+int* storeArrayInHeap(int size){
+	
+	int* ptr = (int*)malloc(size*sizeof(int));
+	
+	//storing numbers in a array
+	printf("Enter %d numbers to store in a array: ",size);
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
+		
+	return ptr;
+}
+
+int* storeArraySumInHeap(int* arr, int* brr, int size){
+	
+	int* ptr = (int*)malloc(size*sizeof(int));
+	
+	//sum in third array
+	for(int i=0;i<size;i++){
+		ptr[i]=arr[i]+brr[i];
+	}
+		
+	return ptr;
+}
+
 void main(){
 	
-	int arr[5], brr[5], crr[5];
-	
-	//storing numbers in 1st array
-	printf("Storing elements for 1st array");
-	printf("\nEnter 5 numbers to store in a array: ");
-	for(int i=0;i<5;i++)
-		scanf("%d",&arr[i]);
-		
-	//storing numbers in 2nd array
-	printf("\n\nStoring elements for 2nd array");
-	printf("\nEnter 5 numbers to store in a array: ");
-	for(int i=0;i<5;i++)
-		scanf("%d",&brr[i]);
+	int* arr = storeArrayInHeap(5);
+	int* brr = storeArrayInHeap(5);
 		
 	//printing 2 arrays
 	printf("\nFirst array: ");
@@ -31,11 +45,10 @@ void main(){
 	for(int i=0;i<5;i++)
 		printf("%d ",brr[i]);
 		
-	//sum in third array
+	int* crr = storeArraySumInHeap(arr,brr,5);	
+	
 	printf("\n\nThird array: ");
 	for(int i=0;i<5;i++){
-		crr[i]=arr[i]+brr[i];
 		printf("%d ",crr[i]);
 	}
-		
 }

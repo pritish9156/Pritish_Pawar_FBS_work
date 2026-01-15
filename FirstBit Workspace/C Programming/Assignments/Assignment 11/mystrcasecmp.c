@@ -10,7 +10,7 @@ void main(){
 	gets(str2);
 	
 	int res = mystrcasecmp(str,str2);
-	printf("\nresL : %d",res);
+	printf("\nres : %d",res);
 	if(res)
 		printf("\nNot same");
 	else

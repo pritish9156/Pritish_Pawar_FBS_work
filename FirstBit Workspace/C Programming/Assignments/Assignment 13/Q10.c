@@ -1,13 +1,22 @@
 //Sort the array.
 #include<stdio.h>
-void main(){
+#include<stdlib.h>
+int* storeArrayInHeap(int size){
 	
-	int arr[10], n;
+	int* ptr = (int*)malloc(size*sizeof(int));
 	
 	//storing numbers in a array
 	printf("Enter 10 numbers to store in a array: ");
-	for(int i=0;i<10;i++)
-		scanf("%d",&arr[i]);
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
+		
+	return ptr;
+}
+
+void main(){
+	
+	int n;
+	int* arr = storeArrayInHeap(10);
 		
 	printf("\nYour array: ");
 	for(int i=0;i<10;i++)

@@ -1,8 +1,22 @@
 //Merge tow arrays
 #include<stdio.h>
+#include<stdlib.h>
+int* storeArrayInHeap(int size){
+	
+	int* ptr = (int*)malloc(size*sizeof(int));
+	
+//	//storing numbers in a array
+//	printf("Enter 10 numbers to store in a array: ");
+//	for(int i=0;i<size;i++)
+//		scanf("%d",&ptr[i]);
+		
+	return ptr;
+}
+
 void main(){
 	
-	int arr[10], brr[10];
+	int* arr = storeArrayInHeap(10);
+	int* brr = storeArrayInHeap(10);
 	
 	//storing numbers in 1st array
 	printf("Storing elements for 1st array");

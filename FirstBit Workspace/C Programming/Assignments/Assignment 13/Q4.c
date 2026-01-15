@@ -1,13 +1,21 @@
 //Find odd and even among the numbers.
 #include<stdio.h>
-void main() {
-
-	int arr[10];
+#include<stdlib.h>
+int* storeArrayInHeap(int size){
+	
+	int* ptr = (int*)malloc(size*sizeof(int));
 	
 	//storing numbers in a array
-	printf("Enter 10 numbers to store in a array: ");
-	for(int i=0;i<10;i++)
-		scanf("%d",&arr[i]);
+	printf("Enter %d numbers to store in a array: ",size);
+	for(int i=0;i<size;i++)
+		scanf("%d",&ptr[i]);
+		
+	return ptr;
+}
+
+void main() {
+
+	int* arr = storeArrayInHeap(10);
 		
 	printf("\nYour array: ");
 	for(int i=0;i<10;i++)
