@@ -5,8 +5,17 @@ following constraints.
 	b. Membership_type - ‘Lifetime’,’ Annual’, ‘Half Yearly’,’ Quarterly’
 
 
+
+solutions
+
+
+3) 
+
 mysql> drop table member;
 Query OK, 0 rows affected (0.08 sec)
+
+
+4)
 
 mysql> create table Member(member_id int primary key, member_name varchar(30) not null, member_address varchar(50) not null, acc_open_date date not null,
     -> membership_type varchar(20), fees_paid int, max_books_allowed int default 0, penalty_amount decimal(7,2));

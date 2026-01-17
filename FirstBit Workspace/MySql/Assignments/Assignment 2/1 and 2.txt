@@ -4,6 +4,8 @@ mentioned in the schema description above.
 2) View the structure of the tables.
 
 
+solutions
+
 
 mysql> use fbs_mysql_assignment2_LibrarySystem;
 Database changed

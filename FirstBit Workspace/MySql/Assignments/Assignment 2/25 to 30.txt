@@ -110,8 +110,50 @@ ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constrai
 
 
 
-
-
 Q30)
 
+mysql> table books;
++---------+-----------------------+---------------+---------+----------+
+| book_no | book_name             | author_name   | cost    | category |
++---------+-----------------------+---------------+---------+----------+
+|     101 | Let us C              | Denis Ritchie |  450.00 | system   |
+|     102 | Oracle - complete Ref | Loni          |  550.00 | database |
+|     103 | Mastering SQL         | Loni          |  250.00 | database |
+|     104 | PL SQL - Ref          | Scott Urman   |  750.00 | database |
+|     105 | Python                | robert son    | 1000.00 | system   |
+|     106 | stefen on iland       | stefen hokins |  550.00 | fiction  |
+|     107 | Robotics              | Mark Ritchi   |  850.00 | others   |
++---------+-----------------------+---------------+---------+----------+
+7 rows in set (0.08 sec)
+
+mysql> table member;
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+| member_id | member_name  | member_address | acc_open_date | membership_type | fees_paid | max_books_allowed | penalty_amount |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+|         1 | Richa Sharma | Pune           | 2005-12-10    | Lifetime        |     25000 |                 5 |          50.00 |
+|         2 | Garima Sen   | Pune           | 2026-01-05    | Annual          |      1000 |                 3 |           NULL |
+|         3 | Ramesh Pawar | Pune           | 2023-01-10    | Quarterly       |      6000 |                 2 |           NULL |
+|         4 | Shivam Gupta | Wagholi        | 2021-03-11    | Quarterly       |      6000 |                 4 |           NULL |
+|         5 | Shiva Tiwari | Swargate       | 2020-03-11    | Lifetime        |     25000 |                 5 |           NULL |
+|         6 | Mansi Jain   | Pune           | 2020-03-11    | Quarterly       |      6000 |                 1 |         100.00 |
+|         7 | Swati Gupta  | Pune           | 2025-02-23    | Quarterly       |      6000 |                 2 |         200.50 |
+|         8 | Sapna sharma | Pune           | 2025-02-23    | lifetime        |     25000 |                10 |         100.50 |
++-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
+8 rows in set (0.04 sec)
+
+mysql> table issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
+|         7003 |     104 |         1 | 2006-01-15 | NULL        |
+|         7004 |     101 |         1 | 2006-07-04 | NULL        |
+|         7005 |     104 |         2 | 2006-11-15 | NULL        |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
+|         7007 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
+|         7008 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
+|         7009 |     101 |         1 | 2006-02-18 | 2006-01-30  |
++--------------+---------+-----------+------------+-------------+
+9 rows in set (0.07 sec)
 

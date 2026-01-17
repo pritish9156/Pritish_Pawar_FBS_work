@@ -1,0 +1,100 @@
+31) Modify the Return_Date of 7004,7005 to 15 days after the    
+Issue_date. 
+32) Remove all the records from Issue table where member_ID is 1  
+and Issue date in before 10-Dec-06. 
+33) Remove all the records from Book table with category other   
+than RDBMS and Database. 
+34) Remove the table Member. 
+35) Remove the table Book. 
+
+
+solutions
+
+
+
+31)
+
+mysql> update issue set return_date = date_add(issue_date,interval 15 day) where lib_issue_id=7004;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update issue set return_date = date_add(issue_date,interval 15 day) where lib_issue_id=7005;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> table issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
+|         7003 |     104 |         1 | 2006-01-15 | NULL        |
+|         7004 |     101 |         1 | 2006-07-04 | 2006-07-19  |
+|         7005 |     104 |         2 | 2006-11-15 | 2006-11-30  |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
+|         7007 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
+|         7008 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
+|         7009 |     101 |         1 | 2006-02-18 | 2006-01-30  |
++--------------+---------+-----------+------------+-------------+
+9 rows in set (0.00 sec)
+
+
+
+32)
+
+mysql> delete from issue where member_id = 1 and issue_date < '2006-12-10';
+Query OK, 2 rows affected (0.05 sec)
+
+mysql> table issue;
++--------------+---------+-----------+------------+-------------+
+| lib_issue_id | book_no | member_id | issue_date | return_date |
++--------------+---------+-----------+------------+-------------+
+|         7001 |     101 |         1 | 2006-12-10 | NULL        |
+|         7002 |     102 |         2 | 2006-12-25 | NULL        |
+|         7005 |     104 |         2 | 2006-11-15 | 2006-11-30  |
+|         7006 |     101 |         3 | 2006-02-18 | NULL        |
+|         7007 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
+|         7008 |     101 |      NULL | 2006-02-18 | 2006-01-30  |
++--------------+---------+-----------+------------+-------------+
+6 rows in set (0.00 sec
+
+
+33)
+
+mysql> delete from books where category not in('RDBMS','Database');
+ERROR 1451 (23000): Cannot delete or update a parent row: a foreign key constraint fails (`fbs_mysql_assignment2_librarysystem`.`issue`, CONSTRAINT `issue_ibfk_1` FOREIGN KEY (`book_no`) REFERENCES `books` (`book_no`))
+
+
+mysql> alter table issue drop constraint issue_ibfk_1;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> delete from books where category not in('RDBMS','Database');
+Query OK, 4 rows affected (0.06 sec)
+
+mysql> table books;
++---------+-----------------------+-------------+--------+----------+
+| book_no | book_name             | author_name | cost   | category |
++---------+-----------------------+-------------+--------+----------+
+|     102 | Oracle - complete Ref | Loni        | 550.00 | database |
+|     103 | Mastering SQL         | Loni        | 250.00 | database |
+|     104 | PL SQL - Ref          | Scott Urman | 750.00 | database |
++---------+-----------------------+-------------+--------+----------+
+3 rows in set (0.00 sec)
+
+
+34)
+
+mysql> alter table issue drop constraint issue_ibfk_2;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> drop table member;
+Query OK, 0 rows affected (0.07 sec)
+
+
+
+35)
+
+mysql> drop table books;
+Query OK, 0 rows affected (0.08 sec)

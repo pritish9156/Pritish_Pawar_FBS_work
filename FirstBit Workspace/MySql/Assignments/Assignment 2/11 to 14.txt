@@ -15,7 +15,11 @@ as follows
 
 
 
+solutions
 
+
+
+11)
 
 mysql> alter table member modify column member_name char(20);
 Query OK, 7 rows affected (0.13 sec)
@@ -80,6 +84,9 @@ mysql> table member;
 |         8 | Sapna sharma | Pune           | 2025-02-23    | lifetime        |     25000 |                10 |         100.50 |
 +-----------+--------------+----------------+---------------+-----------------+-----------+-------------------+----------------+
 8 rows in set (0.00 sec)
+
+
+10)
 
 mysql> insert into member values(8,'Sapna sharma','Pune','25-02-23','lifetime',25000,110,100.50);
 ERROR 3819 (HY000): Check constraint 'max_books_allowed' is violated.

@@ -8,6 +8,10 @@ characters.
 
 
 
+solutions
+
+
+5)
 
 mysql> alter table member modify column member_name char(30);
 Query OK, 0 rows affected (0.09 sec)
@@ -29,6 +33,8 @@ mysql> desc member;
 8 rows in set (0.00 sec)
 
 
+6)
+
 mysql> alter table issue add column reference char(30);
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -47,6 +53,9 @@ mysql> desc issue;
 6 rows in set (0.00 sec)
 
 
+
+7)
+
 mysql> alter table issue drop column reference;
 Query OK, 0 rows affected (0.02 sec)
 Records: 0  Duplicates: 0  Warnings: 0
@@ -62,6 +71,9 @@ mysql> desc issue;
 | return_date  | date | NO   |     | NULL    |       |
 +--------------+------+------+-----+---------+-------+
 5 rows in set (0.00 sec)
+
+
+8)
 
 mysql> rename table issue to Lib_issue;
 Query OK, 0 rows affected (0.03 sec)

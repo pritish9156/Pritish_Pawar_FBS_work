@@ -16,15 +16,23 @@ c. Category – System, Fiction, Database, RDBMS, Others.
 
 
 
+solutions
 
 
+
+15)
 
 mysql> drop table books;
 Query OK, 0 rows affected (0.02 sec)
 
+
+16)
+
 mysql> create table books(book_no int primary key, book_name varchar(30) not null, author_name varchar(30), cost decimal(7,2), category char(10) check(category='system' or category='fiction' or category='database' or category='rdbms' or category='others'));
 Query OK, 0 rows affected (0.03 sec)
 
+
+17)
 mysql> insert into books values(101,'Let us C','Denis Ritchie',450,'system'),
     -> (102,'Oracle - complete Ref','Loni',550,'database'),
     -> (103,'Mastering SQL','Loni',250,'database'),
@@ -43,12 +51,17 @@ mysql> table books;
 +---------+-----------------------+---------------+--------+----------+
 4 rows in set (0.00 sec)
 
+
+18)
+
 mysql> insert into books values(105,'Python','robert son',1000,'system'),
     -> (106,'stefen on iland','stefen hokins',550,'fiction'),
     -> (107,'Robotics','Mark Ritchi',850,'others');
 Query OK, 3 rows affected (0.01 sec)
 Records: 3  Duplicates: 0  Warnings: 0
 
+
+19)
 mysql> table books;
 +---------+-----------------------+---------------+---------+----------+
 | book_no | book_name             | author_name   | cost    | category |
@@ -63,5 +76,7 @@ mysql> table books;
 +---------+-----------------------+---------------+---------+----------+
 7 rows in set (0.00 sec)
 
+
+20)
 mysql> insert into books values(108,'National Geographic','Adis Scott',1000,'science');
 ERROR 3819 (HY000): Check constraint 'books_chk_1' is violated.
