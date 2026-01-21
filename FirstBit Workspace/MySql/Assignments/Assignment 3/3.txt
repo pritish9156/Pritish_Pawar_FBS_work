@@ -1,0 +1,53 @@
+3. Write a SQL statement to insert one row in jobs table to ensure that no duplicate
+value will be entered in the job_id column.
+
+
+solution:
+
+
+mysql> create table jobs(job_id varchar(30) primary key, job_title varchar(50), min_salary int, max_salary int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into jobs values("AD_PRES","President",20000,40000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("AD_VP","Administration Vice President",15000,30000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("AD_ASST","Administration Assistant",3000,6000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("FI_MGR","Finance Manager",8200,16000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("FI_ACCOUNT","Accountant",4200,9000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("AC_MGR","Accounting Manager",8200,16000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("AC_ACCOUNT","Public Accountant",4200,9000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into jobs values("SA_MAN","Sales Manager",10000,20000);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> table jobs;
++------------+-------------------------------+------------+------------+
+| job_id     | job_title                     | min_salary | max_salary |
++------------+-------------------------------+------------+------------+
+| AC_ACCOUNT | Public Accountant             |       4200 |       9000 |
+| AC_MGR     | Accounting Manager            |       8200 |      16000 |
+| AD_ASST    | Administration Assistant      |       3000 |       6000 |
+| AD_PRES    | President                     |      20000 |      40000 |
+| AD_VP      | Administration Vice President |      15000 |      30000 |
+| FI_ACCOUNT | Accountant                    |       4200 |       9000 |
+| FI_MGR     | Finance Manager               |       8200 |      16000 |
+| SA_MAN     | Sales Manager                 |      10000 |      20000 |
++------------+-------------------------------+------------+------------+
+
+
+no duplicate value will be entered in the job_id column
+
+mysql> insert into jobs values("SA_MAN","HR Manager",1000,2000);
+ERROR 1062 (23000): Duplicate entry 'SA_MAN' for key 'jobs.PRIMARY'

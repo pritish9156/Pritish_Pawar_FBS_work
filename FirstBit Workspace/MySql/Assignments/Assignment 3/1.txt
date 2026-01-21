@@ -1,0 +1,99 @@
+1. Write a SQL statement to insert a record as follows:
+Employees :
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+| EMPLOYEE_ID | FIRST_NAME | LAST_NAME | EMAIL | PHONE_NUMBER | HIRE_DATE | JOB_ID | SALARY | COMMISSION_PCT | MANAGER_ID | DEPARTMENT_ID |
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+
+| 100 | Steven | King | SKING | 515.123.4567 | 1987-06-17 | AD_PRES | 24000.00 | 0.00 | 200 | 10 |
+
+| 101 | Neena | Kochhar | NKOCHHAR | 515.123.4568 | 1987-06-18 | AD_VP | 17000.00 | 0.00 | 200 | 10 |
+| 102 | Lex   | De Haan | LDEHAAN | 515.123.4569 | 1987-06-19 | AD_VP | 17000.00 | 0.00 | 200 | 10 |
+| 103 | Alexander | Hunold | AHUNOLD | 590.423.4567 | 1987-06-20 | IT_PROG | 9000.00 | 0.00 | 103 | 60 |
+| 104 | Bruce | Ernst | BERNST | 590.423.4568 | 1987-06-21 | IT_PROG | 6000.00 | 0.00 | 103 | 60 |
+| 105 | David | Austin | DAUSTIN | 590.423.4569 | 1987-06-22 | IT_PROG | 4800.00 | 0.00 | 103 | 60 |
+| 106 | Valli | Pataballa | VPATABAL | 590.423.4560 | 1987-06-23 | IT_PROG | 4800.00 | 0.00 | 103 | 60 |
+| 107 | Diana | Lorentz | DLORENTZ | 590.423.5567 | 1987-06-24 | IT_PROG | 4200.00 | 0.00 | 114 | 30 |
+| 108 | Nancy | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | SA_MAN | 12000.00 | 0.00 | 145 | 80 |
+| 109 | Daniel | Faviet | DFAVIET | 515.124.4169 | 1987-06-26 | SA_MAN | 9000.00 | 0.00 | 145 | 80 |
+
+
+
+solution:
+
+
+mysql> create table employee(employee_id int, first_name varchar(30), last_name varchar(30), email varchar(30), phone_number varchar(13), hire_data date, job_id varchar(30), salary decimal(7,2), commission_pct decimal(7,2), manager_id int, department_id int);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table employees add foreign key(department_id) references department(department_id);
+Query OK, 10 rows affected (0.10 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+mysql> alter table employees add foreign key(manager_id) references department(manager_id);
+Query OK, 10 rows affected (0.13 sec)
+Records: 10  Duplicates: 0  Warnings: 0
+
+
+mysql> desc employees;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| employee_id    | int          | YES  |     | NULL    |       |
+| first_name     | varchar(30)  | YES  |     | NULL    |       |
+| last_name      | varchar(30)  | YES  |     | NULL    |       |
+| email          | varchar(30)  | YES  |     | NULL    |       |
+| phone_number   | varchar(13)  | YES  |     | NULL    |       |
+| hire_data      | date         | YES  |     | NULL    |       |
+| job_id         | varchar(30)  | YES  |     | NULL    |       |
+| salary         | decimal(7,2) | YES  |     | NULL    |       |
+| commission_pct | decimal(7,2) | YES  |     | NULL    |       |
+| manager_id     | int          | YES  |     | NULL    |       |
+| department_id  | int          | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+insert into employees values(100,"Steven","King","SKING","515.123.4567","1987-06-17","AD_PRES",24000.00,0.00,200,10);
+Query OK, 1 row affected (0.01 sec)
+
+insert into employees values(101,'Neena','Kochhar','NKOCHHAR','515.123.4568','1987-06-18','AD_VP',17000.00,0.00,200,10);
+Query OK, 1 row affected (0.01 sec)
+
+insert into employees values(102,'Lex','De Haan','LDEHAAN','515.123.4569','1987-06-19','AD_VP',17000.00,0.00,200,10);
+Query OK, 1 row affected (0.01 sec)
+
+insert into employees values(103,'Alexander','Hunold','AHUNOLD','590.423.4567','1987-06-20','IT_PROG',9000.00,0.00,103,60);
+Query OK, 1 row affected (0.01 sec)
+
+insert into employees
+(employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+
+values(104,'Bruce','Ernst','BERNST','590.423.4568','1987-06-21','IT_PROG',6000.00,0.00,103,60),
+
+(105,'David','Austin','DAUSTIN','590.423.4569','1987-06-22','IT_PROG',4800.00,0.00,103,60),
+
+(106,'Valli','Pataballa','VPATABAL','590.423.4560','1987-06-23','IT_PROG',4800.00,0.00,103,60),
+
+(107,'Diana','Lorentz','DLORENTZ','590.423.5567','1987-06-24','IT_PROG',4200.00,0.00,114,30),
+
+(108,'Nancy','Greenberg','NGREENBE','515.124.4569','1987-06-25','SA_MAN',12000.00,0.00,145,80),
+
+(109,'Daniel','Faviet','DFAVIET','515.124.4169','1987-06-26','SA_MAN',9000.00,0.00,145,80);
+Query OK, 9 rows affected (0.01 sec)
+Records: 9  Duplicates: 0  Warnings: 0
+
+
+
+mysql> table employees;
++-------------+------------+-----------+----------+--------------+------------+---------+----------+----------------+------------+---------------+
+| employee_id | first_name | last_name | email    | phone_number | hire_date  | job_id  | salary   | commission_pct | manager_id | department_id |
++-------------+------------+-----------+----------+--------------+------------+---------+----------+----------------+------------+---------------+
+|         100 | Steven     | King      | SKING    | 515.123.4567 | 1987-06-17 | AD_PRES | 24000.00 |           0.00 |        200 |            10 |
+|         101 | Neena      | Kochhar   | NKOCHHAR | 515.123.4568 | 1987-06-18 | AD_VP   | 17000.00 |           0.00 |        200 |            10 |
+|         102 | Lex        | De Haan   | LDEHAAN  | 515.123.4569 | 1987-06-19 | AD_VP   | 17000.00 |           0.00 |        200 |            10 |
+|         103 | Alexander  | Hunold    | AHUNOLD  | 590.423.4567 | 1987-06-20 | IT_PROG |  9000.00 |           0.00 |        103 |            60 |
+|         104 | Bruce      | Ernst     | BERNST   | 590.423.4568 | 1987-06-21 | IT_PROG |  6000.00 |           0.00 |        103 |            60 |
+|         105 | David      | Austin    | DAUSTIN  | 590.423.4569 | 1987-06-22 | IT_PROG |  4800.00 |           0.00 |        103 |            60 |
+|         106 | Valli      | Pataballa | VPATABAL | 590.423.4560 | 1987-06-23 | IT_PROG |  4800.00 |           0.00 |        103 |            60 |
+|         107 | Diana      | Lorentz   | DLORENTZ | 590.423.5567 | 1987-06-24 | IT_PROG |  4200.00 |           0.00 |        114 |            30 |
+|         108 | Nancy      | Greenberg | NGREENBE | 515.124.4569 | 1987-06-25 | SA_MAN  | 12000.00 |           0.00 |        145 |            80 |
+|         109 | Daniel     | Faviet    | DFAVIET  | 515.124.4169 | 1987-06-26 | SA_MAN  |  9000.00 |           0.00 |        145 |            80 |
++-------------+------------+-----------+----------+--------------+------------+---------+----------+----------------+------------+---------------+
+10 rows in set (0.00 sec)
