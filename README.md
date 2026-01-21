@@ -22,7 +22,7 @@ The repository is **structured to support multiple programming modules**, includ
 ## 🧠 Modules Covered
 
 ### 🔹 C Programming
-- **Current Status:** Completed Assignments 0 to 14
+- **Current Status:** Completed Assignments 0 to 15
 - **Topics Covered:**
   - Basics of C
   - Control statements
@@ -33,6 +33,7 @@ The repository is **structured to support multiple programming modules**, includ
   - Advanced modular programming
   - String manipulation
   - Custom string functions
+  - Problem statements and structure-related examples
 - **Assignments:**
   - **Assignment 0:** Introduction to C basics
   - **Assignment 1:** Control statements and decision-making
@@ -42,6 +43,7 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 5:** Comprehensive problem-solving
   - **Assignment 6:** Functions with/without parameters and return types
   - **Assignment 7 to 14:** Advanced programming tasks, including string operations and custom implementations
+  - **Assignment 15:** Problem statements and structure-related examples
 - **Tests:**
   - Test 1 to Test 6
 
@@ -63,10 +65,14 @@ The repository is **structured to support multiple programming modules**, includ
   - Basic SQL queries
   - Database creation and management
   - CRUD operations
+  - Advanced DML and SELECT queries
 - **Assignments:**
   - **Assignment 0:** Introduction to MySQL basics
   - **Assignment 1:** Basic SQL queries
   - **Assignment 2:** Advanced database operations
+  - **Assignment 3:** DML operations and queries
+  - **Assignment 4:** Advanced SELECT queries
+  - **Assignment 5:** Comprehensive database tasks
 - **Tests:**
   - Test 1
 
@@ -107,7 +113,7 @@ The repository is **structured to support multiple programming modules**, includ
 
 ## 📈 Current Status
 
-- ✅ **C Programming:** Completed Assignments 0 to 14
+- ✅ **C Programming:** Completed Assignments 0 to 15
 - ⏳ **Java Programming:** Upcoming
 - ⏳ **Full Stack Modules:** Planned
 - ⏳ **MySQL:** In Progress
