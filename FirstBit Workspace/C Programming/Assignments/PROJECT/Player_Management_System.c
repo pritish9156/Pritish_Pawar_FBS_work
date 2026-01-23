@@ -1,4 +1,4 @@
-//Player Project
+//Player Management Project
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
@@ -293,6 +293,7 @@ int searchPlayer(Player* player,int size){
 	}
 }
 
+//function to add a single player record
 void addSinglePlayer(Player* player, int* size, int* isDataEmpty){
 	if(*isDataEmpty!=0)
 		*size += 1;
@@ -440,6 +441,7 @@ void sortPlayer(Player* player, int size){
 	
 }
 
+//function  to delete a player record
 void deletePlayer(Player* player, int* size, int* isDataEmpty){
 	printf("\nSelect Your choice how would you like to Delete Data\n");
 	int indexToDelete = searchPlayer(player,*size);
@@ -468,23 +470,30 @@ void deletePlayer(Player* player, int* size, int* isDataEmpty){
 //Main function
 void main(){
 	int size, choice, isDataEmpty=0;
+	Player* player = NULL;
+	
 	printf("\t\t===========================================================");
 	printf("\n\t\t|              Player Management System                   |  \n");
 	printf("\t\t===========================================================\n");
-	printf("\nHow many players details you want to store: ");
-	scanf("%d",&size);
-	Player* player = (Player*)malloc(sizeof(Player)*size);
 	
 	do{
 		if(isDataEmpty==0)
 			printf("\n\t1.Add players");
 			
-		printf("\n\t2.Display Players\n\t3.Search Playern\n\t4.Add a Single Player\n\t5.Update Player\n\t6.Delete Player\n\t7.Sort Player Data\n\t8.Close Software\n");
+		printf("\n\t2.Display Players\n\t3.Search Playern");
+		
+		if(isDataEmpty==1)
+			printf("\n\t4.Add a Single Player");
+			
+		printf("\n\t5.Update Player\n\t6.Delete Player\n\t7.Sort Player Data\n\t8.Close Software\n");
 		printf("\nEnter Your Choice: ");
 		scanf("%d",&choice);
 		
 		switch(choice){
 			case 1:{
+				printf("\nHow many players details you want to store: ");
+				scanf("%d",&size);
+				player = (Player*)malloc(sizeof(Player)*size);
 				addPlayers(player,size);
 				isDataEmpty=1;
 				break;
