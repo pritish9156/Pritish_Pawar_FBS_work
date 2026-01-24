@@ -52,68 +52,398 @@ typedef struct Player{
 
 //single player store/update function
 void updatePlayerById(Player* player, int index){
-		int i=index;
+		int i=index, updateChoice, subUpdateChoice;
 		printf("\n\n\t----------Enter details for Player------------");
+		printf("\n\nwhich data you want to update");
+		printf("\n\n\t1.Player Personal Information\n\t2.Player current Team Information\n\t3.Details About Player Performance\n\t4.System Information about player data");
+		printf("\n\nEnter Your Choice: ");
+		scanf("%d",&updateChoice);
 		
-		printf("\n\n\t ------------Player Personal Information------------\n");
-		printf("Enter Player Id: ");
-		scanf("%d",&player[i].id);
-		printf("Enter Player Name: ");
-		fflush(stdin);
-		gets(player[i].name);
-		fflush(stdin);
-		printf("Enter Player Age: ");
-		scanf("%d",&player[i].age);
-		printf("Enter Player Gender(M or F): ");
-		scanf(" %c",&player[i].gender);
-		printf("Enter Player Date of Birth(dd-mm-yyyy): ");
-		scanf("%d%d%d",&player[i].dob.day,&player[i].dob.month,&player[i].dob.year);
-		printf("Enter Mobile Number: ");
-		fflush(stdin);
-		gets(player[i].mobile);
-		fflush(stdin);
-		printf("Enter email address: ");
-		fflush(stdin);
-		gets(player[i].email);
-		fflush(stdin);
-		printf("Enter Jersey Number: ");
-		scanf("%d",&player[i].jerseyNum);
+		switch(updateChoice){
+			case 1:{
+				printf("\n\n\t ------------Player Personal Information------------\n");
+				printf("\n\nWhich details you want to update");
+				printf("\n\n\t1.Name\n\t2.Age\n\t3.Mobile Number\n\t4.Email\n\t5.Jersey Number");
+				printf("\n\nEnter Your Choice: ");
+				scanf("%d",&subUpdateChoice);
+				switch(subUpdateChoice){
+					case 1:{
+						printf("\n\nEnter Player Name: ");
+						fflush(stdin);
+						gets(player[i].name);
+						fflush(stdin);
+						
+						break;
+					}
+					case 2:{
+						printf("\n\nEnter Player Age: ");
+						scanf("%d",&player[i].age);
+						
+						break;
+					}
+					case 3:{
+						printf("\n\nEnter Mobile Number: ");
+						fflush(stdin);
+						gets(player[i].mobile);
+						fflush(stdin);
+						
+						break;
+					}
+					case 4:{
+						printf("\n\nEnter email address: ");
+						fflush(stdin);
+						gets(player[i].email);
+						fflush(stdin);
+						
+						break;
+					}
+					case 5:{
+						printf("\n\nEnter Jersey Number: ");
+						scanf("%d",&player[i].jerseyNum);
+						
+						break;
+					}
+				}
+	
+				break;
+			}
+			case 2:{
+				printf("\n\n\t -------------Enter Details About Player current Team Information------------\n");
+				printf("\nEnter Team Id: ");
+				scanf("%d",&player[i].teamInfo.teamId);
+				printf("Enter Team Name: ");
+				fflush(stdin);
+				gets(player[i].teamInfo.name);
+				fflush(stdin);
+				printf("Enter Player Role: ");
+				fflush(stdin);
+				gets(player[i].teamInfo.role);
+				fflush(stdin);
+				printf("Enter captain status(Y or N): ");
+				scanf("%c",&player[i].teamInfo.captainStatus);
+				printf("Is Player Active(Y or N): ");
+				scanf(" %c",&player[i].teamInfo.activeStatus);				
+				
+				break;
+			}
+			case 3:{
+				printf("\n\n\t -------------Enter Details About Player Performance------------\n");
+				printf("\nEnter Match Played: ");
+				scanf("%d",&player[i].performance.matchPlayed);
+				printf("Enter score: ");
+				scanf("%d",&player[i].performance.score);
+				printf("Enter best performance score: ");
+				scanf("%d",&player[i].performance.bestPerformance);	
+				
+				break;
+			}
+			case 4:{
+				printf("\n\n\t -------------System Information about player data------------\n");
+				printf("\nEnter data upload date(dd-mm-yyyy): ");
+				scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
+				printf("Enter data Last update date(dd-mm-yyyy): ");
+				scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
+				printf("Enter Remarks If Any or enter no remarks if not: ");
+				fflush(stdin);
+				gets(player[i].sysInfo.remarks);
+				fflush(stdin);
+				printf("Enter player contact Value(charges if any) if not enter 0 : ");
+				scanf("%d",&player[i].sysInfo.contactValue);
+				
+				break;
+			}
+		}			
+}
+
+void addPlayersHardcoded(Player* player){
+		// Player 1
+		player[0].id=1;
+		strcpy(player[0].name,"Virat Koli");
+		player[0].age=25;
+		player[0].gender='M';
+		player[0].dob.day=10;
+		player[0].dob.month=03;
+		player[0].dob.year=2003;
+		strcpy(player[0].mobile,"2929394939");
+		strcpy(player[0].email,"virat@gmail.com");
+		player[0].jerseyNum=41;
+		player[0].teamInfo.teamId=101;
+		strcpy(player[0].teamInfo.name,"chennai");
+		strcpy(player[0].teamInfo.role,"Batsman");
+		player[0].teamInfo.captainStatus='Y';
+		player[0].teamInfo.activeStatus='Y';
+		player[0].performance.matchPlayed=1000;
+		player[0].performance.score=5000;
+		player[0].performance.bestPerformance=400;
+		player[0].sysInfo.sysDate.day=10;
+		player[0].sysInfo.sysDate.month=8;
+		player[0].sysInfo.sysDate.year=2025;
+		player[0].sysInfo.lastUpdated.day=8;
+		player[0].sysInfo.lastUpdated.month=10;
+		player[0].sysInfo.lastUpdated.year=2025;
+		strcpy(player[0].sysInfo.remarks,"No");
+		player[0].sysInfo.contactValue=10200;
 		
-		printf("\n\n\t -------------Enter Details About Player current Team Information------------\n");
-		printf("\nEnter Team Id: ");
-		scanf("%d",&player[i].teamInfo.teamId);
-		printf("Enter Team Name: ");
-		fflush(stdin);
-		gets(player[i].teamInfo.name);
-		fflush(stdin);
-		printf("Enter Player Role: ");
-		fflush(stdin);
-		gets(player[i].teamInfo.role);
-		fflush(stdin);
-		printf("Enter captain status(Y or N): ");
-		scanf("%c",&player[i].teamInfo.captainStatus);
-		printf("Is Player Active(Y or N): ");
-		scanf(" %c",&player[i].teamInfo.activeStatus);
+		// Player 2
+		player[1].id = 2;
+		strcpy(player[1].name, "Rohit Sharma");
+		player[1].age = 36;
+		player[1].gender = 'M';
+		player[1].dob.day = 30;
+		player[1].dob.month = 4;
+		player[1].dob.year = 1987;
+		strcpy(player[1].mobile, "9876543210");
+		strcpy(player[1].email, "rohit@gmail.com");
+		player[1].jerseyNum = 45;
+		player[1].teamInfo.teamId = 102;
+		strcpy(player[1].teamInfo.name, "Mumbai");
+		strcpy(player[1].teamInfo.role, "Batsman");
+		player[1].teamInfo.captainStatus = 'Y';
+		player[1].teamInfo.activeStatus = 'Y';
+		player[1].performance.matchPlayed = 900;
+		player[1].performance.score = 4800;
+		player[1].performance.bestPerformance = 264;
+		player[1].sysInfo.sysDate.day = 5;
+		player[1].sysInfo.sysDate.month = 6;
+		player[1].sysInfo.sysDate.year = 2025;
+		player[1].sysInfo.lastUpdated.day = 10;
+		player[1].sysInfo.lastUpdated.month = 6;
+		player[1].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[1].sysInfo.remarks, "Active");
+		player[1].sysInfo.contactValue = 15000;
 		
-		printf("\n\n\t -------------Enter Details About Player Performance------------\n");
-		printf("\nEnter Match Played: ");
-		scanf("%d",&player[i].performance.matchPlayed);
-		printf("Enter score: ");
-		scanf("%d",&player[i].performance.score);
-		printf("Enter best performance score: ");
-		scanf("%d",&player[i].performance.bestPerformance);
 		
-		printf("\n\n\t -------------System Information about player data------------\n");
-		printf("\nEnter data upload date(dd-mm-yyyy): ");
-		scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
-		printf("Enter data Last update date(dd-mm-yyyy): ");
-		scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
-		printf("Enter Remarks If Any or enter no remarks if not: ");
-		fflush(stdin);
-		gets(player[i].sysInfo.remarks);
-		fflush(stdin);
-		printf("Enter player contact Value(charges if any) if not enter 0 : ");
-		scanf("%d",&player[i].sysInfo.contactValue);
+		// Player 3
+		player[2].id = 3;
+		strcpy(player[2].name, "MS Dhoni");
+		player[2].age = 42;
+		player[2].gender = 'M';
+		player[2].dob.day = 7;
+		player[2].dob.month = 7;
+		player[2].dob.year = 1981;
+		strcpy(player[2].mobile, "9123456789");
+		strcpy(player[2].email, "dhoni@gmail.com");
+		player[2].jerseyNum = 7;
+		player[2].teamInfo.teamId = 103;
+		strcpy(player[2].teamInfo.name, "Chennai");
+		strcpy(player[2].teamInfo.role, "Wicket Keeper");
+		player[2].teamInfo.captainStatus = 'Y';
+		player[2].teamInfo.activeStatus = 'N';
+		player[2].performance.matchPlayed = 1200;
+		player[2].performance.score = 5200;
+		player[2].performance.bestPerformance = 183;
+		player[2].sysInfo.sysDate.day = 1;
+		player[2].sysInfo.sysDate.month = 5;
+		player[2].sysInfo.sysDate.year = 2025;
+		player[2].sysInfo.lastUpdated.day = 15;
+		player[2].sysInfo.lastUpdated.month = 5;
+		player[2].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[2].sysInfo.remarks, "Retired");
+		player[2].sysInfo.contactValue = 20000;
+		
+		
+		// Player 4
+		player[3].id = 4;
+		strcpy(player[3].name, "KL Rahul");
+		player[3].age = 31;
+		player[3].gender = 'M';
+		player[3].dob.day = 18;
+		player[3].dob.month = 4;
+		player[3].dob.year = 1992;
+		strcpy(player[3].mobile, "9988776655");
+		strcpy(player[3].email, "klrahul@gmail.com");
+		player[3].jerseyNum = 1;
+		player[3].teamInfo.teamId = 104;
+		strcpy(player[3].teamInfo.name, "Lucknow");
+		strcpy(player[3].teamInfo.role, "Batsman");
+		player[3].teamInfo.captainStatus = 'Y';
+		player[3].teamInfo.activeStatus = 'Y';
+		player[3].performance.matchPlayed = 450;
+		player[3].performance.score = 3500;
+		player[3].performance.bestPerformance = 199;
+		player[3].sysInfo.sysDate.day = 12;
+		player[3].sysInfo.sysDate.month = 4;
+		player[3].sysInfo.sysDate.year = 2025;
+		player[3].sysInfo.lastUpdated.day = 20;
+		player[3].sysInfo.lastUpdated.month = 4;
+		player[3].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[3].sysInfo.remarks, "Active");
+		player[3].sysInfo.contactValue = 12000;
+		
+		
+		// Player 5
+		player[4].id = 5;
+		strcpy(player[4].name, "Hardik Pandya");
+		player[4].age = 30;
+		player[4].gender = 'M';
+		player[4].dob.day = 11;
+		player[4].dob.month = 10;
+		player[4].dob.year = 1993;
+		strcpy(player[4].mobile, "9090909090");
+		strcpy(player[4].email, "hardik@gmail.com");
+		player[4].jerseyNum = 33;
+		player[4].teamInfo.teamId = 105;
+		strcpy(player[4].teamInfo.name, "Gujarat");
+		strcpy(player[4].teamInfo.role, "All Rounder");
+		player[4].teamInfo.captainStatus = 'Y';
+		player[4].teamInfo.activeStatus = 'Y';
+		player[4].performance.matchPlayed = 500;
+		player[4].performance.score = 2800;
+		player[4].performance.bestPerformance = 91;
+		player[4].sysInfo.sysDate.day = 10;
+		player[4].sysInfo.sysDate.month = 3;
+		player[4].sysInfo.sysDate.year = 2025;
+		player[4].sysInfo.lastUpdated.day = 18;
+		player[4].sysInfo.lastUpdated.month = 3;
+		player[4].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[4].sysInfo.remarks, "Fit");
+		player[4].sysInfo.contactValue = 14000;
+		
+		
+		// Player 6
+		player[5].id = 6;
+		strcpy(player[5].name, "Jasprit Bumrah");
+		player[5].age = 30;
+		player[5].gender = 'M';
+		player[5].dob.day = 6;
+		player[5].dob.month = 12;
+		player[5].dob.year = 1993;
+		strcpy(player[5].mobile, "8888888888");
+		strcpy(player[5].email, "bumrah@gmail.com");
+		player[5].jerseyNum = 93;
+		player[5].teamInfo.teamId = 102;
+		strcpy(player[5].teamInfo.name, "Mumbai");
+		strcpy(player[5].teamInfo.role, "Bowler");
+		player[5].teamInfo.captainStatus = 'N';
+		player[5].teamInfo.activeStatus = 'Y';
+		player[5].performance.matchPlayed = 400;
+		player[5].performance.score = 300;
+		player[5].performance.bestPerformance = 6;
+		player[5].sysInfo.sysDate.day = 5;
+		player[5].sysInfo.sysDate.month = 2;
+		player[5].sysInfo.sysDate.year = 2025;
+		player[5].sysInfo.lastUpdated.day = 9;
+		player[5].sysInfo.lastUpdated.month = 2;
+		player[5].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[5].sysInfo.remarks, "Active");
+		player[5].sysInfo.contactValue = 13000;
+		
+		
+		// Player 7
+		player[6].id = 7;
+		strcpy(player[6].name, "Ravindra Jadeja");
+		player[6].age = 35;
+		player[6].gender = 'M';
+		player[6].dob.day = 6;
+		player[6].dob.month = 12;
+		player[6].dob.year = 1988;
+		strcpy(player[6].mobile, "7777777777");
+		strcpy(player[6].email, "jadeja@gmail.com");
+		player[6].jerseyNum = 8;
+		player[6].teamInfo.teamId = 103;
+		strcpy(player[6].teamInfo.name, "Chennai");
+		strcpy(player[6].teamInfo.role, "All Rounder");
+		player[6].teamInfo.captainStatus = 'N';
+		player[6].teamInfo.activeStatus = 'Y';
+		player[6].performance.matchPlayed = 700;
+		player[6].performance.score = 3200;
+		player[6].performance.bestPerformance = 175;
+		player[6].sysInfo.sysDate.day = 3;
+		player[6].sysInfo.sysDate.month = 1;
+		player[6].sysInfo.sysDate.year = 2025;
+		player[6].sysInfo.lastUpdated.day = 10;
+		player[6].sysInfo.lastUpdated.month = 1;
+		player[6].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[6].sysInfo.remarks, "Active");
+		player[6].sysInfo.contactValue = 14500;
+		
+		
+		// Player 8
+		player[7].id = 8;
+		strcpy(player[7].name, "Shubman Gill");
+		player[7].age = 24;
+		player[7].gender = 'M';
+		player[7].dob.day = 8;
+		player[7].dob.month = 9;
+		player[7].dob.year = 1999;
+		strcpy(player[7].mobile, "6666666666");
+		strcpy(player[7].email, "gill@gmail.com");
+		player[7].jerseyNum = 77;
+		player[7].teamInfo.teamId = 105;
+		strcpy(player[7].teamInfo.name, "Gujarat");
+		strcpy(player[7].teamInfo.role, "Batsman");
+		player[7].teamInfo.captainStatus = 'N';
+		player[7].teamInfo.activeStatus = 'Y';
+		player[7].performance.matchPlayed = 250;
+		player[7].performance.score = 2100;
+		player[7].performance.bestPerformance = 208;
+		player[7].sysInfo.sysDate.day = 2;
+		player[7].sysInfo.sysDate.month = 2;
+		player[7].sysInfo.sysDate.year = 2025;
+		player[7].sysInfo.lastUpdated.day = 5;
+		player[7].sysInfo.lastUpdated.month = 2;
+		player[7].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[7].sysInfo.remarks, "Young Talent");
+		player[7].sysInfo.contactValue = 9000;
+		
+		
+		// Player 9
+		player[8].id = 9;
+		strcpy(player[8].name, "Surya Kumar");
+		player[8].age = 33;
+		player[8].gender = 'M';
+		player[8].dob.day = 14;
+		player[8].dob.month = 9;
+		player[8].dob.year = 1990;
+		strcpy(player[8].mobile, "5555555555");
+		strcpy(player[8].email, "surya@gmail.com");
+		player[8].jerseyNum = 63;
+		player[8].teamInfo.teamId = 102;
+		strcpy(player[8].teamInfo.name, "Mumbai");
+		strcpy(player[8].teamInfo.role, "Batsman");
+		player[8].teamInfo.captainStatus = 'N';
+		player[8].teamInfo.activeStatus = 'Y';
+		player[8].performance.matchPlayed = 350;
+		player[8].performance.score = 2900;
+		player[8].performance.bestPerformance = 117;
+		player[8].sysInfo.sysDate.day = 15;
+		player[8].sysInfo.sysDate.month = 3;
+		player[8].sysInfo.sysDate.year = 2025;
+		player[8].sysInfo.lastUpdated.day = 18;
+		player[8].sysInfo.lastUpdated.month = 3;
+		player[8].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[8].sysInfo.remarks, "T20 Specialist");
+		player[8].sysInfo.contactValue = 11000;
+		
+		
+		// Player 10
+		player[9].id = 10;
+		strcpy(player[9].name, "Rishabh Pant");
+		player[9].age = 26;
+		player[9].gender = 'M';
+		player[9].dob.day = 4;
+		player[9].dob.month = 10;
+		player[9].dob.year = 1997;
+		strcpy(player[9].mobile, "4444444444");
+		strcpy(player[9].email, "pant@gmail.com");
+		player[9].jerseyNum = 17;
+		player[9].teamInfo.teamId = 104;
+		strcpy(player[9].teamInfo.name, "Delhi");
+		strcpy(player[9].teamInfo.role, "Wicket Keeper");
+		player[9].teamInfo.captainStatus = 'Y';
+		player[9].teamInfo.activeStatus = 'Y';
+		player[9].performance.matchPlayed = 300;
+		player[9].performance.score = 2600;
+		player[9].performance.bestPerformance = 159;
+		player[9].sysInfo.sysDate.day = 20;
+		player[9].sysInfo.sysDate.month = 4;
+		player[9].sysInfo.sysDate.year = 2025;
+		player[9].sysInfo.lastUpdated.day = 25;
+		player[9].sysInfo.lastUpdated.month = 4;
+		player[9].sysInfo.lastUpdated.year = 2025;
+		strcpy(player[9].sysInfo.remarks, "Captain");
+		player[9].sysInfo.contactValue = 12500;
+
 }
 
 //All players data storing function
@@ -122,8 +452,9 @@ void addPlayers(Player* player, int size){
 		printf("\n\n\t----------Enter details for Player number %d------------",i+1);
 		
 		printf("\n\n\t ------------Player Personal Information------------\n");
-		printf("\nEnter Player Id: ");
-		scanf("%d",&player[i].id);
+		
+		player[i].id=i+1;
+		
 		printf("Enter Player Name: ");
 		fflush(stdin);
 		gets(player[i].name);
@@ -476,6 +807,7 @@ void main(){
 	printf("\n\t\t|              Player Management System                   |  \n");
 	printf("\t\t===========================================================\n");
 	
+	
 	do{
 		if(isDataEmpty==0)
 			printf("\n\t1.Add players");
@@ -494,7 +826,8 @@ void main(){
 				printf("\nHow many players details you want to store: ");
 				scanf("%d",&size);
 				player = (Player*)malloc(sizeof(Player)*size);
-				addPlayers(player,size);
+				//addPlayers(player,size);
+				addPlayersHardcoded(player);
 				isDataEmpty=1;
 				break;
 			}
