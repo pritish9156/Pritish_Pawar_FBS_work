@@ -2,6 +2,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
+#include <time.h>
 
 //Date structure for player date of birth
 typedef struct Date{
@@ -57,6 +58,19 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 		printf("\n\n\t----------Enter details for Player------------");
 		printf("\n\nwhich data you want to update");
 		
+		//Updating Last Updated date of Player record
+		time_t t = time(NULL);
+		struct tm *current = localtime(&t);
+
+		int day = current->tm_mday;
+		int month = current->tm_mon + 1;   // months start from 0
+		int year = current->tm_year + 1900; // years since 1900
+		
+		player[i].sysInfo.lastUpdated.day = day;
+		player[i].sysInfo.lastUpdated.month = month;
+		player[i].sysInfo.lastUpdated.year = year;
+
+		
 		do{
 		
 			printf("\n\n\t1.Player Personal Information\n\t2.Player current Team Information\n\t3.Details About Player Performance\n\t4.System Information about player data\n\t5.Back To Main Menu");
@@ -90,7 +104,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 2:{
-								printf("\n\nOld Record: %s",player[i].age);
+								printf("\n\nOld Record: %d",player[i].age);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -130,7 +144,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 5:{
-								printf("\n\nOld Record: %s",player[i].jerseyNum);
+								printf("\n\nOld Record: %d",player[i].jerseyNum);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -189,7 +203,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 3:{
-								printf("\n\nOld Record: %s",player[i].teamInfo.captainStatus);
+								printf("\n\nOld Record: %c",player[i].teamInfo.captainStatus);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -201,7 +215,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 4:{
-								printf("\n\nOld Record: %s",player[i].teamInfo.activeStatus);
+								printf("\n\nOld Record: %c",player[i].teamInfo.activeStatus);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -233,7 +247,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 						
 						switch(subUpdateChoice){
 							case 1:{
-								printf("\n\nOld Record: %s",player[i].performance.matchPlayed);
+								printf("\n\nOld Record: %d",player[i].performance.matchPlayed);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -245,7 +259,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 2:{
-								printf("\n\nOld Record: %s",player[i].performance.score);
+								printf("\n\nOld Record: %d",player[i].performance.score);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -257,7 +271,7 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 								break;
 							}
 							case 3:{
-								printf("\n\nOld Record: %s",player[i].performance.bestPerformance);
+								printf("\n\nOld Record: %d",player[i].performance.bestPerformance);
 								printf("\nDo You want to continue(Y or N): ");
 								scanf(" %c",&updateStatus);
 								
@@ -331,15 +345,17 @@ void updatePlayerById(Player* player, int index, int* isUpdate){
 		}while(updateChoice!=5);
 }
 
-void addPlayerById(Player* player, int index){
+void addPlayerById(Player* player, int index, int* currentId){
 	
 	int i=index;
-
-	printf("\n\n\t----------Enter details for Player number %d------------",i+1);
+	
+	*currentId += 1;
+	
+	printf("\n\n\t----------Enter details for Player number %d------------",*currentId);
 		
 	printf("\n\n\t ------------Player Personal Information------------\n");
-		
-	player[i].id=i+1;
+	
+	player[i].id=*currentId;
 		
 	printf("\nEnter Player Name: ");
 	fflush(stdin);
@@ -387,10 +403,22 @@ void addPlayerById(Player* player, int index){
 	scanf("%d",&player[i].performance.bestPerformance);
 		
 	printf("\n\n\t -------------System Information about player data------------\n");
-	printf("\nEnter data upload date(dd-mm-yyyy): ");
-	scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
-	printf("Enter data Last update date(dd-mm-yyyy): ");
-	scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
+	
+	time_t t = time(NULL);
+	struct tm *current = localtime(&t);
+
+	int day = current->tm_mday;
+	int month = current->tm_mon + 1;   // months start from 0
+	int year = current->tm_year + 1900; // years since 1900
+	
+	player[i].sysInfo.sysDate.day = day;
+	player[i].sysInfo.sysDate.month = month;
+	player[i].sysInfo.sysDate.year = year;
+		
+	player[i].sysInfo.lastUpdated.day = day;
+	player[i].sysInfo.lastUpdated.month = month;
+	player[i].sysInfo.lastUpdated.year = year;
+	
 	printf("Enter Remarks If Any or enter no remarks if not: ");
 	fflush(stdin);
 	gets(player[i].sysInfo.remarks);
@@ -400,7 +428,7 @@ void addPlayerById(Player* player, int index){
 			
 }
 
-void addPlayersHardcoded(Player* player){
+void addPlayersHardcoded(Player* player, int* currentId){
 		// Player 1
 		player[0].id=1;
 		strcpy(player[0].name,"Virat Koli");
@@ -689,16 +717,19 @@ void addPlayersHardcoded(Player* player){
 		strcpy(player[9].sysInfo.remarks, "Captain");
 		player[9].sysInfo.contactValue = 12500;
 
+		*currentId = 10;
 }
 
 //All players data storing function
-void addPlayers(Player* player, int size){
+void addPlayers(Player* player, int size, int* currentId){
 	for(int i=0; i<size; i++){
 		printf("\n\n\t----------Enter details for Player number %d------------",i+1);
 		
 		printf("\n\n\t ------------Player Personal Information------------\n");
+			
+		*currentId += 1;
 		
-		player[i].id=i+1;
+		player[i].id=*currentId;
 		
 		printf("Enter Player Name: ");
 		fflush(stdin);
@@ -746,10 +777,22 @@ void addPlayers(Player* player, int size){
 		scanf("%d",&player[i].performance.bestPerformance);
 		
 		printf("\n\n\t -------------System Information about player data------------\n");
-		printf("\nEnter data upload date(dd-mm-yyyy): ");
-		scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
-		printf("Enter data Last update date(dd-mm-yyyy): ");
-		scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
+		
+		time_t t = time(NULL);
+		struct tm *current = localtime(&t);
+
+		int day = current->tm_mday;
+		int month = current->tm_mon + 1;   // months start from 0
+		int year = current->tm_year + 1900; // years since 1900
+		
+		player[i].sysInfo.sysDate.day = day;
+		player[i].sysInfo.sysDate.month = month;
+		player[i].sysInfo.sysDate.year = year;
+		
+		player[i].sysInfo.lastUpdated.day = day;
+		player[i].sysInfo.lastUpdated.month = month;
+		player[i].sysInfo.lastUpdated.year = year;
+		
 		printf("Enter Remarks If Any or enter no remarks if not: ");
 		fflush(stdin);
 		gets(player[i].sysInfo.remarks);
@@ -786,8 +829,8 @@ void displayPlayerByIndex(Player* player,int index){
 		
 		printf("\n\n\t -------------Details About Player Performance------------\n");
 		printf("\nMatch Played: %d",player[i].performance.matchPlayed);
-		printf("\nScore: %d",player[i].performance.score);
-		printf("\nEnter best performance score: %d",player[i].performance.bestPerformance);
+		printf("\nTotal Score: %d",player[i].performance.score);
+		printf("\nBest performance: %d",player[i].performance.bestPerformance);
 		
 		printf("\n\n\t -------------System Information about player data------------\n");
 		printf("\nData upload date: %d-%d-%d",player[i].sysInfo.sysDate.day,player[i].sysInfo.sysDate.month,player[i].sysInfo.sysDate.year);
@@ -795,6 +838,32 @@ void displayPlayerByIndex(Player* player,int index){
 		printf("\nRemarks: %s",player[i].sysInfo.remarks);
 		printf("\nPlayer contact Value(charges): %d",player[i].sysInfo.contactValue);
 		
+		printf("\n\n================================================================\n");
+}
+
+void displayPlayerByIndexForUser(Player* player,int index){
+		int i=index;
+		
+		printf("\n\n\t----------Details of Player number %d------------",player[i].id);
+		
+		printf("\n\n\t ------------Player Personal Information------------\n");
+		printf("\nName: %s",player[i].name);
+		printf("\nAge: %d",player[i].age);
+		printf("\nGender: %c",player[i].gender);
+		printf("\nJersey Number: %d",player[i].jerseyNum);
+		
+		printf("\n\n\t -------------Current Team Information------------\n");
+		printf("\nName: %s",player[i].teamInfo.name);
+		printf("\nRole: %s",player[i].teamInfo.role);
+		printf("\nCaptainship status: %c",player[i].teamInfo.captainStatus);
+		printf("\nIs Player Active: %c",player[i].teamInfo.activeStatus);
+		
+		printf("\n\n\t -------------Details About Player Performance------------\n");
+		printf("\nMatch Played: %d",player[i].performance.matchPlayed);
+		printf("\nTotal Score: %d",player[i].performance.score);
+		printf("\nBest performance: %d",player[i].performance.bestPerformance);
+		
+		printf("\n\nLast updated on: %d-%d-%d",player[i].sysInfo.lastUpdated.day,player[i].sysInfo.lastUpdated.month,player[i].sysInfo.lastUpdated.year);
 		printf("\n\n================================================================\n");
 }
 
@@ -833,6 +902,33 @@ void displayPlayer(Player* player,int size){
 	}
 }
 
+void displayPlayerForUser(Player* player,int size){
+	for(int i=0; i<size; i++){
+		printf("\n\n\t----------Details of Player number %d------------",player[i].id);
+		
+		printf("\n\n\t ------------Player Personal Information------------\n");
+		printf("\nName: %s",player[i].name);
+		printf("\nAge: %d",player[i].age);
+		printf("\nGender: %c",player[i].gender);
+		printf("\nJersey Number: %d",player[i].jerseyNum);
+		
+		printf("\n\n\t -------------Current Team Information------------\n");
+		printf("\nTeam Name: %s",player[i].teamInfo.name);
+		printf("\nPlayer Role: %s",player[i].teamInfo.role);
+		printf("\nCaptainship status: %c",player[i].teamInfo.captainStatus);
+		printf("\nIs Player Active: %c",player[i].teamInfo.activeStatus);
+		
+		printf("\n\n\t -------------Details About Player Performance------------\n");
+		printf("\nMatch Played: %d",player[i].performance.matchPlayed);
+		printf("\nTotal Score: %d",player[i].performance.score);
+		printf("\nBest performance: %d",player[i].performance.bestPerformance);
+		
+		printf("\n\nLast updated on: %d-%d-%d",player[i].sysInfo.lastUpdated.day,player[i].sysInfo.lastUpdated.month,player[i].sysInfo.lastUpdated.year);
+		
+		printf("\n\n================================================================\n");
+	}
+}
+
 //Function to fetch a specific player details
 int searchPlayer(Player* player,int size){
 	int searchChoice;
@@ -859,7 +955,9 @@ int searchPlayer(Player* player,int size){
 		fflush(stdin);
 		
 		for(int i=0; i<size; i++){
-			if(strstr(player[i].name,searchName)==0)
+			char playerNameCopy[30]; 
+			strcpy(playerNameCopy,player[i].name);
+			if(strstr(strlwr(playerNameCopy),strlwr(searchName))!=NULL)
 				return i;
 		}
 		return -1;
@@ -870,7 +968,7 @@ int searchPlayer(Player* player,int size){
 }
 
 //function to add a single player record
-Player* addSinglePlayer(Player* player, int* size, int* isDataEmpty){
+Player* addSinglePlayer(Player* player, int* size, int* isDataEmpty, int* currentId){
 	if(*isDataEmpty!=0)
 		*size += 1;
 		
@@ -880,7 +978,7 @@ Player* addSinglePlayer(Player* player, int* size, int* isDataEmpty){
 	
 
 		
-	addPlayerById(player, *size-1);
+	addPlayerById(player, *size-1, currentId);
 	
 	for(int i=0; i<*size; i++){
 		printf("\nid: %d",player[i].id);
@@ -1053,26 +1151,34 @@ void deletePlayer(Player* player, int* size, int* isDataEmpty){
 		printf("======================================\n\n");
 				
 	}else{
-		printf("\nDeletion in Progress.....\n");
-		for(int i=indexToDelete; i<(*size); i++){
-			player[i] = player[i+1];
-		}
-		*size -= 1;
+		char deleteChoice;
 		
-		if(*size==0)
-			*isDataEmpty = 0;
+		printf("\nPlayer Details Found\n");
+		printf("-----------------------------------\n\n");
+		printf("Id: %d\nName: %s\n",player[indexToDelete].id, player[indexToDelete].name);
+		printf("\nDeletion in Progress.....\n");
+		printf("\nDo You Want To Continue(Y or N): ");
+		scanf(" %c",&deleteChoice);
+		
+		if(deleteChoice=='y'||deleteChoice=='Y'){
+			for(int i=indexToDelete; i<(*size); i++){
+				player[i] = player[i+1];
+			}
+			*size -= 1;
+		
+			if(*size==0)
+				*isDataEmpty = 0;
 			
-		printf("\n\n===================================================================");
-		printf("\n\t---------Details Deleted successfully-----------");
-		printf("\n====================================================================\n\n");
+			printf("\n\n===================================================================");
+			printf("\n\t---------Details Deleted successfully-----------");
+			printf("\n====================================================================\n\n");
+		}		
 	}
-	
-
 }
 
 //Main function
 void main(){
-	int size, choice, isDataEmpty=0;
+	int size, choice, isDataEmpty=0, currentId=0;
 	Player* player = NULL;
 	
 	printf("\t\t===========================================================");
@@ -1098,15 +1204,15 @@ void main(){
 				printf("\nHow many players details you want to store: ");
 				scanf("%d",&size);
 				player = (Player*)malloc(sizeof(Player)*size);
-				//addPlayers(player,size);
-				addPlayersHardcoded(player);
+				//addPlayers(player,size,&currentId);
+				addPlayersHardcoded(player,&currentId);
 				isDataEmpty=1;
 				break;
 			}
 			case 2:{
 				if(isDataEmpty==1){
 					printf("\nsize to disp %d \n",size);
-					displayPlayer(player,size);	
+					displayPlayerForUser(player,size);	
 				}
 				else
 					printf("\n\t-----------Data Not avilable to display--------------\n");
@@ -1122,13 +1228,13 @@ void main(){
 				
 				}else{
 					printf("\nPlayer Details Found\n");
-					displayPlayerByIndex(player,index);
+					displayPlayerByIndexForUser(player,index);
 				}
 				
 				break;
 			}
 			case 4:
-				player = addSinglePlayer(player, &size, &isDataEmpty);
+				player = addSinglePlayer(player, &size, &isDataEmpty, &currentId);
 				break;
 				
 			case 5:
