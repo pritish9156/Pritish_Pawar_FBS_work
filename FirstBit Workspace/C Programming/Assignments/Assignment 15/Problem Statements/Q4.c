@@ -26,28 +26,15 @@ typedef struct CustDetails{
 
 //function to add customer
 void addProduct(Product* product, int productQuantity, int* currentIndex, int productAddFlow){
-	
-		scanf("%d",&productQu
-			fflush(stdin);
-			printf("Enter Price: ");
-			scanf("%f",&product[i].price);
-			printf("Number of stock: ");
-			scanf("%d",&product[i].stock);
-			printf("Discount on Product: ");
-			scanf("%f",&product[i].discount);
-			product[i].taxRate=0.18;
-			printf("\n");	
-		}
-		
-	}else{
-			scanf("%d",&product[i].pid);
-			printf("Enter Product Name: ");
-			fflush(stdin);
-			gets(product[i].name);
-				printf("Enter Price: ");
-			printf("Number of stock: ");
-		
-	
+//		for()
+//			printf("Enter Price: ");
+//			scanf("%f",&product[i].price);
+//			printf("Number of stock: ");
+//			scanf("%d",&product[i].stock);
+//			printf("Discount on Product: ");
+//			scanf("%f",&product[i].discount);
+//			product[i].taxRate=0.18;
+//			printf("\n");		
 }
  
 
@@ -104,41 +91,8 @@ void main(){
 			printf("\n\nEnter Your Choice: ");
 			scanf("%d",&choice);
 			
-			switch(choice){
-				case 1:{
-					
-					if(productAddFlow==0){
-						addProduct(product, &currentIndex, productAddFlow);
-						productAddFlow=1;
-						
-					}else{
-						
-						addProduct(product, &currentIndex, productAddFlow);
-					}
-					
-					break;
-				}ase 2:
-						printf("\nHow many products do you want to add: ");
-						scanf("%d",&productQuantity);
-					                      
-						printf("\nHow many pr
-						productAddFlow=1;oducts do you want to add: ");
-						scanf("%d",&productQuantity);
-					
-						product = (Product*)malloc(productQuantity*sizeof(Product));
-					
-						product = (Product, productQuantity *realloc(product, productQuantity*sizeof(Product));
-					{reak;                                                               
-					break;
-				}
-			}	
+		}while(choice!=5);		
 			
-		}while(choice!=5);    , productQuantity 
-		       Single
-		
-		
-		
-		
 	}else if(strcasecmp(username,"customer")==0 && strcasecmp(password,"customer")==0){
 		
 		system("cls");
