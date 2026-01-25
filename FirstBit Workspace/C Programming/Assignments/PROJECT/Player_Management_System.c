@@ -51,108 +51,353 @@ typedef struct Player{
 }Player;
 
 //single player store/update function
-void updatePlayerById(Player* player, int index){
+void updatePlayerById(Player* player, int index, int* isUpdate){
 		int i=index, updateChoice, subUpdateChoice;
+		char updateStatus;
 		printf("\n\n\t----------Enter details for Player------------");
 		printf("\n\nwhich data you want to update");
-		printf("\n\n\t1.Player Personal Information\n\t2.Player current Team Information\n\t3.Details About Player Performance\n\t4.System Information about player data");
-		printf("\n\nEnter Your Choice: ");
-		scanf("%d",&updateChoice);
 		
-		switch(updateChoice){
-			case 1:{
-				printf("\n\n\t ------------Player Personal Information------------\n");
-				printf("\n\nWhich details you want to update");
-				printf("\n\n\t1.Name\n\t2.Age\n\t3.Mobile Number\n\t4.Email\n\t5.Jersey Number");
-				printf("\n\nEnter Your Choice: ");
-				scanf("%d",&subUpdateChoice);
-				switch(subUpdateChoice){
-					case 1:{
-						printf("\n\nEnter Player Name: ");
-						fflush(stdin);
-						gets(player[i].name);
-						fflush(stdin);
-						
-						break;
-					}
-					case 2:{
-						printf("\n\nEnter Player Age: ");
-						scanf("%d",&player[i].age);
-						
-						break;
-					}
-					case 3:{
-						printf("\n\nEnter Mobile Number: ");
-						fflush(stdin);
-						gets(player[i].mobile);
-						fflush(stdin);
-						
-						break;
-					}
-					case 4:{
-						printf("\n\nEnter email address: ");
-						fflush(stdin);
-						gets(player[i].email);
-						fflush(stdin);
-						
-						break;
-					}
-					case 5:{
-						printf("\n\nEnter Jersey Number: ");
-						scanf("%d",&player[i].jerseyNum);
-						
-						break;
-					}
+		do{
+		
+			printf("\n\n\t1.Player Personal Information\n\t2.Player current Team Information\n\t3.Details About Player Performance\n\t4.System Information about player data\n\t5.Back To Main Menu");
+			printf("\n\nEnter Your Choice: ");
+			scanf("%d",&updateChoice);
+			
+			switch(updateChoice){
+				case 1:{
+					
+					do{
+					
+						printf("\n\n\t ------------Player Personal Information------------\n");
+						printf("\n\nWhich details you want to update");
+						printf("\n\n\t1.Name\n\t2.Age\n\t3.Mobile Number\n\t4.Email\n\t5.Jersey Number\n\t6.Back To Main Menu");
+						printf("\n\nEnter Your Choice: ");
+						scanf("%d",&subUpdateChoice);
+						switch(subUpdateChoice){
+							case 1:{
+								printf("\n\nOld Record: %s",player[i].name);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\nEnter New Player Name: ");
+									fflush(stdin);
+									gets(player[i].name);
+									fflush(stdin);
+									printf("\n\n\t---------Player Name Updated----------\n");
+								}
+								
+								break;
+							}
+							case 2:{
+								printf("\n\nOld Record: %s",player[i].age);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter new Age: ");
+									scanf("%d",&player[i].age);
+									printf("\n\n\t---------Player Age Updated----------\n");
+								}
+								break;
+							}
+							case 3:{		
+								printf("\n\nOld Record: %s",player[i].mobile);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter New Mobile Number: ");
+									fflush(stdin);
+									gets(player[i].mobile);
+									fflush(stdin);
+									printf("\n\n\t---------Player Mobile Number Updated----------\n");
+								}
+								break;
+							}
+							case 4:{
+								printf("\n\nOld Record: %s",player[i].email);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter new email address: ");
+									fflush(stdin);
+									gets(player[i].email);
+									fflush(stdin);
+									printf("\n\n\t---------Player Email address Updated----------\n");
+								}
+								break;
+							}
+							case 5:{
+								printf("\n\nOld Record: %s",player[i].jerseyNum);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter new Jersey Number: ");
+									scanf("%d",&player[i].jerseyNum);
+									printf("\n\n\t---------Player Jersey Number Updated----------\n");
+								}
+								break;
+							}
+							case 6:{
+								
+								break;
+							}
+						}
+					}while(subUpdateChoice!=6);
+					
+					break;
 				}
+				case 2:{
+					
+					do{
+						
+						printf("\n\n\t -------------Enter Details About Player current Team Information------------\n");
+						printf("\n\nWhich details you want to update");
+						printf("\n\n\t1.Team Name\n\t2.Player Role in a Team\n\t3.Captain Status\n\t4.Is Player Active\n\t5.Back To Main Menu");
+						printf("\n\nEnter Your Choice: ");
+						scanf("%d",&subUpdateChoice);
+						switch(subUpdateChoice){
+							case 1:{
+								printf("\n\nOld Record: %s",player[i].teamInfo.name);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter new Team Name: ");
+									fflush(stdin);
+									gets(player[i].teamInfo.name);
+									fflush(stdin);
+									printf("\n\n\t---------Player Team Name Updated----------\n");
+								}
+								break;
+							}
+							case 2:{
+								printf("\n\nOld Record: %s",player[i].teamInfo.role);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter Player Role: ");
+									fflush(stdin);
+									gets(player[i].teamInfo.role);
+									fflush(stdin);
+									printf("\n\n\t---------Player Team Role Updated----------\n");
+								}
+								break;
+							}
+							case 3:{
+								printf("\n\nOld Record: %s",player[i].teamInfo.captainStatus);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nEnter captain status(Y or N): ");
+									scanf("%c",&player[i].teamInfo.captainStatus);
+									printf("\n\n\t---------Player Captain status Updated----------\n");
+								}
+								break;
+							}
+							case 4:{
+								printf("\n\nOld Record: %s",player[i].teamInfo.activeStatus);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\n\nIs Player Active(Y or N): ");
+									scanf(" %c",&player[i].teamInfo.activeStatus);
+									printf("\n\n\t---------Player Active Status Updated----------\n");
+								}
+								break;
+							}
+							case 5:{
+								
+								break;
+							}
+						}
+					}while(subUpdateChoice!=5);
 	
-				break;
-			}
-			case 2:{
-				printf("\n\n\t -------------Enter Details About Player current Team Information------------\n");
-				printf("\nEnter Team Id: ");
-				scanf("%d",&player[i].teamInfo.teamId);
-				printf("Enter Team Name: ");
-				fflush(stdin);
-				gets(player[i].teamInfo.name);
-				fflush(stdin);
-				printf("Enter Player Role: ");
-				fflush(stdin);
-				gets(player[i].teamInfo.role);
-				fflush(stdin);
-				printf("Enter captain status(Y or N): ");
-				scanf("%c",&player[i].teamInfo.captainStatus);
-				printf("Is Player Active(Y or N): ");
-				scanf(" %c",&player[i].teamInfo.activeStatus);				
-				
-				break;
-			}
-			case 3:{
-				printf("\n\n\t -------------Enter Details About Player Performance------------\n");
-				printf("\nEnter Match Played: ");
-				scanf("%d",&player[i].performance.matchPlayed);
-				printf("Enter score: ");
-				scanf("%d",&player[i].performance.score);
-				printf("Enter best performance score: ");
-				scanf("%d",&player[i].performance.bestPerformance);	
-				
-				break;
-			}
-			case 4:{
-				printf("\n\n\t -------------System Information about player data------------\n");
-				printf("\nEnter data upload date(dd-mm-yyyy): ");
-				scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
-				printf("Enter data Last update date(dd-mm-yyyy): ");
-				scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
-				printf("Enter Remarks If Any or enter no remarks if not: ");
-				fflush(stdin);
-				gets(player[i].sysInfo.remarks);
-				fflush(stdin);
-				printf("Enter player contact Value(charges if any) if not enter 0 : ");
-				scanf("%d",&player[i].sysInfo.contactValue);
-				
-				break;
-			}
-		}			
+					break;
+				}
+				case 3:{
+					
+					do{
+						
+						printf("\n\n\t -------------Enter Details About Player Performance------------\n");
+						printf("\n\nWhich details you want to update");
+						printf("\n\n\t1.Match Played\n\t2.Total Score\n\t3.Best Performance Score\n\t4.Back To Main Menu");
+						printf("\n\nEnter Your Choice: ");
+						scanf("%d",&subUpdateChoice);
+						
+						switch(subUpdateChoice){
+							case 1:{
+								printf("\n\nOld Record: %s",player[i].performance.matchPlayed);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("\nEnter Match Played: ");
+									scanf("%d",&player[i].performance.matchPlayed);
+									printf("\n\n\t---------Match Played By Player Record Updated----------\n");
+								}
+								break;
+							}
+							case 2:{
+								printf("\n\nOld Record: %s",player[i].performance.score);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("Enter score: ");
+									scanf("%d",&player[i].performance.score);
+									printf("\n\n\t---------Match Scores Updated----------\n");
+								}
+								break;
+							}
+							case 3:{
+								printf("\n\nOld Record: %s",player[i].performance.bestPerformance);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("Enter best performance score: ");
+									scanf("%d",&player[i].performance.bestPerformance);
+									printf("\n\n\t---------Player Performance Score Updated----------\n");
+								}
+								break;
+							}
+							case 4:{
+								
+								break;
+							}
+						}
+					}while(subUpdateChoice!=4);
+	
+					break;
+				}
+				case 4:{
+					
+					do{
+						
+						printf("\n\n\t -------------System Information about player data------------\n");
+						printf("\n\nWhich details you want to update");
+						printf("\n\n\t1.Remarks\n\t2.Player contact Value\n\t3.Back to Main Menu");
+						printf("\n\nEnter Your Choice: ");
+						scanf("%d",&subUpdateChoice);
+						
+						switch(subUpdateChoice){
+							case 1:{
+								printf("\n\nOld Record: %s",player[i].sysInfo.remarks);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("Enter Remarks If Any or enter no remarks if not: ");
+									fflush(stdin);
+									gets(player[i].sysInfo.remarks);
+									fflush(stdin);
+									printf("\n\n\t---------Remarks for Player is Updated----------\n");
+								}
+								break;
+							}
+							case 2:{
+								printf("\n\nOld Record: %d",player[i].sysInfo.contactValue);
+								printf("\nDo You want to continue(Y or N): ");
+								scanf(" %c",&updateStatus);
+								
+								if(updateStatus=='Y'||updateStatus=='y'){
+									printf("Enter player contact Value(charges if any) if not enter 0 : ");
+									scanf("%d",&player[i].sysInfo.contactValue);
+									printf("\n\n\t---------Contact Value for Player is Updated----------\n");
+								}
+								break;
+							}
+							case 3:{
+								
+								break;
+							}	
+						}
+					}while(subUpdateChoice!=3);
+					
+					break;
+				}
+				case 5:{
+					*isUpdate=1;
+					break;
+				}
+		    }
+		}while(updateChoice!=5);
+}
+
+void addPlayerById(Player* player, int index){
+	
+	int i=index;
+
+	printf("\n\n\t----------Enter details for Player number %d------------",i+1);
+		
+	printf("\n\n\t ------------Player Personal Information------------\n");
+		
+	player[i].id=i+1;
+		
+	printf("\nEnter Player Name: ");
+	fflush(stdin);
+	gets(player[i].name);
+	fflush(stdin);
+	printf("Enter Player Age: ");
+	scanf("%d",&player[i].age);
+	printf("Enter Player Gender(M or F): ");
+	scanf(" %c",&player[i].gender);
+	printf("Enter Player Date of Birth(dd-mm-yyyy): ");
+	scanf("%d%d%d",&player[i].dob.day,&player[i].dob.month,&player[i].dob.year);
+	printf("Enter Mobile Number: ");
+	fflush(stdin);
+	gets(player[i].mobile);
+	fflush(stdin);
+	printf("Enter email address: ");
+	fflush(stdin);
+	gets(player[i].email);
+	fflush(stdin);
+	printf("Enter Jersey Number: ");
+	scanf("%d",&player[i].jerseyNum);
+		
+	printf("\n\n\t -------------Enter Details About Player current Team Information------------\n");
+	printf("\nEnter Team Id: ");
+	scanf("%d",&player[i].teamInfo.teamId);
+	printf("Enter Team Name: ");
+	fflush(stdin);
+	gets(player[i].teamInfo.name);
+	fflush(stdin);
+	printf("Enter Player Role: ");
+	fflush(stdin);
+	gets(player[i].teamInfo.role);
+	fflush(stdin);
+	printf("Enter captain status(Y or N): ");
+	scanf("%c",&player[i].teamInfo.captainStatus);
+	printf("Is Player Active(Y or N): ");
+	scanf(" %c",&player[i].teamInfo.activeStatus);
+		
+	printf("\n\n\t -------------Enter Details About Player Performance------------\n");
+	printf("\nEnter Match Played: ");
+	scanf("%d",&player[i].performance.matchPlayed);
+	printf("Enter score: ");
+	scanf("%d",&player[i].performance.score);
+	printf("Enter best performance score: ");
+	scanf("%d",&player[i].performance.bestPerformance);
+		
+	printf("\n\n\t -------------System Information about player data------------\n");
+	printf("\nEnter data upload date(dd-mm-yyyy): ");
+	scanf("%d%d%d",&player[i].sysInfo.sysDate.day,&player[i].sysInfo.sysDate.month,&player[i].sysInfo.sysDate.year);
+	printf("Enter data Last update date(dd-mm-yyyy): ");
+	scanf("%d%d%d",&player[i].sysInfo.lastUpdated.day,&player[i].sysInfo.lastUpdated.month,&player[i].sysInfo.lastUpdated.year);
+	printf("Enter Remarks If Any or enter no remarks if not: ");
+	fflush(stdin);
+	gets(player[i].sysInfo.remarks);
+	fflush(stdin);
+	printf("Enter player contact Value(charges if any) if not enter 0 : ");
+	scanf("%d",&player[i].sysInfo.contactValue);
+			
 }
 
 void addPlayersHardcoded(Player* player){
@@ -614,7 +859,7 @@ int searchPlayer(Player* player,int size){
 		fflush(stdin);
 		
 		for(int i=0; i<size; i++){
-			if(strcasecmp(player[i].name,searchName)==0)
+			if(strstr(player[i].name,searchName)==0)
 				return i;
 		}
 		return -1;
@@ -625,18 +870,29 @@ int searchPlayer(Player* player,int size){
 }
 
 //function to add a single player record
-void addSinglePlayer(Player* player, int* size, int* isDataEmpty){
+Player* addSinglePlayer(Player* player, int* size, int* isDataEmpty){
 	if(*isDataEmpty!=0)
 		*size += 1;
 		
+	printf("\n\nsize %d\n\n",*size);
+		
 	player = (Player*)realloc(player,(*size)*sizeof(Player));
-	updatePlayerById(player, *size-1);
+	
+
+		
+	addPlayerById(player, *size-1);
+	
+	for(int i=0; i<*size; i++){
+		printf("\nid: %d",player[i].id);
+	}
 	                    
 	*isDataEmpty=1;
 	   
 	printf("\n\n===================================================================");
 	printf("\n\t---------Player Details successfully Added-----------");
 	printf("\n====================================================================\n\n");
+	
+	return player;
 }
 
 //function to update a specific player information
@@ -648,11 +904,18 @@ void updatePlayer(Player* player,int size){
 		printf("======================================\n\n");
 				
 	}else{
+		int isUpdate=0;
+		
+		printf("\nDetails found for player\n");
+		printf("Player Id: %d\nPlayer Name: %s\n",player[indexToUpdate].id,player[indexToUpdate].name);
 		printf("\nUpdation in Progress.....\n");
-		updatePlayerById(player, indexToUpdate);
-		printf("\n\n===================================================================");
-		printf("\n\t---------Details Updated successfully for player %d-----------",player[indexToUpdate].id);
-		printf("\n====================================================================\n\n");
+		updatePlayerById(player, indexToUpdate, &isUpdate);
+		
+		if(isUpdate==0){
+			printf("\n\n===================================================================");
+			printf("\n\t---------Details Updated successfully for player %d-----------",player[indexToUpdate].id);
+			printf("\n====================================================================\n\n");
+		}	
 	}
 	
 }
@@ -660,6 +923,7 @@ void updatePlayer(Player* player,int size){
 //To sort a player information
 void sortPlayer(Player* player, int size){
 	int sortChoice;
+	Player tempPlayer[1];
 	Player* sortedPlayer = (Player*)malloc(size*sizeof(Player));
 	for(int i=0;i<size;i++){
 		sortedPlayer[i]=player[i];
@@ -675,10 +939,11 @@ void sortPlayer(Player* player, int size){
 			
 			printf("\n\n\t-------------Player Data According to player Score---------------\n\n");
 			for(int i=0;i<size;i++){
-				for(int j=size-1; j>i; j--){
+				for(int j=i+1; j<size; j++){
 					if(sortedPlayer[i].performance.score>sortedPlayer[j].performance.score){
-						sortedPlayer[i]=player[j];
-						sortedPlayer[j]=player[i];
+						tempPlayer[0]=sortedPlayer[i];
+						sortedPlayer[i]=sortedPlayer[j];
+						sortedPlayer[j]=tempPlayer[0];
 					}
 				}	
 			}
@@ -687,13 +952,15 @@ void sortPlayer(Player* player, int size){
 			printf("\n\nEnter Your Choice: ");
 			scanf("%d",&maxOrMinSort);
 			
+			printf("\nPlayer Name\t\t|\t\tScore\n");
+			printf("----------------------------------------------------------\n");
 			if(maxOrMinSort==1){
 				for(int i=0;i<size;i++)
-					printf("\nName: %s | Score: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.score);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.score);
 
 			}else if(maxOrMinSort==2){
 				for(int i=size-1;i>=0;i--)
-					printf("\nName: %s | Score: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.score);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.score);
 			}else
 				printf("\n\tWrong Choice --- Please Try Again\n");
 			
@@ -707,8 +974,9 @@ void sortPlayer(Player* player, int size){
 			for(int i=0;i<size;i++){
 				for(int j=size-1; j>i; j--){
 					if(sortedPlayer[i].performance.matchPlayed>sortedPlayer[j].performance.matchPlayed){
-						sortedPlayer[i]=player[j];
-						sortedPlayer[j]=player[i];
+						tempPlayer[0]=sortedPlayer[i];
+						sortedPlayer[i]=sortedPlayer[j];
+						sortedPlayer[j]=tempPlayer[0];
 					}
 				}	
 			}
@@ -717,13 +985,15 @@ void sortPlayer(Player* player, int size){
 			printf("\n\nEnter Your Choice: ");
 			scanf("%d",&maxOrMinSort);
 			
+			printf("\nPlayer Name\t\t|\t\tMatch Played\n");
+			printf("----------------------------------------------------------\n");
 			if(maxOrMinSort==1){
 				for(int i=0;i<size;i++)
-					printf("\nName: %s | Match Played: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.matchPlayed);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.matchPlayed);
 
 			}else if(maxOrMinSort==2){
 				for(int i=size-1;i>=0;i--)
-					printf("\nName: %s | Match Played: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.matchPlayed);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.matchPlayed);
 			}else
 				printf("\n\tWrong Choice --- Please Try Again\n");
 			
@@ -738,8 +1008,9 @@ void sortPlayer(Player* player, int size){
 			for(int i=0;i<size;i++){
 				for(int j=size-1; j>i; j--){
 					if(sortedPlayer[i].performance.bestPerformance>sortedPlayer[j].performance.bestPerformance){
-						sortedPlayer[i]=player[j];
-						sortedPlayer[j]=player[i];
+						tempPlayer[0]=sortedPlayer[i];
+						sortedPlayer[i]=sortedPlayer[j];
+						sortedPlayer[j]=tempPlayer[0];
 					}
 				}	
 			}
@@ -747,14 +1018,15 @@ void sortPlayer(Player* player, int size){
 			printf("\n\t1.Minimum to Maximum\n\t2.Maximum to Minimum");
 			printf("\n\nEnter Your Choice: ");
 			scanf("%d",&maxOrMinSort);
-			
+			printf("\nPlayer Name\t\t|\tBest Performance Score\n");
+			printf("----------------------------------------------------------\n");
 			if(maxOrMinSort==1){
 				for(int i=0;i<size;i++)
-					printf("\nName: %s | Score: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.bestPerformance);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.bestPerformance);
 
 			}else if(maxOrMinSort==2){
 				for(int i=size-1;i>=0;i--)
-					printf("\nName: %s | Score: %d\n",sortedPlayer[i].name,sortedPlayer[i].performance.bestPerformance);
+					printf("\n%s\t\t\t\t%d\n",sortedPlayer[i].name,sortedPlayer[i].performance.bestPerformance);
 			}else
 				printf("\n\tWrong Choice --- Please Try Again\n");
 			
@@ -832,8 +1104,10 @@ void main(){
 				break;
 			}
 			case 2:{
-				if(isDataEmpty==1)
+				if(isDataEmpty==1){
+					printf("\nsize to disp %d \n",size);
 					displayPlayer(player,size);	
+				}
 				else
 					printf("\n\t-----------Data Not avilable to display--------------\n");
 				
@@ -854,7 +1128,7 @@ void main(){
 				break;
 			}
 			case 4:
-				addSinglePlayer(player, &size, &isDataEmpty);
+				player = addSinglePlayer(player, &size, &isDataEmpty);
 				break;
 				
 			case 5:
