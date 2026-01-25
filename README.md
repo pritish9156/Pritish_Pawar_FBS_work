@@ -44,6 +44,11 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 6:** Functions with/without parameters and return types
   - **Assignment 7 to 14:** Advanced programming tasks, including string operations and custom implementations
   - **Assignment 15:** Problem statements and structure-related examples
+- **PROJECT:**
+  - **Player Management System**
+    - Documentation: PLAYER MANAGEMENT SYSTEM Documentation.pdf, PLAYER MANAGEMENT SYSTEM.docx
+    - Code: Player_Management_System.c
+    - Executable: Player_Management_System.exe
 - **Tests:**
   - Test 1 to Test 6
 
@@ -114,9 +119,30 @@ The repository is **structured to support multiple programming modules**, includ
 ## 📈 Current Status
 
 - ✅ **C Programming:** Completed Assignments 0 to 15
+  - **Assignment 0:** Basics of C (10 questions, hand-traced solutions included)
+  - **Assignment 1:** Control statements (7 questions)
+  - **Assignment 2:** Looping structures and patterns (7 questions)
+  - **Assignment 3:** Advanced logical problems (10 questions)
+  - **Assignment 4:** Functions and modular programming (5 questions)
+  - **Assignment 5:** Comprehensive problem-solving (10 questions, including more patterns)
+  - **Assignment 6:** Functions with/without parameters and return types (4 categories of functions)
+  - **Assignment 7:** Functions with no return type and with parameters
+  - **Assignment 8:** Advanced C programs (10 questions with executables)
+  - **Assignment 9:** Advanced C programs (10 questions with executables)
+  - **Assignment 10:** String operations (18 programs with executables)
+  - **Assignment 11:** Custom string functions (12 programs with executables)
+  - **Assignment 12:** Advanced modular programming (10 questions with executables)
+  - **Assignment 13:** Advanced modular programming (10 questions with executables)
+  - **Assignment 14:** Problem statements and structure-related examples (including HR.c, studarray.c, and structure passing examples)
+  - **Assignment 15:** Problem statements (Problem Statements folder)
+  - **Tests:** Test 1 to Test 6
+
 - ⏳ **Java Programming:** Upcoming
 - ⏳ **Full Stack Modules:** Planned
 - ⏳ **MySQL:** In Progress
+  - **Assignments:**
+    - Assignment 0 to Assignment 5
+  - **Tests:** Test 1
 
 ---
 
