@@ -1,0 +1,41 @@
+Advanced SQL Session
+---
+
+Important points on Database design
+---
+Good SQL starts with a design
+Database should reflect real life not for your convinence
+If the design is wrong/bad no query is going to save you
+The relationship which has a attribute deserves a table
+Never asume that everything is perfect in your system according to real life
+If your database desing does not give/solve your real life answers so the design is not perfect
+
+
+Structuring Complex SQL
+---
+Complex logic needs clear steps
+2. CTE breaks queries into readable blocks (Common Table Expression)  to solve filtration with aggregation
+3. same result but cleaner thinking
+4. Easier to debug and maintain
+CTE
+with total_payment as (
+
+),
+avg_enrolls as(
+
+)
+give new table temparary
+only avilable for 1 query table deleted after ;
+
+
+Why Some Queries Are slow
+---
+performance depends on data touched
+filtering early reduces works
+joins can multiply rows
+Less work = faster queries
+
+
+Seeing How MySQL execute queries
+---
+metadata of query type column giving all which is very wrong

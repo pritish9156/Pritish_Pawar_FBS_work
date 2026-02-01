@@ -1,8 +1,18 @@
 interview questions mysql
 
 1) How to find duplicate emails in the employee table?
-2) How to find employees joined in the last 3 months?
-3) How to find the number of employees in each department?
-4) How to fetch alternate rows from a table?
-5) How to fetch common records from to table without join?
-6) How to delete duplicate record from a table?
+1) How to find employees joined in the last 3 months?
+select * from employees where hire_date >= date_sub(curdate(), interval 3 month);
+
+2) How to find the number of employees in each department?
+select department_id, count(emp_id) from employees group by department_id;
+
+
+3) How to fetch alternate rows from a table?
+
+
+
+4) How to fetch common records from to table without join?
+select employee_id from employees intersect select employee_id from employees_backup;
+
+
