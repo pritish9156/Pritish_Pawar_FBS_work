@@ -42,8 +42,16 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 4:** Functions and modular programming
   - **Assignment 5:** Comprehensive problem-solving
   - **Assignment 6:** Functions with/without parameters and return types
-  - **Assignment 7 to 14:** Advanced programming tasks, including string operations and custom implementations
+  - **Assignment 7:** Functions with no return type and with parameters
+  - **Assignment 8:** Advanced C programs
+  - **Assignment 9:** Advanced C programs
+  - **Assignment 10:** String operations
+  - **Assignment 11:** Custom string functions
+  - **Assignment 12:** Advanced modular programming
+  - **Assignment 13:** Advanced modular programming
+  - **Assignment 14:** Problem statements and structure-related examples
   - **Assignment 15:** Problem statements and structure-related examples
+  - **java_to_c_connectivity:** Java to C connectivity examples
 - **PROJECT:**
   - **Player Management System**
     - Documentation: PLAYER MANAGEMENT SYSTEM Documentation.pdf, PLAYER MANAGEMENT SYSTEM.docx
