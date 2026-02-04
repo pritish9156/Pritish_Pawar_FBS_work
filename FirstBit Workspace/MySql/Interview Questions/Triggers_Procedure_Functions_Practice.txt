@@ -1,0 +1,94 @@
+// delete type trigger 
+
+create trigger account_backup 
+before delete on accounts
+for each row
+begin
+insert into accounts_backup_for_deletedaccounts(acc_id,account_number,name,balance,deleted_on,deleted_time)
+values
+(old.acc_id, old.account_number, old.name, old.balance, curdate(), curtime());
+end #
+
+
+// update type trigger
+
+create trigger emp_salary_backup
+before update on employee
+for each row
+begin
+insert into salary_log(emp_id, old_salary, new_salary, updated_At)
+values(old.e_id, old.salary, new.salary, curdate());
+end
+
+
+//insert type trigger
+
+create trigger account_min_bal
+before insert on accounts
+for each row
+begin
+if(new.balance < 2000) then
+signal sqlstate '45000'
+set message_text = "minimum balance should be 2000";
+end if;
+end #
+
+//F1) Create a function that returns the balance for a given account_number.
+
+create function disp_bal_by_account_no(acc_no varchar(30))
+returns decimal(10,2)
+deterministic
+begin
+declare bal decimal(10,2) default 0.00;
+select balance into bal from accounts where account_number = acc_no;
+return bal;
+end #
+
+F2) Create a function that returns TRUE or FALSE indicating whether an account has minimum balance ≥ 2000.
+
+create function min_bal_check(bal decimal(10,2))
+returns varchar(10)
+deterministic
+begin
+if bal >= 2000 then
+return "True";
+else
+return "False";
+end if;
+end #
+
+P1) Create a stored procedure named deposit_amount that: Takes account_number and amount as input Adds the amount to the existing balance Updates the accounts table
+
+create procedure deposit_amount(in acc_no varchar(30), in amount decimal(10,2))
+begin
+declare tempbal decimal(10,2) default 0.00;
+select balance into tempbal from accounts where account_number = acc_no;
+set tempbal = tempbal + amount;
+update accounts set balance = tempbal where account_number = acc_no;
+end
+
+T1) Create a BEFORE INSERT trigger on accounts that: blocks insert if balance < 0
+throws error: "Balance cannot be negative"
+
+create trigger negative_bal_check
+before insert on accounts
+for each row
+begin
+if new.balance < 0 then
+signal sqlstate '45000'
+set message_text = "Balance cannot be negative";
+elseif(new.balance < 2000) then
+signal sqlstate '45000'
+set message_text = "minimum balance should be 2000";
+end if;
+end
+
+
+
+
+
+
+
+
+
+
