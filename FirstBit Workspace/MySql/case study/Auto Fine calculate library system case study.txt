@@ -1,0 +1,151 @@
+// case study
+
+Library Late Fee Automation
+📘 Problem Statement
+
+Sunshine Public Library wants to automate the process of calculating late fees when students return books.
+
+Currently, librarians calculate late fees manually, which causes delays and mistakes.
+You are asked to design a database-level solution using Function, Procedure, and Trigger.
+
+📌 Rules
+
+A student can borrow a book and must return it on or before the due date.
+
+If a book is returned after the due date, a fine of ₹10 per day is charged.
+
+If the book is returned on time or early, the fine should be ₹0.
+
+The fine should be calculated automatically, not entered manually.
+
+📂 Given Tables
+students(student_id, student_name, email)
+
+books(book_id, title, author, total_copies)
+
+borrow(
+  borrow_id,
+  student_id,
+  book_id,
+  borrow_date,
+  due_date,
+  returned
+)
+
+returns(
+  return_id,
+  student_id,
+  book_id,
+  return_date,
+  fine
+)
+
+🛠️ Tasks
+1️⃣ Create a Stored Function
+
+Create a function named calculate_fine that:
+
+Takes due_date and return_date as input
+
+Returns:
+
+0 if the book is returned on or before the due date
+
+Late days × 10 if the book is returned late
+
+2️⃣ Create a Stored Procedure
+
+Create a procedure named return_book that:
+
+Accepts student_id, book_id, and return_date
+
+Inserts a record into the returns table
+
+Updates the borrow table to mark the book as returned
+
+⚠️ Do NOT manually calculate the fine inside the procedure
+
+3️⃣ Create a Trigger
+
+Create a trigger that:
+
+Runs before inserting a record into the returns table
+
+Automatically calculates and sets the fine
+
+Uses the calculate_fine function
+
+▶️ Expected Usage
+
+The librarian should only run:
+
+CALL return_book(student_id, book_id, return_date);
+
+
+The fine should be calculated automatically.
+fine - 10 after due date or returned in time fine 0
+fine calculated in function
+
+===========================================================================================
+
+//procedure
+
+create procedure return_book(
+in studentid int, 
+in bookid, 
+in returndate date
+)
+
+begin
+
+insert into returns(student_id, book_id, return_date, fine) values(studentid, bookid, returndate, fine);
+
+end #
+
+-------------------------------------------------------------
+
+
+//trigger
+
+create trigger return_fine_calculate
+before insert on returns
+for each row
+
+begin
+
+declare dueDate date;
+declare returned int;
+declare fine decimal(10,2);
+
+select due_date into dueDate from borrow;
+select returned into returned from borrow;
+
+set fine = calculate_fine(dueDate, new.returndate);
+set new.fine = fine;
+
+update borrow set returned = 1 where 
+student_id = new.studentid and 
+book_id = new.bookid and 
+returned = 0;
+
+end #
+
+
+//function
+
+create function calculate_fine(due_date date, return_date date)
+returns decimal(10,2)
+deterministic
+begin
+
+declare due_Day int default 0;
+
+if return_date > due_date then
+	set due_day = datediff(return_date, due_date);
+else
+	set due_day = 0;
+end if
+
+return due_day * 10;	
+
+end #

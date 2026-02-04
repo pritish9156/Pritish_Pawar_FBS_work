@@ -1,0 +1,133 @@
+Pritish Ramesh Pawar FRN-21J1225/006
+Dec Java Full Stack
+Set A
+===========================================
+
+Q1
+
+select emp_name, salary from employees order by salary desc;       //emp_name
+
+===========================================
+
+Q2
+
+select * from employees order by salary desc limit 5;
+
+===========================================
+
+Q3
+
+select * from employees offset 3 limit 5;
+
+===========================================
+
+Q4
+
+select department_id, count(emp_id) from employees group by department_id;
+
+===========================================
+
+Q5
+
+select department_id, avg(salary) from
+employees group by department_id
+having avg(salary) > 50000;
+
+===========================================
+
+Q6
+
+select product_name as "Product List" from products
+where
+product_name like "%Laptop%";
+
+===========================================
+
+Q7
+
+select Left(student_name, 3) as "First Three charecters of name"
+from students;
+
+===========================================
+
+Q8
+
+select * from students where student_name like "A%";
+
+===========================================
+
+Q9
+
+select month, count(order_id) from Orders
+group by month
+having count(order_id) > 100;              //month to extract from date
+
+===========================================
+
+
+Q10
+
+select category, sum(sales), avg(sales) from sales
+group by category
+having sum(sales) > 100000;
+
+===========================================
+
+Q11
+
+a) The total number of employees
+
+===========================================
+
+Q12
+
+b) 8
+
+===========================================
+
+Q13
+
+c) Having
+
+===========================================
+
+Q14
+
+b) Returns all rows from the left table and matching rows from the righth table
+
+===========================================
+
+Q15)
+
+b) HELLO WORLD
+
+===========================================
+
+
+Q16)
+
+select region, sum(total_amount) as "Total Orders Amount" from orders as o
+join customers as c
+on o.customer_id = c.customer_id
+group by region
+having sum(total_amount) > 10000;
+
+===========================================
+
+
+Q17)
+
+select b.author_id, sum(s.quantity) as "Total_books_sold" from books as b
+join sales as s on
+b.book_id = s.book_id
+group by b.author_id
+having sum(s.quantity) > 100;
+
+===========================================Thank You==================================
+
+
+
+
+
+
+
