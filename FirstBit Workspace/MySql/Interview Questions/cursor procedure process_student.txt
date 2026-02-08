@@ -1,0 +1,58 @@
+create procedure process_student()
+begin
+declare student_id int;
+declare temp_marks int; 
+declare grade varchar(10);
+declare done int default 0;
+
+
+declare cur cursor for
+select stud_id, marks from student;
+
+declare continue handler for not found set done = 1;
+
+open cur;
+
+my_loop:loop
+
+fetch cur into student_id, temp_marks;
+
+if done = 1 then
+leave my_loop;
+end if;
+
+set grade = cal_grade(temp_marks);
+
+insert into grade values(student_id, grade);
+
+if grade = 'F' then
+insert into retest values(student_id, "Fail");
+end if;
+
+end loop;
+
+close cur;
+
+end
+
+---------------------------------------------------------
+
+create function cal_grade(m int)
+returns varchar(10)
+deterministic
+begin
+declare g varchar(10);
+
+if m >=90 then
+set g = 'A';
+elseif m < 90 and m >=30 then
+set g = 'B';
+elseif m < 30 then
+set g = 'F';
+end if;
+
+return g;
+end
+
+
+

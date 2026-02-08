@@ -1,0 +1,768 @@
+Patient_info 
+
+mysql> create table patient_info(
+    -> patient_id int primary key,
+    -> patient_name varchar(30) not null,
+    -> Registration_date date not null,
+    -> date_of_birth date,
+    -> height_cm decimal(5,2),
+    -> weight_kg decimal(5,2),
+    -> Gender char(1),
+    -> blood_group char(3) check(blood_group in('A+','A-','B+','B-','AB+','AB-','O+','O-')),
+    -> contact_details varchar(13) not null,
+    -> email_id varchar(30) unique,
+    -> emergency_contact_number varchar(13) not null,
+    -> emergency_contact_name varchar(30) not null,
+    -> address varchar(255) not null,
+    -> patient_status varchar(30) not null check(patient_status in('active','admitted','discharged','inactive','deceased')));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc patient_info;
++--------------------------+--------------+------+-----+---------+-------+
+| Field                    | Type         | Null | Key | Default | Extra |
++--------------------------+--------------+------+-----+---------+-------+
+| patient_id               | int          | NO   | PRI | NULL    |       |
+| patient_name             | varchar(30)  | NO   |     | NULL    |       |
+| Registration_date        | date         | NO   |     | NULL    |       |
+| date_of_birth            | date         | YES  |     | NULL    |       |
+| height_cm                | decimal(5,2) | YES  |     | NULL    |       |
+| weight_kg                | decimal(5,2) | YES  |     | NULL    |       |
+| Gender                   | char(1)      | YES  |     | NULL    |       |
+| blood_group              | char(3)      | YES  |     | NULL    |       |
+| contact_details          | varchar(13)  | NO   |     | NULL    |       |
+| email_id                 | varchar(30)  | YES  | UNI | NULL    |       |
+| emergency_contact_number | varchar(13)  | NO   |     | NULL    |       |
+| emergency_contact_name   | varchar(30)  | NO   |     | NULL    |       |
+| address                  | varchar(255) | NO   |     | NULL    |       |
+| patient_status           | varchar(30)  | NO   |     | NULL    |       |
++--------------------------+--------------+------+-----+---------+-------+
+14 rows in set (0.00 sec)
+
+
+
+Doctor
+
+mysql> create table doctor(
+    -> doctor_id int primary key,
+    -> doctor_name varchar(30) not null,
+    -> gender char(1),
+    -> date_of_birth date not null,
+    -> joining_date date,
+    -> contact_number varchar(13) not null,
+    -> email_id varchar(30) unique,
+    -> employment_type varchar(30) not null check(employment_type in('full_time','part_time','visiting','consultant')),
+    -> qualification varchar(30) not null,
+    -> specialization varchar(30),
+    -> Medical_license_number  varchar(30) not null unique,
+    -> license_issuing_authority varchar(30) not null,
+    -> license_valid_to date not null,
+    -> license_valid_from date not null,
+    -> doctor_status varchar(30) not null check(doctor_status in('active','on_leave','suspended','retired')));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc doctor;
++---------------------------+-------------+------+-----+---------+-------+
+| Field                     | Type        | Null | Key | Default | Extra |
++---------------------------+-------------+------+-----+---------+-------+
+| doctor_id                 | int         | NO   | PRI | NULL    |       |
+| doctor_name               | varchar(30) | NO   |     | NULL    |       |
+| gender                    | char(1)     | YES  |     | NULL    |       |
+| date_of_birth             | date        | NO   |     | NULL    |       |
+| joining_date              | date        | YES  |     | NULL    |       |
+| contact_number            | varchar(13) | NO   |     | NULL    |       |
+| email_id                  | varchar(30) | YES  | UNI | NULL    |       |
+| employment_type           | varchar(30) | NO   |     | NULL    |       |
+| qualification             | varchar(30) | NO   |     | NULL    |       |
+| specialization            | varchar(30) | YES  |     | NULL    |       |
+| Medical_license_number    | varchar(30) | NO   |     | NULL    |       |
+| license_issuing_authority | varchar(30) | NO   |     | NULL    |       |
+| license_valid_to          | date        | NO   |     | NULL    |       |
+| license_valid_from        | date        | NO   |     | NULL    |       |
+| doctor_status             | varchar(30) | NO   |     | NULL    |       |
++---------------------------+-------------+------+-----+---------+-------+
+15 rows in set (0.00 sec)
+
+
+
+
+medical_record
+
+included auto timestamp on created_timestamp and auto update timestamp on last updated timestamp
+
+mysql> create table medical_record(
+    -> medical_record_id int primary key,
+    -> patient_id int not null,
+    -> record_date date not null,
+    -> symptoms varchar(30),
+    -> diagnosis varchar(30),
+    -> allergies varchar(30),
+    -> current_medications varchar(30),
+    -> past_medical_history varchar(30),
+    -> ongoing_conditions varchar(30),
+    -> doctor_notes varchar(30),
+    -> created_timestamp timestamp default current_timestamp,
+    -> last_updated_timestamp timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> alter table medical_record add constraint foreign key(patient_id) references patient_info(patient_id);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc medical_record;
++------------------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| Field                  | Type        | Null | Key | Default           | Extra                                         |
++------------------------+-------------+------+-----+-------------------+-----------------------------------------------+
+| medical_record_id      | int         | NO   | PRI | NULL              |                                               |
+| patient_id             | int         | NO   | MUL | NULL              |                                               |
+| record_date            | date        | NO   |     | NULL              |                                               |
+| symptoms               | varchar(30) | YES  |     | NULL              |                                               |
+| diagnosis              | varchar(30) | YES  |     | NULL              |                                               |
+| allergies              | varchar(30) | YES  |     | NULL              |                                               |
+| current_medications    | varchar(30) | YES  |     | NULL              |                                               |
+| past_medical_history   | varchar(30) | YES  |     | NULL              |                                               |
+| ongoing_conditions     | varchar(30) | YES  |     | NULL              |                                               |
+| doctor_notes           | varchar(30) | YES  |     | NULL              |                                               |
+| created_timestamp      | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| last_updated_timestamp | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++------------------------+-------------+------+-----+-------------------+-----------------------------------------------+
+12 rows in set (0.00 sec)
+
+
+encounter
+
+mysql> create table encounter(encounter_id int primary key,
+    -> patient_id int not null,
+    -> doctor_id int not null,
+    -> encounter_type varchar(100) not null,
+    -> encounter_date date not null,
+    -> encounter_start_time timestamp default current_timestamp,
+    -> encounter_end_time timestamp,
+    -> reason_for_visit varchar(100),
+    -> diagnosis_summary varchar(100),
+    -> department varchar(30) not null,
+    -> encounter_status varchar(30) check(encounter_status in('scheduled','ongoing','completed','cancelled')),
+    -> admission_required char(3) check(admission_required in('yes','no')),
+    -> created_by varchar(30),
+    -> created_timestamp timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> alter table encounter add constraint foreign key(patient_id) references patient_info(patient_id);
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table encounter add constraint foreign key(doctor_id) references doctor(doctor_id);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc encounter;
++----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field                | Type         | Null | Key | Default           | Extra                                         |
++----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| encounter_id         | int          | NO   | PRI | NULL              |                                               |
+| patient_id           | int          | NO   | MUL | NULL              |                                               |
+| doctor_id            | int          | NO   | MUL | NULL              |                                               |
+| encounter_type       | varchar(100) | NO   |     | NULL              |                                               |
+| encounter_date       | date         | NO   |     | NULL              |                                               |
+| encounter_start_time | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| encounter_end_time   | timestamp    | YES  |     | NULL              |                                               |
+| reason_for_visit     | varchar(100) | YES  |     | NULL              |                                               |
+| diagnosis_summary    | varchar(100) | YES  |     | NULL              |                                               |
+| department           | varchar(30)  | NO   |     | NULL              |                                               |
+| encounter_status     | varchar(30)  | YES  |     | NULL              |                                               |
+| admission_required   | char(3)      | YES  |     | NULL              |                                               |
+| created_by           | varchar(30)  | YES  |     | NULL              |                                               |
+| created_timestamp    | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+14 rows in set (0.00 sec)
+
+mysql> alter table encounter rename column created_timestamp to last_updated_timestamp;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+
+encounter_doctor
+
+mysql> create table encounter_doctor(
+    -> encounter_id int primary key,
+    -> doctor_id int not null,
+    -> role_of_doctor varchar(30) not null,
+    -> involvemt_start_time timestamp default current_timestamp,
+    -> involvement_end_time timestamp,
+    -> foreign key(doctor_id) references doctor(doctor_id));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> alter table encounter_doctor rename column encounter_id to encounter_doctor_id;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table encounter_doctor add column encounter_id int not null after encounter_doctor_id;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table encounter_doctor add constraint foreign key(encounter_id) references encounter(encounter_id);
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc encounter_doctor;
++----------------------+-------------+------+-----+-------------------+-------------------+
+| Field                | Type        | Null | Key | Default           | Extra             |
++----------------------+-------------+------+-----+-------------------+-------------------+
+| encounter_doctor_id  | int         | NO   | PRI | NULL              |                   |
+| encounter_id         | int         | NO   | MUL | NULL              |                   |
+| doctor_id            | int         | NO   | MUL | NULL              |                   |
+| role_of_doctor       | varchar(30) | NO   |     | NULL              |                   |
+| involvemt_start_time | timestamp   | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| involvement_end_time | timestamp   | YES  |     | NULL              |                   |
++----------------------+-------------+------+-----+-------------------+-------------------+
+6 rows in set (0.00 sec)
+
+
+
+test
+
+mysql> create table test(
+    -> test_id int primary key,
+    -> test_name varchar(100) not null,
+    -> test_code varchar(100) not null unique,
+    -> test_type varchar(100),
+    -> department varchar(30),
+    -> sample_type varchar(30),
+    -> estimated_time int,
+    -> unit_of_measure varchar(20),
+    -> test_cost decimal(10,2),
+    -> test_status varchar(30) check(test_status in('active','inactive')),
+    -> Age_range varchar(15));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc test;
++-----------------+---------------+------+-----+---------+-------+
+| Field           | Type          | Null | Key | Default | Extra |
++-----------------+---------------+------+-----+---------+-------+
+| test_id         | int           | NO   | PRI | NULL    |       |
+| test_name       | varchar(100)  | NO   |     | NULL    |       |
+| test_code       | varchar(100)  | NO   | UNI | NULL    |       |
+| test_type       | varchar(100)  | YES  |     | NULL    |       |
+| department      | varchar(30)   | YES  |     | NULL    |       |
+| sample_type     | varchar(30)   | YES  |     | NULL    |       |
+| estimated_time  | int           | YES  |     | NULL    |       |
+| unit_of_measure | varchar(20)   | YES  |     | NULL    |       |
+| test_cost       | decimal(10,2) | YES  |     | NULL    |       |
+| test_status     | varchar(30)   | YES  |     | NULL    |       |
+| Age_range       | varchar(15)   | YES  |     | NULL    |       |
++-----------------+---------------+------+-----+---------+-------+
+11 rows in set (0.00 sec)
+
+mysql> alter table test modify column age_range varchar(15) not null;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+
+
+test report
+
+mysql> create table test_report(
+    -> test_report_id int primary key,
+    -> encounter_id int not null,
+    -> test_id int not null,
+    -> ordered_date date not null,
+    -> performed_date date,
+    -> test_result varchar(100),
+    -> test_time timestamp,
+    -> performed_by varchar(30),
+    -> verified_by varchar(30) not null,
+    -> remarks varchar(100));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> alter table test_report add constraint foreign key(encounter_id) references encounter(encounter_id);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table test_report add constraint foreign key(test_id) references test(test_id);
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc test_report;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| test_report_id | int          | NO   | PRI | NULL    |       |
+| encounter_id   | int          | NO   | MUL | NULL    |       |
+| test_id        | int          | NO   | MUL | NULL    |       |
+| ordered_date   | date         | NO   |     | NULL    |       |
+| performed_date | date         | YES  |     | NULL    |       |
+| test_result    | varchar(100) | YES  |     | NULL    |       |
+| test_time      | timestamp    | YES  |     | NULL    |       |
+| performed_by   | varchar(30)  | YES  |     | NULL    |       |
+| verified_by    | varchar(30)  | NO   |     | NULL    |       |
+| remarks        | varchar(100) | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+medical_procedure
+
+mysql> create table medical_procedure(
+    -> procedure_id int primary key,
+    -> procedure_name varchar(50) not null,
+    -> procedure_code varchar(30) not null unique,
+    -> department varchar(30),
+    -> description varchar(100),
+    -> estimated_duration int,
+    -> procedure_cost decimal(10,2),
+    -> procedure_status varchar(30) check (procedure_status in('active','inactive')));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc medical_procedure;
++--------------------+---------------+------+-----+---------+-------+
+| Field              | Type          | Null | Key | Default | Extra |
++--------------------+---------------+------+-----+---------+-------+
+| procedure_id       | int           | NO   | PRI | NULL    |       |
+| procedure_name     | varchar(50)   | NO   |     | NULL    |       |
+| procedure_code     | varchar(30)   | NO   | UNI | NULL    |       |
+| department         | varchar(30)   | YES  |     | NULL    |       |
+| description        | varchar(100)  | YES  |     | NULL    |       |
+| estimated_duration | int           | YES  |     | NULL    |       |
+| procedure_cost     | decimal(10,2) | YES  |     | NULL    |       |
+| procedure_status   | varchar(30)   | YES  |     | NULL    |       |
++--------------------+---------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+
+procedure report
+
+mysql> create table procedure_report(
+    -> procedure_report_id int primary key,
+    -> encounter_id int not null,
+    -> procedure_id int not null,
+    -> procedure_outcome varchar(100),
+    -> performed_date date not null,
+    -> created_timestamp timestamp default current_timestamp,
+    -> last_update_timestamp timestamp default current_timestamp on update current_timestamp,
+    -> remarks varchar(100),
+    -> foreign key(encounter_id) references encounter(encounter_id),
+    -> foreign key(procedure_id) references medical_procedure(procedure_id));
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> desc procedure_report;
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field                 | Type         | Null | Key | Default           | Extra                                         |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| procedure_report_id   | int          | NO   | PRI | NULL              |                                               |
+| encounter_id          | int          | NO   | MUL | NULL              |                                               |
+| procedure_id          | int          | NO   | MUL | NULL              |                                               |
+| procedure_outcome     | varchar(100) | YES  |     | NULL              |                                               |
+| performed_date        | date         | NO   |     | NULL              |                                               |
+| created_timestamp     | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| last_update_timestamp | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
+| remarks               | varchar(100) | YES  |     | NULL              |                                               |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+8 rows in set (0.00 sec)
+
+
+
+
+surgery
+
+mysql> create table surgery(
+    -> surgery_id int primary key,
+    -> surgery_name varchar(50) not null,
+    -> surgery_code varchar(30) not null unique,
+    -> department varchar(30),
+    -> surgery_type varchar(100),
+    -> anesthesia_type varchar(60),
+    -> risk_level varchar(30),
+    -> estimated_duration int,
+    -> surgery_cost decimal(10,2),
+    -> surgery_status varchar(20) check( surgery_status in('active', 'inactive')));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc surgery;
++--------------------+---------------+------+-----+---------+-------+
+| Field              | Type          | Null | Key | Default | Extra |
++--------------------+---------------+------+-----+---------+-------+
+| surgery_id         | int           | NO   | PRI | NULL    |       |
+| surgery_name       | varchar(50)   | NO   |     | NULL    |       |
+| surgery_code       | varchar(30)   | NO   | UNI | NULL    |       |
+| department         | varchar(30)   | YES  |     | NULL    |       |
+| surgery_type       | varchar(100)  | YES  |     | NULL    |       |
+| anesthesia_type    | varchar(60)   | YES  |     | NULL    |       |
+| risk_level         | varchar(30)   | YES  |     | NULL    |       |
+| estimated_duration | int           | YES  |     | NULL    |       |
+| surgery_cost       | decimal(10,2) | YES  |     | NULL    |       |
+| surgery_status     | varchar(20)   | YES  |     | NULL    |       |
++--------------------+---------------+------+-----+---------+-------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+surgery_report
+
+mysql> create table surgery_report(
+    -> surgery_report_id int primary key,
+    -> encounter_id int not null,
+    -> surgery_id int not null,
+    -> scheduled_date date not null,
+    -> performed_date date,
+    -> operation_theatre varchar(20),
+    -> outcome varchar(100),
+    -> complications varchar(100),
+    -> surgery_status varchar(30) check(surgery_status in('scheduled','completed','cancelled','postponed')),
+    -> remarks varchar(100),
+    -> created_timestamp timestamp default current_timestamp,
+    -> last_update_timestamp timestamp default current_timestamp on update current_timestamp,
+    -> foreign key(encounter_id) references encounter(encounter_id),
+    -> foreign key(surgery_id) references surgery(surgery_id));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc surgery_report;
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field                 | Type         | Null | Key | Default           | Extra                                         |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| surgery_report_id     | int          | NO   | PRI | NULL              |                                               |
+| encounter_id          | int          | NO   | MUL | NULL              |                                               |
+| surgery_id            | int          | NO   | MUL | NULL              |                                               |
+| scheduled_date        | date         | NO   |     | NULL              |                                               |
+| performed_date        | date         | YES  |     | NULL              |                                               |
+| operation_theatre     | varchar(20)  | YES  |     | NULL              |                                               |
+| outcome               | varchar(100) | YES  |     | NULL              |                                               |
+| complications         | varchar(100) | YES  |     | NULL              |                                               |
+| surgery_status        | varchar(30)  | YES  |     | NULL              |                                               |
+| remarks               | varchar(100) | YES  |     | NULL              |                                               |
+| created_timestamp     | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| last_update_timestamp | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+12 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> desc medicine;
++-----------------+-------------+------+-----+---------+-------+
+| Field           | Type        | Null | Key | Default | Extra |
++-----------------+-------------+------+-----+---------+-------+
+| medicine_id     | int         | NO   | PRI | NULL    |       |
+| medicine_name   | varchar(30) | NO   |     | NULL    |       |
+| medicine_code   | varchar(30) | NO   | UNI | NULL    |       |
+| medicine_type   | varchar(30) | YES  |     | NULL    |       |
+| strength        | varchar(20) | YES  |     | NULL    |       |
+| unit            | int         | YES  |     | NULL    |       |
+| manufacturer    | varchar(30) | NO   |     | NULL    |       |
+| medicine_status | varchar(30) | YES  |     | NULL    |       |
++-----------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+
+prescription
+
+mysql> create table prescription(
+    -> prescription_id int primary key,
+    -> encounter_id int not null,
+    -> medicine_id int not null,
+    -> dosage varchar(50),
+    -> frequency varchar(50),
+    -> duration int,
+    -> start_date date,
+    -> end_date date,
+    -> drug_route varchar(30),
+    -> instructions varchar(100),
+    -> prescription_status varchar(30) check(prescription_status in('active','completed','stopped','cancelled')),
+    -> created_timestamp timestamp default current_timestamp,
+    -> last_update_timestamp timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table prescription add constraint foreign key(encounter_id) references encounter(encounter_id);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table prescription add constraint foreign key(medicine_id) references medicine(medicine_id);
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc prescription;
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| Field                 | Type         | Null | Key | Default           | Extra                                         |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+| prescription_id       | int          | NO   | PRI | NULL              |                                               |
+| encounter_id          | int          | NO   | MUL | NULL              |                                               |
+| medicine_id           | int          | NO   | MUL | NULL              |                                               |
+| dosage                | varchar(50)  | YES  |     | NULL              |                                               |
+| frequency             | varchar(50)  | YES  |     | NULL              |                                               |
+| duration              | int          | YES  |     | NULL              |                                               |
+| start_date            | date         | YES  |     | NULL              |                                               |
+| end_date              | date         | YES  |     | NULL              |                                               |
+| drug_rote             | varchar(30)  | YES  |     | NULL              |                                               |
+| instructions          | varchar(100) | YES  |     | NULL              |                                               |
+| prescription_status   | varchar(30)  | YES  |     | NULL              |                                               |
+| created_timestamp     | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| last_update_timestamp | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-----------------------+--------------+------+-----+-------------------+-----------------------------------------------+
+13 rows in set (0.00 sec)
+
+
+
+
+
+
+
+invoice_bill
+
+mysql> create table invoice_bill(invoice_id int primary key,
+    -> encounter_id int not null unique,
+    -> invoice_number varchar(100) not null unique,
+    -> invoice_date date not null,
+    -> total_amount decimal(10,2),
+    -> discount_amount decimal(10,2),
+    -> tax_amount decimal(10,2),
+    -> net_payable_amount decimal(10,2),
+    -> payment_status varchar(30) check(payment_status in('success','failed','pending','refunded')),
+    -> created_timestamp timestamp default current_timestamp,
+    -> last_update_timestamp timestamp default current_timestamp on update current_timestamp);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> alter table invoice_bill add constraint foreign key(encounter_id) references encounter(encounter_id);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc invoice_bill;
++-----------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| Field                 | Type          | Null | Key | Default           | Extra                                         |
++-----------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+| invoice_id            | int           | NO   | PRI | NULL              |                                               |
+| encounter_id          | int           | NO   | UNI | NULL              |                                               |
+| invoice_number        | varchar(100)  | NO   | UNI | NULL              |                                               |
+| invoice_date          | date          | NO   |     | NULL              |                                               |
+| total_amount          | decimal(10,2) | YES  |     | NULL              |                                               |
+| discount_amount       | decimal(10,2) | YES  |     | NULL              |                                               |
+| tax_amount            | decimal(10,2) | YES  |     | NULL              |                                               |
+| net_payable_amount    | decimal(10,2) | YES  |     | NULL              |                                               |
+| payment_status        | varchar(30)   | YES  |     | NULL              |                                               |
+| created_timestamp     | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED                             |
+| last_update_timestamp | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED on update CURRENT_TIMESTAMP |
++-----------------------+---------------+------+-----+-------------------+-----------------------------------------------+
+11 rows in set (0.00 sec)
+
+mysql> alter table invoice_bill modify column total_amount decimal(10,2) not null;
+Query OK, 0 rows affected (0.14 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table invoice_bill modify column discount_amount decimal(10,2) default 0.00;
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table invoice_bill modify column tax_amount decimal(10,2) default 0.00;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table invoice_bill modify column net_payable_amount decimal(10,2) not null;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+
+
+
+
+
+invoice_item
+
+mysql> create table invoice_item(
+    -> invoice_item_id int primary key,
+    -> invoice_id int not null,
+    -> item_type varchar(30),
+    -> item_reference_id int not null,
+    -> quantity int not null,
+    -> unit_price decimal(10,2) not null,
+    -> total_price decimal(10,2) not null,
+    -> foreign key(invoice_id) references invoice_bill(invoice_id));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc invoice_item;
++-------------------+---------------+------+-----+---------+-------+
+| Field             | Type          | Null | Key | Default | Extra |
++-------------------+---------------+------+-----+---------+-------+
+| invoice_item_id   | int           | NO   | PRI | NULL    |       |
+| invoice_id        | int           | NO   | MUL | NULL    |       |
+| item_type         | varchar(30)   | YES  |     | NULL    |       |
+| item_reference_id | int           | NO   |     | NULL    |       |
+| quantity          | int           | NO   |     | NULL    |       |
+| unit_price        | decimal(10,2) | NO   |     | NULL    |       |
+| total_price       | decimal(10,2) | NO   |     | NULL    |       |
++-------------------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+
+
+
+insurance
+
+mysql> create table insurance(
+    -> insurance_id int primary key,
+    -> insurance_name varchar(30) not null,
+    -> provider_code varchar(30) not null unique,
+    -> contact_details char(13) not null,
+    -> insurance_status varchar(30) check(insurance_status in('active','inactive')),
+    -> quantity int,
+    -> unit_price decimal(10,2) not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> alter table insurance modify column quantity int not null;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc insurance;
++------------------+---------------+------+-----+---------+-------+
+| Field            | Type          | Null | Key | Default | Extra |
++------------------+---------------+------+-----+---------+-------+
+| insurance_id     | int           | NO   | PRI | NULL    |       |
+| insurance_name   | varchar(30)   | NO   |     | NULL    |       |
+| provider_code    | varchar(30)   | NO   | UNI | NULL    |       |
+| contact_details  | char(13)      | NO   |     | NULL    |       |
+| insurance_status | varchar(30)   | YES  |     | NULL    |       |
+| quantity         | int           | NO   |     | NULL    |       |
+| unit_price       | decimal(10,2) | NO   |     | NULL    |       |
++------------------+---------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+patient_insurance
+
+mysql> create table patient_insurance(
+    -> patient_insurance_id int primary key,
+    -> patient_id int not null,
+    -> insurance_id int not null,
+    -> policy_number varchar(30) not null,
+    -> policy_holder_name varchar(30),
+    -> coverage_limit decimal(10,2) not null,
+    -> coverage_start_date date not null,
+    -> coverage_end_date date not null,
+    -> policy_status varchar(30) check(policy_status in('active','expired','cancelled','suspended')),
+    -> unique(patient_id, insurance_id, policy_number),
+    -> foreign key(patient_id) references patient_info(patient_id));
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> desc patient_insurance;
++----------------------+---------------+------+-----+---------+-------+
+| Field                | Type          | Null | Key | Default | Extra |
++----------------------+---------------+------+-----+---------+-------+
+| patient_insurance_id | int           | NO   | PRI | NULL    |       |
+| patient_id           | int           | NO   | MUL | NULL    |       |
+| insurance_id         | int           | NO   |     | NULL    |       |
+| policy_number        | varchar(30)   | NO   |     | NULL    |       |
+| policy_holder_name   | varchar(30)   | YES  |     | NULL    |       |
+| coverage_limit       | decimal(10,2) | NO   |     | NULL    |       |
+| coverage_start_date  | date          | NO   |     | NULL    |       |
+| coverage_end_date    | date          | NO   |     | NULL    |       |
+| policy_status        | varchar(30)   | YES  |     | NULL    |       |
++----------------------+---------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+
+
+
+
+
+
+
+insurance_claim
+
+mysql> create table insurance_claim(
+    -> claim_id int primary key,
+    -> invoice_id int not null unique,
+    -> patient_insurance_id int not null,
+    -> claim_number varchar(30) not null unique,
+    -> claim_date date not null,
+    -> claimed_amount decimal(10,2) not null,
+    -> approved_amount decimal(10,2) default 0.00,
+    -> claim_status varchar(30) check(claim_status in('submitted','approved','rejected','partially_approved')),
+    -> remark varchar(100),
+    -> created_timestamp timestamp default current_timestamp);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> alter table insurance_claim add constraint foreign key(invoice_id) references invoice_bill(invoice_id);
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table insurance_claim add constraint foreign key(patient_insurance_id) references patient_insurance(patient_insurance_id);
+Query OK, 0 rows affected (0.15 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc insurance_claim;
++----------------------+---------------+------+-----+-------------------+-------------------+
+| Field                | Type          | Null | Key | Default           | Extra             |
++----------------------+---------------+------+-----+-------------------+-------------------+
+| claim_id             | int           | NO   | PRI | NULL              |                   |
+| invoice_id           | int           | NO   | UNI | NULL              |                   |
+| patient_insurance_id | int           | NO   | MUL | NULL              |                   |
+| claim_number         | varchar(30)   | NO   | UNI | NULL              |                   |
+| claim_date           | date          | NO   |     | NULL              |                   |
+| claimed_amount       | decimal(10,2) | NO   |     | NULL              |                   |
+| approved_amount      | decimal(10,2) | YES  |     | 0.00              |                   |
+| claim_status         | varchar(30)   | YES  |     | NULL              |                   |
+| remark               | varchar(100)  | YES  |     | NULL              |                   |
+| created_timestamp    | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++----------------------+---------------+------+-----+-------------------+-------------------+
+10 rows in set (0.00 sec)
+
+
+
+
+
+
+
+mysql> create table payment(
+    -> payment_id int primary key,
+    -> invoice_id int not null,
+    -> claim_id int,
+    -> payment_date date not null,
+    -> payment_mode varchar(30) not null,
+    -> paid_amount decimal(10,2) not null,
+    -> transaction_reference varchar(30),
+    -> payment_status varchar(30) check(payment_status in('pending','success','failed','refunded')),
+    -> created_timestamp timestamp default current_timestamp,
+    -> foreign key(invoice_id) references invoice_bill(invoice_id),
+    -> foreign key(claim_id) references insurance_claim(claim_id));
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> desc payment;
++-----------------------+---------------+------+-----+-------------------+-------------------+
+| Field                 | Type          | Null | Key | Default           | Extra             |
++-----------------------+---------------+------+-----+-------------------+-------------------+
+| payment_id            | int           | NO   | PRI | NULL              |                   |
+| invoice_id            | int           | NO   | MUL | NULL              |                   |
+| claim_id              | int           | YES  | MUL | NULL              |                   |
+| payment_date          | date          | NO   |     | NULL              |                   |
+| payment_mode          | varchar(30)   | NO   |     | NULL              |                   |
+| paid_amount           | decimal(10,2) | NO   |     | NULL              |                   |
+| transaction_reference | varchar(30)   | YES  |     | NULL              |                   |
+| payment_status        | varchar(30)   | YES  |     | NULL              |                   |
+| created_timestamp     | timestamp     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++-----------------------+---------------+------+-----+-------------------+-------------------+
+9 rows in set (0.00 sec)

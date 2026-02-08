@@ -1,0 +1,158 @@
+-- search doctor from specialization
+
+create procedure search_doc_specialization(in doc_specialization varchar(30), out doc_name varchar(30))
+begin
+select doctor_name into doc_name from doctor where specialization = doc_specialization;
+end
+
+-- search doctor from employee type
+
+create procedure search_doc_emptype(in doc_emptype varchar(30))
+begin
+select doctor_name from doctor where employment_type in(doc_emptype);
+end
+
+
+
+-- generate invoice for encounter
+
+create trigger encounter_invoice
+after insert on encounter
+for each row
+begin
+
+insert into invoice_bill(encounter_id) values(new.encounter_id);
+
+end
+
+
+
+
+-- trigger for invoice_bill
+
+create trigger invoce_bill_generate 
+before insert on invoice_bill
+for each row
+begin
+
+declare invoice_num varchar(100);
+declare invoice_id int;
+
+set invoice_num = invoice_number_generator();
+
+set new.invoice_number = invoice_num;
+set new.invoice_date = curdate();
+set new.total_amount = 0.00;
+set new.discount_amount = 0.00;
+set new.tax_amount = 0.00;
+set new.net_payable_amount = 0.00;
+set new.payment_status = 'pending';
+
+end
+
+
+
+
+-- invoice_number generator
+
+create function invoice_number_generator()
+returns varchar(100)
+deterministic
+begin
+
+declare invoice_num int;
+
+SELECT REGEXP_SUBSTR(invoice_number, '[0-9]+') AS number into invoice_num from invoice_bill order by number desc limit 1;
+
+set invoice_num = invoice_num+1;
+
+return concat('inv',invoice_num);
+
+end
+
+
+---------------------------------------------------------------------------------------------------------------
+
+-- test -> invoice_item 
+
+create trigger test_invoice_item 
+after insert on test_report
+for each row
+begin
+
+declare encounterid int;
+declare invoiceid int;
+declare cost decimal(10,2);
+
+set encounterid = new.encounter_id;
+
+select invoice_id into invoiceid from invoice_bill where encounter_id = encounterid;
+
+select test_cost into cost from test where test_id = new.test_id;
+
+insert into invoice_item(invoice_id, item_type, item_reference_id, quantity, unit_price, total_price)
+values(invoiceid, "test", new.test_id, 1, cost, 0.00);
+
+end
+
+
+
+
+-- invoice_item -> total_price_cal
+
+
+create trigger cal_total_price 
+before insert on invoice_item
+for each row
+begin
+
+declare total decimal(10,2);
+
+set total = new.quantity*new.unit_price;
+
+set new.total_price = total;
+
+end
+
+
+-- invoice_item -> invoice_bill.total_amount
+
+create trigger cal_invoicebill_amount 
+after insert on invoice_item
+for each row
+begin
+
+declare inv_total_amount decimal(10,2);
+
+select sum(total_price) into inv_total_amount from 
+invoice_item where invoice_id = new.invoice_id;
+
+update invoice_bill set total_amount = inv_total_amount where invoice_id = new.invoice_id;
+
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

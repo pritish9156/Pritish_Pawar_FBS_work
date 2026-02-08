@@ -4,7 +4,7 @@ create trigger account_backup
 before delete on accounts
 for each row
 begin
-insert into accounts_backup_for_deletedaccounts(acc_id,account_number,name,balance,deleted_on,deleted_time)
+insert into accounts_backup(acc_id,account_number,name,balance,deleted_on,deleted_time)
 values
 (old.acc_id, old.account_number, old.name, old.balance, curdate(), curtime());
 end #

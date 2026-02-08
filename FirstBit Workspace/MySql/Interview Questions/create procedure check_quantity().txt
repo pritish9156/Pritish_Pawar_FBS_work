@@ -1,0 +1,52 @@
+create procedure check_quantity()
+begin
+
+-- declaring variable 
+
+declare product_id int;
+declare product_quantity int;
+declare product_name varchar(30);
+declare restock_message varchar(60);
+declare done int default 0;
+
+-- declaring cursor
+
+declare cur cursor for
+select pid, pname, quantity from product;
+
+-- declaring handler
+
+declare continue handler for not found set done = 1;
+
+-- open cursor
+
+open cur;
+
+my_loop:loop
+
+-- fetch from cursor
+
+fetch cur into product_id, product_name, product_quantity;
+
+-- condition for breaking loop
+
+if done = 1 then
+leave my_loop;
+end if;
+
+-- main logic
+
+if product_quantity <= 10 then
+
+set restock_message = " needs to be restocked";
+insert into restock_log(pid, message) values(product_id, concat(product_name,restock_message));
+
+end if;
+
+end loop;
+
+close cur;
+
+end
+
+--------------------------------------
