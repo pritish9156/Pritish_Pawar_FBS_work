@@ -13,9 +13,9 @@ class Test2{
 	public static void main(String args[]){
 		
 		Student s1 = new Student(); //Reference
-
+	
 		//HashCode
-		System.out.println("\nHashCode : " + s1);
+		//System.out.println("\nHashCode : " + s1);
 
 		//input
 		s1.frn = "FRN1232323204";

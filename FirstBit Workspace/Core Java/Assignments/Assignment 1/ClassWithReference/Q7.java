@@ -26,7 +26,7 @@ class Test7{
 
 
 		//display information
-		System.out.println("\nSales Manager Id: " + admin1.id);
+		System.out.println("\nAdmin Id: " + admin1.id);
 		System.out.println("Name: " + admin1.name);
 		System.out.println("Salary: " + admin1.salary + "rs");
 		System.out.println("Allowance: " + admin1.allowance + "rs");

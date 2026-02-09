@@ -1,4 +1,4 @@
-class SmartWatch{
+class Watch{
 
 	//Attributes
 
@@ -11,26 +11,57 @@ class SmartWatch{
 	int wattage;
 	int batteryLife;
 	
-}//SmartWatch class ends here
+	void setSeries(String i){
+		this.series = i;
+	}
+
+	void setBrand(String name){
+		this.brand = name;
+	}
+
+	void setType(String t){
+		this.type = t;
+	}
+
+	void setColour(String col){
+		this.colour = col;
+	}
+
+	void setConnectivityType(String c){
+		this.connectivityType = c;
+	}
+
+	void setOs(String o){
+		this.os = o;
+	}
+
+	void setWattage(int w){
+		this.wattage = w;
+	}
+
+	void setBatteryLife(int bl){
+		this.batteryLife = bl;
+	}
+
+}//Watch class ends here
 
 class Test9{
 
 	public static void main(String args[]){
 		
-		SmartWatch sw1 = new SmartWatch(); //reference
+		Watch sw1 = new Watch(); //reference
 
 		//HashCode
 		System.out.println("\nHashCode: " + sw1);
 
-		//initialization
-		sw1.series = "SM R-890";
-		sw1.brand = "Samsung";
-		sw1.type = "Smart Watch";
-		sw1.colour = "Black";
-		sw1.connectivityType = "Bluetooth";
-		sw1.os = "Wear OS";
-		sw1.wattage = 220;
-		sw1.batteryLife = 40;
+		sw1.setSeries("SM R-890");
+		sw1.setBrand("Samsung");
+		sw1.setType("Smart Watch");
+		sw1.setColour("Black");
+		sw1.setConnectivityType("Bluetooth");
+		sw1.setOs("Wear OS");
+		sw1.setWattage(220);
+		sw1.setBatteryLife(40);
 
 		//displaying information
 		System.out.println("\nSeries: " + sw1.series);
