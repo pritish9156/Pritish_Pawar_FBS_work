@@ -1,17 +1,35 @@
 -- search doctor from specialization
 
-create procedure search_doc_specialization(in doc_specialization varchar(30), out doc_name varchar(30))
+create procedure search_doc_specialization(in doc_specialization varchar(30))
 begin
-select doctor_name into doc_name from doctor where specialization = doc_specialization;
+
+if doc_specialization in(select specialization from doctor) then
+	select doctor_name from doctor where specialization = doc_specialization;
+else
+	signal sqlstate '45000'
+	set message_text = "Specialization dosent exists";
+end if;
+
 end
+
+
 
 -- search doctor from employee type
 
 create procedure search_doc_emptype(in doc_emptype varchar(30))
 begin
-select doctor_name from doctor where employment_type in(doc_emptype);
+
+if doc_emptype in(select employment_type from doctor) then
+	select doctor_name from doctor where employment_type = doc_emptype;
+else
+	signal sqlstate '45000'
+	set message_text = "Employment_type is incorrect";
+end if;
+
 end
 
+
+----------------------------------------------------------------------------------------------------------------------
 
 
 -- generate invoice for encounter
@@ -36,7 +54,6 @@ for each row
 begin
 
 declare invoice_num varchar(100);
-declare invoice_id int;
 
 set invoice_num = invoice_number_generator();
 
@@ -64,7 +81,11 @@ declare invoice_num int;
 
 SELECT REGEXP_SUBSTR(invoice_number, '[0-9]+') AS number into invoice_num from invoice_bill order by number desc limit 1;
 
-set invoice_num = invoice_num+1;
+if invoice_num is null then
+    set invoice_num = 1;
+else
+    set invoice_num = invoice_num + 1;
+end if;
 
 return concat('inv',invoice_num);
 
@@ -98,6 +119,84 @@ end
 
 
 
+-- procedure -> invoice_item
+
+create trigger procedure_invoice_item
+after insert on procedure_report
+for each row
+begin
+
+declare encounterid int;
+declare invoiceid int;
+declare cost decimal(10,2);
+
+set encounterid = new.encounter_id;
+
+select invoice_id into invoiceid from invoice_bill where encounter_id = encounterid;
+
+select procedure_cost into cost from medical_procedure where procedure_id = new.procedure_id;
+
+insert into invoice_item(invoice_id, item_type, item_reference_id, quantity, unit_price, total_price)
+values(invoiceid, "procedure", new.procedure_id, 1, cost, 0.00);
+
+end
+
+
+
+
+
+-- surgery -> invoice_item
+
+create trigger surgery_invoice_item
+after insert on surgery_report
+for each row
+begin
+
+declare encounterid int;
+declare invoiceid int;
+declare cost decimal(10,2);
+
+set encounterid = new.encounter_id;
+
+select invoice_id into invoiceid from invoice_bill where encounter_id = encounterid;
+
+select surgery_cost into cost from surgery where surgery_id = new.surgery_id;
+
+insert into invoice_item(invoice_id, item_type, item_reference_id, quantity, unit_price, total_price)
+values(invoiceid, "surgery", new.surgery_id, 1, cost, 0.00);
+
+end
+
+
+
+
+
+--  Prescription -> invoice_item
+
+create trigger prescription_invoice_item
+after insert on prescription
+for each row
+begin
+
+declare encounterid int;
+declare invoiceid int;
+declare cost decimal(10,2);
+
+set encounterid = new.encounter_id;
+
+select invoice_id into invoiceid from invoice_bill where encounter_id = encounterid;
+
+select medicine_cost into cost from medicine where medicine_id = new.medicine_id;
+
+insert into invoice_item(invoice_id, item_type, item_reference_id, quantity, unit_price, total_price)
+values(invoiceid, "medicine", new.medicine_id, 1, cost, 0.00);
+
+end
+
+
+------------------------------------------------------------------------------------------------------------------------------
+
+
 -- invoice_item -> total_price_cal
 
 
@@ -113,6 +212,9 @@ set total = new.quantity*new.unit_price;
 set new.total_price = total;
 
 end
+
+
+
 
 
 -- invoice_item -> invoice_bill.total_amount
@@ -132,6 +234,93 @@ update invoice_bill set total_amount = inv_total_amount where invoice_id = new.i
 end
 
 
+
+
+--invoice_bill -> net_payable_amount
+
+mysql> alter table invoice_bill
+    -> modify net_payable_amount decimal(10,2)
+    -> generated always as (
+    ->     total_amount - discount_amount + tax_amount
+    -> ) stored;
+
+Query OK, 4 rows affected (0.18 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+
+
+
+-- procedure for discount_amount, tax_amount
+
+discount_amount
+-----------------
+
+create procedure setDiscountAmount(in invoiceId int, in amount decimal(10,2))
+begin
+
+if invoiceId in(select invoice_id from invoice_bill) then
+	if amount >= 0 then
+		update invoice_bill set discount_amount = amount where invoice_id = invoiceId;
+	else
+	signal sqlstate '45000'
+	set message_text = "amount should be greater then 0 or 0";
+	end if;
+else
+signal sqlstate '45000'
+set message_text = "invoice id is incorrect or not avilable";
+end if;
+
+end
+
+
+tax_amount
+-----------------
+
+create procedure setTaxAmount(in invoiceId int, in amount decimal(10,2))
+begin
+
+if invoiceId in(select invoice_id from invoice_bill) then
+	if amount >= 0 then
+		update invoice_bill set tax_amount = amount where invoice_id = invoiceId;
+	else
+	signal sqlstate '45000'
+	set message_text = "amount should be greater then 0 or 0";
+	end if;
+else
+signal sqlstate '45000'
+set message_text = "invoice id is incorrect or not avilable";
+end if;
+
+end
+
+
+-- by tax_percentage
+
+create procedure setTaxByPercentage(in invoiceId int, in percentage int)
+begin
+
+declare amount decimal(10,2);
+declare totalAmt decimal(10,2);
+
+select total_amount into totalAmt from invoice_bill where invoice_id = invoiceId;
+set amount = (totalAmt * percentage) / 100;
+
+if invoiceId in(select invoice_id from invoice_bill) then
+	if percentage >= 0 then
+		update invoice_bill set tax_amount = amount where invoice_id = invoiceId;
+	else
+	signal sqlstate '45000'
+	set message_text = "Tax Percentage should be greater then 0 or 0";
+	end if;
+else
+signal sqlstate '45000'
+set message_text = "invoice id is incorrect or not avilable";
+end if;
+
+end
+
+
+-------------------------------------------------------------------------------------------------------------------
 
 
 
