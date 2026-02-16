@@ -60,11 +60,19 @@ The repository is **structured to support multiple programming modules**, includ
 - **Tests:**
   - Test 1 to Test 6
 
-### 🔹 Java Programming *(Upcoming)*
-- Core Java concepts
-- OOP principles
-- Exception handling
-- Collections & file handling
+### 🔹 Java Programming
+- **Current Status:** In Progress
+- **Topics Covered:**
+  - Core Java concepts
+  - OOP principles
+  - Exception handling
+  - Collections & file handling
+- **Assignments:**
+  - **Assignment 2:**
+    - **TestCalculator.java:** Implements a calculator with addition, subtraction, multiplication, and division methods.
+    - **TestAreaCalculator.java:** Calculates areas of different shapes (triangle, rectangle, circle) using method overloading.
+    - **TestLoanApprovalSystem.java:** Simulates a loan approval system based on student percentage and salary.
+    - **TestTimeAddition.java:** Handles time addition operations.
 
 ### 🔹 Full Stack Development *(Planned)*
 - Frontend technologies
@@ -73,7 +81,7 @@ The repository is **structured to support multiple programming modules**, includ
 - Real-world projects
 
 ### 🔹 MySQL
-- **Current Status:** In Progress
+- **Current Status:** Revision Ongoing
 - **Topics Covered:**
   - Basic SQL queries
   - Database creation and management
@@ -86,8 +94,10 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 3:** DML operations and queries
   - **Assignment 4:** Advanced SELECT queries
   - **Assignment 5:** Comprehensive database tasks
+- **Final Project:** SQL Final Project (Completed with project presentation)
 - **Tests:**
   - Test 1
+  - End Module Test (Completed)
 
 ---
 
@@ -145,12 +155,24 @@ The repository is **structured to support multiple programming modules**, includ
   - **Assignment 15:** Problem statements (Problem Statements folder)
   - **Tests:** Test 1 to Test 6
 
-- ⏳ **Java Programming:** Upcoming
+- ⏳ **Java Programming:** In Progress
+  - **Assignment 2:**
+    - TestCalculator.java
+    - TestAreaCalculator.java
+    - TestLoanApprovalSystem.java
+    - TestTimeAddition.java
+
 - ⏳ **Full Stack Modules:** Planned
 - ⏳ **MySQL:** In Progress
   - **Assignments:**
     - Assignment 0 to Assignment 5
   - **Tests:** Test 1
+  - **Updated Files:**
+    - Triggers_Procedure_Functions_Practice.txt in MySql/Interview Questions
+    - create procedure check_quantity().txt in MySql/Interview Questions
+    - cursor procedure process_student.txt in MySql/Interview Questions
+    - Automation.txt in MySql/Problem Statement
+    - Query.txt in MySql/Problem Statement
 
 ---
 
