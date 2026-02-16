@@ -2,7 +2,6 @@
 
 ![MySQL](https://img.shields.io/badge/Database-MySQL-blue)
 ![Status](https://img.shields.io/badge/Project-Completed-brightgreen)
-![Type](https://img.shields.io/badge/Project-Academic-orange)
 ![Focus](https://img.shields.io/badge/Focus-Automation-red)
 
 ---
@@ -239,7 +238,7 @@ using advanced MySQL features.
 ## 👨‍💻 Author
 
 **Pritish Pawar**  
-Final Year Project – Healthcare Management System  
+Healthcare Management System  
 
 ---
 
