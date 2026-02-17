@@ -1,22 +1,22 @@
-package Question_2;
+
 
 class Shape{
 	
 	double area;
 	
-	double calculateArea(double base, double height) {
-		this.area = 0.5 * base * height;
+	double calculateArea(Triangle t) {
+		this.area = 0.5 * t.base * t.height;
 		return this.area;
 		
 	}
 	
-	double calculateArea(double length, double breadth, boolean isTriangle) {
-		this.area = length * breadth;
+	double calculateArea(Rectangle r) {
+		this.area = r.length * r.breadth;
 		return this.area;
 	}
 	
-	double calculateArea(double radius) {
-		this.area = 3.14 * radius * radius;
+	double calculateArea(Circle c) {
+		this.area = Math.PI * c.radius * c.radius;
 		return this.area;
 	}
 }
@@ -106,9 +106,9 @@ public class TestAreaCalculator {
 		Rectangle r1 = new Rectangle();
 		Circle c1 = new Circle();
 		
-		System.out.println("Area of Triangle: " + s1.calculateArea(t1.getBase(), t1.getHeight()));
-		System.out.println("Area of Rectangle: " + s1.calculateArea(r1.getLength(), r1.getBreadth(), true));
-		System.out.printf("Area of Circle: %.2f",s1.calculateArea(c1.getRadius()));
+		System.out.println("Area of triangle: " + s1.calculateArea(t1));
+		System.out.println("Area of rectangle: " + s1.calculateArea(r1));
+		System.out.printf("Area of circle: %.2f",s1.calculateArea(c1));
 		
 	}
 

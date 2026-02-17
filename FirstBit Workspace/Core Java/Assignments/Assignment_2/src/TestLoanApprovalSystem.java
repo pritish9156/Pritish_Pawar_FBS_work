@@ -1,32 +1,30 @@
-package Question_3;
-
 class Bank{
-	double approveLoan(int percentage) {
+	double approveLoan(Student s) {
 		
-		if(percentage >= 80) {
+		if(s.percentage >= 80) {
 			return 200000.0;
-		}else if(percentage < 80 && percentage >= 60){
+		}else if(s.percentage < 80 && s.percentage >= 60){
 			return 100000.0;
-		}else if(percentage < 60 && percentage >= 40) {
+		}else if(s.percentage < 60 && s.percentage >= 40) {
 			return 50000.0;
-		}else if(percentage < 40) {
+		}else if(s.percentage < 40) {
 			return 0.0;
 		}
 		
 		return 0;
 	}
 	
-	double approveLoan(double sal) {
+	double approveLoan(Employee e) {
 		
-		if(sal >= 1200000.0) {
+		if(e.annualSal >= 1200000.0) {
 			return 700000.0;
-		}else if(sal < 1200000.0 && sal >= 1000000.0){
+		}else if(e.annualSal < 1200000.0 && e.annualSal >= 1000000.0){
 			return 600000.0;
-		}else if(sal < 1000000.0 && sal >= 600000.0) {
+		}else if(e.annualSal < 1000000.0 && e.annualSal >= 600000.0) {
 			return 500000.0;
-		}else if(sal < 600000.0 && sal >= 400000.0) {
+		}else if(e.annualSal < 600000.0 && e.annualSal >= 400000.0) {
 			return 400000.0;
-		}else if(sal < 400000.0) {
+		}else if(e.annualSal < 400000.0) {
 			return 0.0;
 		}
 		
@@ -37,7 +35,7 @@ class Bank{
 class Student{
 	int rollNo;
 	String name;
-	int percentage;
+	double percentage;
 	
 	public Student() {
 		this.rollNo = 0;
@@ -61,11 +59,11 @@ class Student{
 		this.name = name;
 	}
 
-	int getPercentage() {
+	double getPercentage() {
 		return percentage;
 	}
 
-	void setPercentage(int percentage) {
+	void setPercentage(double percentage) {
 		this.percentage = percentage;
 	}
 	
@@ -119,8 +117,8 @@ public class TestLoanApprovalSystem {
 		s1.setPercentage(59);
 		e1.setAnnualSal(700000);
 		
-		System.out.println("Loan Approval for Student: " + b1.approveLoan(s1.getPercentage()) + "rs for percentage of " + s1.getPercentage() +"%");
-		System.out.println("Loan Approval for employee: " + b1.approveLoan(e1.getAnnualSal()) + "rs for annual salary of " + e1.getAnnualSal() +"LPA");
+		System.out.println("Loan Approval for Student: " + b1.approveLoan(s1) + "rs for percentage of " + s1.getPercentage() +"%");
+		System.out.println("Loan Approval for employee: " + b1.approveLoan(e1) + "rs for annual salary of " + e1.getAnnualSal() +"LPA");
 
 	}
 
