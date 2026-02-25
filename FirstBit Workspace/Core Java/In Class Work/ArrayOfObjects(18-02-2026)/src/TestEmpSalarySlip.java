@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 class Employee{
 	
 	int empId;
@@ -71,20 +73,78 @@ public class TestEmpSalarySlip {
 
 	public static void main(String[] args) {
 		
-		Employee[] arr = new Employee[3];
+		Employee[] empArray = new Employee[3];
 		
-		arr[0] = new Employee(101, "Ranvir", 1000);
-		arr[1] = new Employee();
-		arr[2] = new Employee();
+		Scanner sc = new Scanner(System.in);
 		
-		arr[1].setEmpId(102);
-		arr[1].setEmpName("Rajesh");
-		arr[1].setBasicSal(20000);
-		
-		for(int i=0; i<arr.length; i++) {
-			arr[i].display();
+		for(int i=0; i<empArray.length; i++) {
+			System.out.println("Enter employee id: ");
+			int id = sc.nextInt();
+			sc.nextLine();
+			System.out.println("Enter employee name: ");
+			String name = sc.nextLine();
+			System.out.println("Enter basic salary: ");
+			double sal = sc.nextDouble();
+			System.out.println();
+			
+			empArray[i] = new Employee(id, name, sal);
 		}
-
+		
+		for(int i=0; i<empArray.length; i++) {
+			empArray[i].display();
+		}
+		
+		//search by emp id and name
+		int choice;
+		do {
+			System.out.println("\n1.Search by name\n2.Search by id\n3.Exit");
+			System.out.println("Enter Your choice: ");
+			choice = sc.nextInt();
+			
+			switch(choice) {
+				case 1: {
+					System.out.println("\nEnter name to search: ");
+					sc.nextLine();
+					String nameToSearch = sc.nextLine();
+					
+					boolean flag=true;
+					
+					for(int i=0; i<empArray.length; i++) {
+						if(empArray[i].getEmpName().contains(nameToSearch)) {
+							empArray[i].display();
+							flag=false;
+						}
+					}
+					
+					if(flag) System.out.println("\nEmployee Not found...");
+					break;
+				}
+					
+				case 2: {
+					System.out.println("\nEnter employee id to search: ");
+					int empIdToSearch = sc.nextInt();
+					
+					boolean flag=true;
+					
+					for(int i=0; i<empArray.length; i++) {
+						if(empArray[i].getEmpId() == empIdToSearch) {
+							empArray[i].display();
+							flag=false;
+						}
+					}
+					
+					if(flag) System.out.println("\nEmployee Not Found");
+					break;
+				}
+				
+				case 3: {
+					System.out.println("\nEnd..");
+				}
+			}
+		}while(choice!=3);
+		
+		sc.close();
+		
 	}
 
 }

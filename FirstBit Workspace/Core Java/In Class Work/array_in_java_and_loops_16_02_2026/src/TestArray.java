@@ -1,4 +1,4 @@
-package array_in_java_and_loops_16_02_2026;
+
 
 import java.util.Scanner;
 
