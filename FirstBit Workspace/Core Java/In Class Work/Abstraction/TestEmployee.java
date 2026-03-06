@@ -1,4 +1,4 @@
-class Employee{
+abstract class Employee{
 	int id;
 	String name;
 	double salary;
@@ -40,16 +40,12 @@ class Employee{
 		this.salary = salary;
 	}
 	
-	void display() {
-		System.out.println("Employee id: " + this.id);
-		System.out.println("Employee name: " + this.name);
-		System.out.println("Employee salary: " + this.salary);
+	@Override
+	public String toString() {
+		return "id=" + id + ", name=" + name + ", salary=" + salary;
 	}
-	
-	double calSal()
-	{
-		return salary;
-	}
+
+	abstract double calSal();
 }//employee class ends here
 
 class Admin extends Employee{
@@ -74,16 +70,15 @@ class Admin extends Employee{
 		this.allowance = allowance;
 	}
 	
-	void display() {
-		super.display();
-		System.out.println("Allowance: " + this.allowance);
+	
+	@Override
+	public String toString() {
+		return super.toString()+", allowance=" + allowance;
 	}
+
 	double calSal()
 	{
 		return salary+allowance;
-	}
-	void adminFun() {
-		System.out.println("admin calling");
 	}
 
 }//admin class ends here
@@ -128,11 +123,14 @@ class SalesManager extends Employee{
 		return this.target;
 	}
 
-	void display(){
-		super.display();
-		System.out.println("Incentive: " + incentive);
-		System.out.println("Target: " + target);
+	
+
+	@Override
+	public String toString() {
+		return super.toString()+", incentive=" + incentive + ", target=" + target;
 	}
+
+
 
 	double calSal()
 	{
@@ -171,15 +169,23 @@ class HR extends Employee{
 		return this.commission;
 	}
 
-	void display(){
-		super.display();
-		System.out.println("HR Commission: " + commission + "%");
-	}
+//	void display(){
+//		super.display();
+//		System.out.println("HR Commission: " + commission + "%");
+//	}
 
 	double calSal()
 	{
 		return salary+commission;
 	}
+
+
+	@Override
+	public String toString() {
+		return super.toString()+", commission=" + commission;
+	}
+	
+	
 
 }//HR class Ends here
 
@@ -188,22 +194,15 @@ class TestEmployee {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Employee e1;//generic reference
-		e1= new Employee(101, "Sachin", 10000);
-		e1.display();
-		System.out.println("Calculated salary is "+e1.calSal());
-		System.out.println();
 		
 		e1= new SalesManager(102, "Virat", 20000, 2000, 20);//up casting
-		e1.display();
+		System.out.println(e1.toString());
 		System.out.println("Calculated salary is "+e1.calSal());
 		System.out.println();
 		
 		e1= new Admin(103, "Rohit", 30000, 300);//up casting
-		e1.display();
+		System.out.println(e1);
 		System.out.println("Calculated salary is "+e1.calSal());
-		
-		
-		
 
 	}
 

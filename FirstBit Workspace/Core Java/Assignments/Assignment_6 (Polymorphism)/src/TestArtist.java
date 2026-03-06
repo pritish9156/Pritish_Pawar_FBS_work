@@ -30,11 +30,11 @@ class Artist{
 		this.age = age;
 	}
 	
-	void display() {
-		System.out.println("Name: " + this.name);
-		System.out.println("Age: " + this.age);
+	@Override
+	public String toString() {
+		return "name=" + name + "\nage=" + age;
 	}
-	
+
 	void perform() {
 		System.out.println("Artist Performing..!");
 	}
@@ -84,13 +84,13 @@ class Painter extends Artist{
 		this.numberOfPaintings = numberOfPaintings;
 	}
 	
-	void display() {
-		super.display();
-		System.out.println("Painting Style: " + this.paintingStyle);
-		System.out.println("Medium Used: " + this.mediumUsed);
-		System.out.println("Number Of Painting: " + this.numberOfPaintings);
-	}
 	
+	@Override
+	public String toString() {
+		return super.toString()+"\npaintingStyle=" + paintingStyle + "\nmediumUsed=" + mediumUsed + "\nnumberOfPaintings="
+				+ numberOfPaintings;
+	}
+
 	void perform() {
 		System.out.println("Selecting paper style\nSelecting Art type: classic\n selecting intruments\n Performing..!");
 	}
@@ -140,13 +140,14 @@ class Musician extends Artist{
 		this.numberOfAlbums = numberOfAlbums;
 	}
 	
-	void display() {
-		super.display();
-		System.out.println("Instrument: " + this.instrument);
-		System.out.println("Music Genre: " + this.musicGenre);
-		System.out.println("Number of Albumns: " + this.numberOfAlbums);
-	}
 	
+	
+	@Override
+	public String toString() {
+		return super.toString()+"\ninstrument=" + instrument + "\nmusicGenre=" + musicGenre + "\nnumberOfAlbums="
+				+ numberOfAlbums;
+	}
+
 	void perform() {
 		System.out.println("Selecting intrument: guitar\nTuning up guitar\nPerforming..!");
 	}
@@ -186,12 +187,13 @@ class Actor extends Artist{
 		this.numberOfMovies = numberOfMovies;
 	}
 	
-	void display() {
-		super.display();
-		System.out.println("Film Industry: " + this.filmIndustry);
-		System.out.println("Number Of Movies: " + this.numberOfMovies);
-	}
 	
+	
+	@Override
+	public String toString() {
+		return super.toString()+"\nfilmIndustry=" + filmIndustry + "\nnumberOfMovies=" + numberOfMovies;
+	}
+
 	void perform() {
 		System.out.println("Taking acting classes\n Doing makeup\n Performing..!");
 	}
@@ -205,14 +207,17 @@ public class TestArtist {
 		
 		Artist a1;
 		a1 = new Painter("Raghu", 26, "classic", "Digital", 100);
+		System.out.println(a1);
 		a1.perform();
 		System.out.println();
 		
 		a1 = new Musician("Ramesh", 24, "Guitar", "Rock", 29);
+		System.out.println(a1);
 		a1.perform();
 		System.out.println();
 		
 		a1 = new Actor("Santosh", 43, "Bollywood", 45);
+		System.out.println(a1);
 		a1.perform();
 	}
 

@@ -64,14 +64,14 @@ class Vehicle{
 	void applyBreak() {
 		System.out.println("All vehicles stop !");
 	}
-	
-	void display() {
-		System.out.println("Vehicle Number: " + this.vehicleNumber);
-		System.out.println("Vehicle Model: " + this.model);
-		System.out.println("Company Name: " + this.companyName);
-		System.out.println("No of Wheels: " + this.noOfWheels);
-		System.out.println("Price: " + this.price);
+
+	@Override
+	public String toString() {
+		return "vehicleNumber=" + vehicleNumber + "\nmodel=" + model + "\ncompanyName=" + companyName
+				+ "\nnoOfWheels=" + noOfWheels + "\nprice=" + price;
 	}
+	
+	
 	
 } //Vehicle class ends here
 
@@ -121,13 +121,13 @@ class Bike extends Vehicle{
 	void applyBreak() {
 		System.out.println("Bike using disk Breaks !");
 	}
-	
-	void display() {
-		super.display();
-		System.out.println("Number Of Stands: " + this.noOfStands);
-		System.out.println("Number of Helmets: " + this.noOfHelmets);
-		System.out.println("Bike Category: " + this.bikeCategory);
+
+	@Override
+	public String toString() {
+		return super.toString()+"\nnoOfStands=" + noOfStands + "\nnoOfHelmets=" + noOfHelmets + "\nbikeCategory=" + bikeCategory;
 	}
+	
+	
 	
 }// bike class ends here
 
@@ -177,13 +177,14 @@ class Car extends Vehicle{
 	void applyBreak() {
 		System.out.println("Car using HandBreak Breaks !");
 	}
-	
-	void display() {
-		super.display();
-		System.out.println("Power Steering: " + this.hasPowerSteering);
-		System.out.println("Drive Mode: " + this.driveMode);
-		System.out.println("Parking Assist Sensors: " + this.parkingAssistSensors);
+
+	@Override
+	public String toString() {
+		return super.toString()+"\nhasPowerSteering=" + hasPowerSteering + "\ndriveMode=" + driveMode + "\nparkingAssistSensors="
+				+ parkingAssistSensors;
 	}
+	
+	
 }//Car class ends here
 
 class Bus extends Vehicle{
@@ -221,12 +222,13 @@ class Bus extends Vehicle{
 	void applyBreak() {
 		System.out.println("Bus using hydrolics HandBreak Breaks !");
 	}
-	
-	void display() {
-		super.display();
-		System.out.println("Passenger Capacity: " + this.passengerCapacity);
-		System.out.println("Standing Capacity: " + this.standingCapacity);
+
+	@Override
+	public String toString() {
+		return super.toString()+"\npassengerCapacity=" + passengerCapacity + "\nstandingCapacity=" + standingCapacity;
 	}
+	
+	
 }// Bus class ends here
 
 
@@ -237,22 +239,22 @@ public class TestVehicle {
 		
 		Vehicle v1;
 		v1 = new Bike("MH12 2003", "Honda100", "Honda", 2, 80000, 2, 1, "Semi Sports");
-		v1.display();
+		System.out.println(v1);
 		v1.applyBreak();
 		System.out.println();
 		
 		v1 = new Car("MH12 6545", "Maruti800", "Maruti Suzuki", 4, 100000, false, "Manual", 0);
-		v1.display();
+		System.out.println(v1);
 		v1.applyBreak();
 		System.out.println();
 		
 		v1 = new Bus("MH12 2343", "Traveller01", "Travellers", 4, 200000, 10, 5);
-		v1.display();
+		System.out.println(v1);
 		v1.applyBreak();
 		System.out.println();
 		
 		v1 = new Bike();
-		v1.display();
+		System.out.println(v1);
 		v1.applyBreak();
 	}
 
