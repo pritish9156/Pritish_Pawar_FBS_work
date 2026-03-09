@@ -1204,8 +1204,8 @@ void main(){
 				printf("\nHow many players details you want to store: ");
 				scanf("%d",&size);
 				player = (Player*)malloc(sizeof(Player)*size);
-				//addPlayers(player,size,&currentId);
-				addPlayersHardcoded(player,&currentId);
+				addPlayers(player,size,&currentId);
+				//addPlayersHardcoded(player,&currentId);
 				isDataEmpty=1;
 				break;
 			}
