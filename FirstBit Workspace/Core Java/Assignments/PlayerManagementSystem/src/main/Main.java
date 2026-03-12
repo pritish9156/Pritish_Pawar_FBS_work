@@ -182,7 +182,7 @@ public class Main {
         do {
 
             System.out.println("\n\t==================================================");
-            System.out.println("\t|           PLAYER MANAGEMENT SYSTEM              |");
+            System.out.println("\t|           PLAYER MANAGEMENT SYSTEM             |");
             System.out.println("\t==================================================");
 
             System.out.println("\n\t1. Add Player");

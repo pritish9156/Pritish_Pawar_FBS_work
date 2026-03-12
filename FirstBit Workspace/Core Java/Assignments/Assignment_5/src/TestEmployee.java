@@ -45,6 +45,10 @@ class Employee{
 		System.out.println("Employee name: " + this.name);
 		System.out.println("Employee salary: " + this.salary);
 	}
+	
+	void print(int i) {
+		System.out.println(i);
+	}
 }//employee class ends here
 
 class Admin extends Employee{
@@ -74,6 +78,13 @@ class Admin extends Employee{
 		System.out.println("Allowance: " + this.allowance);
 	}
 	
+	void print(String name) {
+		System.out.println(name);
+	}
+	
+	void print(char ch) {
+		System.out.println(ch);
+	}
 }//admin class ends here
 
 class SalesManager extends Employee{
@@ -166,15 +177,27 @@ public class TestEmployee {
 
 	public static void main(String[] args) {
 		
-		Admin a1 = new Admin(101, "Ramesh", 10000, 100);
-		SalesManager sm1 = new SalesManager();
-		HR h1 = new HR(102, "Ramesh", 10000, 100);
+//		Admin a1 = new Admin(101, "Ramesh", 10000, 100);
+//		SalesManager sm1 = new SalesManager();
+//		HR h1 = new HR(102, "Ramesh", 10000, 100);
 		
-		a1.display();
-		System.out.println();
-		sm1.display();
-		System.out.println();
-		h1.display();
+//		a1.display();
+//		System.out.println();
+//		sm1.display();
+//		System.out.println();
+//		h1.display();
+		
+		Employee e1 = new Admin();
+		
+		e1.print(1);
+		e1.print('c');
+		
+		Admin a2 = (Admin) e1;
+		
+		a2.print(1);
+		a2.print("ramesh");
+		
+		
 	}
 
 }
