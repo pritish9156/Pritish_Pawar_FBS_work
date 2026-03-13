@@ -91,6 +91,8 @@ public class TestStud {
 		
 		if(flag) System.out.println("\nStudent Not Found....");
 
+		sc.close();
+
 	}
 
 }
