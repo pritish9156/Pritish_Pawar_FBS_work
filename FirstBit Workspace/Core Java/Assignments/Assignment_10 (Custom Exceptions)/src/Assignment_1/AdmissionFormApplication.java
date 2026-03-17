@@ -58,7 +58,7 @@ public class AdmissionFormApplication {
 		}
 		
 		AdmissionForm.display();
-		
+		sc.close();
 
 	}
 

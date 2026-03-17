@@ -1,4 +1,4 @@
-package InvalidTicketException;
+package InvalidTicketExceptions;
 
 public class InvalidTicketNumberException extends Exception {
 

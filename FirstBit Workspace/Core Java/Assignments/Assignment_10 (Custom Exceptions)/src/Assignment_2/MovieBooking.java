@@ -1,6 +1,6 @@
 package Assignment_2;
 
-import InvalidTicketException.*;
+import InvalidTicketExceptions.*;
 
 public class MovieBooking {
 	String movieName;

@@ -2,8 +2,8 @@ package Assignment_2;
 
 import java.util.Scanner;
 
-import InvalidTicketException.InvalidTicketNumberException;
-import InvalidTicketException.TicketsSoldOutException;
+import InvalidTicketExceptions.InvalidTicketNumberException;
+import InvalidTicketExceptions.TicketsSoldOutException;
 
 public class TicketBookingApplication {
 
@@ -40,6 +40,8 @@ public class TicketBookingApplication {
 		}while(MovieBooking.getAvilableTickets() > 0);
 		
 		System.out.println("\nTickets Are Sold Out");
+		
+		sc.close();
 
 	}
 }
