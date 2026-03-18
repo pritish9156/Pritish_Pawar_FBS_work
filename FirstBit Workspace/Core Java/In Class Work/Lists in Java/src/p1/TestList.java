@@ -2,7 +2,7 @@ package p1;
 
 import java.util.*;
 
-class Employee{
+class Employee implements Comparable{
 	
 	int empId;
 	String empName;
@@ -50,11 +50,48 @@ class Employee{
 		return "\nempId=" + empId + "\nempName=" + empName + "\nbasicSal=" + basicSal + "\n";
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		if(this.empId == ((Employee)obj).getEmpId()) {
+			return true;
+		}
+		
+		return false;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		Employee e1 = (Employee)o;
+		return this.empId - e1.empId;
+	}
+	
 }
 
 public class TestList {
 
 	public static void main(String[] args) {
+		Employee e1 = new Employee(101, "Raghav", 10000);
+		Employee e2 = new Employee(103, "Shivam", 20000);
+		Employee e3 = new Employee(102, "Krish", 30000);
+		
+		ArrayList l1 = new ArrayList();
+		
+		l1.add(e1);
+		l1.add(e2);
+		l1.add(e3);
+		
+		System.out.println("before sort: " + l1);
+		
+		Collections.sort(l1);
+		
+		System.out.println("\nAfter sort: " + l1);
+		
+		System.out.println(Collections.binarySearch(l1, new Employee(103,"Shivam",20000)));
+		
+	}
+	
+	public static void main1(String[] args) {
 		
 		Employee e1 = new Employee(101, "Raghav", 10000);
 		Employee e2 = new Employee(102, "Shivam", 20000);
@@ -66,7 +103,9 @@ public class TestList {
 		l1.add(e2);
 		l1.add(e3);
 		
-		System.out.println(l1);
+//		System.out.println(l1);
+		
+		System.out.println(l1.contains(new Employee(101, "Raghav", 10000)));
 		
 	}
 

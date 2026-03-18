@@ -1,10 +1,13 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import Model.Employee;
-import dao.EmployeeDAO;
+import dao.EmployeeListDAO1;
 
 public class EmployeeController {
-	EmployeeDAO ed = new EmployeeDAO();
+//	EmployeeDAO ed = new EmployeeDAO();
+	EmployeeListDAO1 ed=new EmployeeListDAO1();
 
 	public boolean addEmployee(Employee e) {
 		return ed.addEmployee(e);
@@ -22,7 +25,7 @@ public class EmployeeController {
 		return ed.deleteEmployee(id);
 	}
 
-	public Employee[] displayAll() {
+	public ArrayList displayAll() {
 		return ed.getAllEmployees();
 
 	}

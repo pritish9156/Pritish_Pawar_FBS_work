@@ -1,5 +1,6 @@
 package View;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controller.EmployeeController;
@@ -99,9 +100,9 @@ public class EmployeeView {
 					System.out.println("Employee not found.");
 				break;
 			case 5:
-				Employee[] arr = ec.displayAll();
-				for (Employee emp : arr) {
-					System.out.println();
+				ArrayList arr = ec.displayAll();
+				for(int i=0; i<arr.size(); i++) {
+					System.out.println(arr.get(i));
 				}
 				break;
 			}
