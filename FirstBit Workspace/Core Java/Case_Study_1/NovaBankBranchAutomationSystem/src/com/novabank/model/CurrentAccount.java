@@ -34,11 +34,43 @@ public class CurrentAccount extends Account{
 	@Override
 	public boolean deposit(double amount) {
 		
+		if(accountStatus == AccountStatus.ACTIVE) {
+			
+			if(amount > 0) {
+				
+				currentBalance += amount;
+				return true;
+				
+			} else 
+				System.out.println("Please Enter a Valid Amount");
+		
+		} else 
+			System.out.println("Your Account is Freezed or Not Active.. Please Contact with Bank");
+		
 		return false;
 	}
 	
 	@Override
 	public boolean withdraw(double amount) {
+		
+		if(accountStatus == AccountStatus.ACTIVE) {
+			
+			if(amount > 0) {
+				
+				if((currentBalance - amount) >= (-maxOverdraftLimit)) {
+					
+					currentBalance -= amount;
+					return true;
+					
+				}
+				else
+					System.out.println("Overdraft limit exceeded");
+				
+			} else 
+				System.out.println("Please Enter a Valid Amount");
+		
+		} else 
+			System.out.println("Your Account is Freezed or Not Active.. Please Contact with Bank");
 		
 		return false;
 	}

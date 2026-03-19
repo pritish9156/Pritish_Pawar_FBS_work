@@ -116,9 +116,14 @@ public abstract class Account {
 	abstract boolean withdraw(double amount);
 	abstract double calculateInterest();
 	
-	final void addTransaction(Transaction t) {
+	final boolean addTransaction(Transaction t) {
 		
+		if(t!=null && transactionCount < transactionArray.length) {
+			transactionArray[transactionCount++] = t;
+			return true;
+		}
 		
+		return false;
 		
 	}
 }

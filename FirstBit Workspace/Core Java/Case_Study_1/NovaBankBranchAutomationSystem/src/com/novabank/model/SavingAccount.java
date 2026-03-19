@@ -23,17 +23,56 @@ public class SavingAccount extends Account {
 	@Override
 	public boolean deposit(double amount) {
 		
+		if(accountStatus == AccountStatus.ACTIVE) {
+			
+			if(amount > 0) {
+				
+				currentBalance += amount;
+				return true;
+				
+			} else 
+				System.out.println("Please Enter a Valid Amount");
+		
+		} else 
+			System.out.println("Your Account is Freezed or Not Active.. Please Contact with Bank");
+		
 		return false;
 	}
 
 	@Override
-	public boolean withdraw(double amount) {
+	public
+	boolean withdraw(double amount) {
+		
+		if(accountStatus == AccountStatus.ACTIVE) {
+			
+			if(amount > 0) {
+					
+				if((currentBalance - amount) >= MINIMUM_BALANCE) {
+						
+						currentBalance -= amount;
+						return true;
+						
+					}else
+						System.out.println("Sufficient Balance is Not Avilable for withdrawal");
+				
+			} else 
+				System.out.println("Please Enter a Valid Amount");
+		
+		} else 
+			System.out.println("Your Account is Freezed or Not Active.. Please Contact with Bank");
 		
 		return false;
 	}
 
 	@Override
 	public double calculateInterest() {
+		
+		if(accountStatus == AccountStatus.ACTIVE) {
+				
+			return currentBalance * interestRate;
+				
+		} else 
+			System.out.println("Your Account is Freezed or Not Active.. Please Contact with Bank");
 		
 		return 0;
 	}
