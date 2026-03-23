@@ -6,10 +6,10 @@ public class SalaryAccount extends SavingAccount {
 	
 	LocalDate lastTransactionDate;
 
-	public SalaryAccount(String accountNumber, String accountHolderName, LocalDate accountOpeningDate,
+	public SalaryAccount(String accountHolderName, String mobileNumber, String mailId, LocalDate accountOpeningDate,
 			LocalDate accountClosingDate, double interestRate, double currentBalance, LocalDate lastTransactionDate) {
 		
-		super(accountNumber, accountHolderName, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
+		super(accountHolderName, mobileNumber, mailId, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
 		this.lastTransactionDate = lastTransactionDate;
 	}
 

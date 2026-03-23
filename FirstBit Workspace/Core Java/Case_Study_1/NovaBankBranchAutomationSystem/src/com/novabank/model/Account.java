@@ -6,6 +6,8 @@ public abstract class Account {
 	
 	String accountNumber;
 	String accountHolderName;
+	String mobileNumber;
+	String mailId;
 	LocalDate accountOpeningDate;
 	LocalDate accountClosingDate;
 	double interestRate;
@@ -13,12 +15,15 @@ public abstract class Account {
 	AccountStatus accountStatus;
 	Transaction[] transactionArray;
 	int transactionCount;
+	static int accNumber = 100;
 
-	public Account(String accountNumber, String accountHolderName, LocalDate accountOpeningDate,
+	public Account(String accountHolderName, String mobileNumber, String mailId, LocalDate accountOpeningDate,
 			LocalDate accountClosingDate, double interestRate, double currentBalance) {
 	
-		this.accountNumber = accountNumber;
+		this.accountNumber = "ACC" + System.currentTimeMillis() + accNumber++;
 		this.accountHolderName = accountHolderName;
+		this.mobileNumber = mobileNumber;
+		this.mailId = mailId;
 		this.accountOpeningDate = accountOpeningDate;
 		this.accountClosingDate = accountClosingDate;
 		this.interestRate = interestRate;
@@ -45,6 +50,23 @@ public abstract class Account {
 
 	public void setAccountHolderName(String accountHolderName) {
 		this.accountHolderName = accountHolderName;
+	}
+	
+	
+	public String getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(String mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
+	public String getMailId() {
+		return mailId;
+	}
+
+	public void setMailId(String mailId) {
+		this.mailId = mailId;
 	}
 
 	public LocalDate getAccountOpeningDate() {
@@ -112,11 +134,11 @@ public abstract class Account {
 	}
 	
 	
-	abstract boolean deposit(double amount);
-	abstract boolean withdraw(double amount);
-	abstract double calculateInterest();
+	public abstract boolean deposit(double amount);
+	public abstract boolean withdraw(double amount);
+	public abstract double calculateInterest();
 	
-	final boolean addTransaction(Transaction t) {
+	public final boolean addTransaction(Transaction t) {
 		
 		if(t!=null && transactionCount < transactionArray.length) {
 			transactionArray[transactionCount++] = t;
@@ -125,5 +147,36 @@ public abstract class Account {
 		
 		return false;
 		
+	}
+
+
+	public Transaction[] getTransactionsByDate(LocalDate date) {
+		
+		Transaction[] temp = new Transaction[transactionCount];
+		int count = 0;
+		
+		if(date!=null) {
+			for(int i=0; i<transactionCount; i++) {
+				if(transactionArray[i].getTransactionDate().equals(date)) {
+					temp[count] = transactionArray[i];
+					count++;
+				}
+			}
+		
+		
+			Transaction[] result = new Transaction[count];
+			
+			for(int i=0; i<count; i++) {
+				result[i] = temp[i];
+			}
+			
+			return result;
+		}
+		
+		return null;
+	}
+
+	public Transaction[] getAllTransactions() {
+		return transactionArray;
 	}
 }

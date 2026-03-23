@@ -6,10 +6,10 @@ public class CurrentAccount extends Account{
 	
 	double maxOverdraftLimit;
 
-	public CurrentAccount(String accountNumber, String accountHolderName, LocalDate accountOpeningDate,
+	public CurrentAccount(String accountHolderName, String mobileNumber, String mailId, LocalDate accountOpeningDate,
 			LocalDate accountClosingDate, double interestRate, double currentBalance, double maxOverdraftLimit) {
 		
-		super(accountNumber, accountHolderName, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
+		super(accountHolderName, mobileNumber, mailId, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
 		this.maxOverdraftLimit = maxOverdraftLimit;
 	}
 	

@@ -1,5 +1,7 @@
 package com.novabank.model;
 
+import com.novabank.exceptions.SavingAccountMinimumLimitException;
+
 public class BankBranch {
 	
 	//Attributes
@@ -69,6 +71,73 @@ public class BankBranch {
 	public String toString() {
 		return "Branch Name: " + branchName + "\nBranch Address: " + branchAddress
 				+ "\nTotal Number of Accounts in Branch: " + accountCount;
+	}
+	
+	public boolean addAccount(Account account) throws SavingAccountMinimumLimitException {
+		
+		if(account instanceof SavingAccount) {
+			if(account.getCurrentBalance() < 10000)
+				throw new SavingAccountMinimumLimitException();
+		}
+		
+		if(account != null && accountCount<accountArray.length) {
+			accountArray[accountCount++] = account;
+			return true;
+		}
+		
+		return false;
+	}
+	
+	public Account getAccountByNumber(String accountNumber) {
+		
+		if(accountNumber != null && !accountNumber.isEmpty()) {
+			for(int i=0; i<accountCount; i++) {
+				  if(accountArray[i].getAccountNumber().equals(accountNumber)) {
+					  return accountArray[i];
+				  }
+			}
+		}
+		
+		return null;
+		
+	}
+	
+	public boolean updateAccount(Account account) {
+		
+		return false;
+	}
+	
+	public boolean deleteAccount(String accountNumber) {
+		
+		if(accountNumber != null && !accountNumber.isEmpty()) {
+			for(int i=0; i<accountCount; i++) {
+				  
+				if(accountArray[i].getAccountNumber().equals(accountNumber)) {
+					  
+					  for(int j=i; j<accountCount-1; j++) 
+						  accountArray[j] = accountArray[j+1];
+					  
+					  accountCount--;
+					  accountArray[accountCount] = null;
+					  return true;
+				  }
+			}
+		}
+		
+		return false;
+	}
+	
+	public Account[] getAllAccounts() {
+		
+		Account[] result = new Account[accountCount];
+		
+		if(accountArray != null) {
+			for(int i=0; i<accountCount; i++) {
+				result[i] = accountArray[i];
+			}
+		}
+		
+		return result;
 	}
 	
 }

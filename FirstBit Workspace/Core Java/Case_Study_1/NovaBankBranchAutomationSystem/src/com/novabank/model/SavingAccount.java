@@ -6,10 +6,10 @@ public class SavingAccount extends Account {
 	
 	static final double MINIMUM_BALANCE = 10000;
 
-	public SavingAccount(String accountNumber, String accountHolderName, LocalDate accountOpeningDate,
+	public SavingAccount(String accountHolderName, String mobileNumber, String mailId, LocalDate accountOpeningDate,
 			LocalDate accountClosingDate, double interestRate, double currentBalance) {
 		
-		super(accountNumber, accountHolderName, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
+		super(accountHolderName, mobileNumber, mailId, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
 		
 	}
 	

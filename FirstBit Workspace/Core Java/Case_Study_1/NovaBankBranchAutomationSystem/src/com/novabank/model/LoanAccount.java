@@ -9,15 +9,15 @@ public class LoanAccount extends Account{
 	double installmentAmount;
 	InterestType interestType;
 	
-	public LoanAccount(String accountNumber, String accountHolderName, LocalDate accountOpeningDate,
+	public LoanAccount(String accountHolderName, String mobileNumber, String mailId, LocalDate accountOpeningDate,
 			LocalDate accountClosingDate, double interestRate, double currentBalance, double loanAmount,
-			int loanTermMonths, double installmentAmount, InterestType interestType) {
+			int loanTermMonths) {
 		
-		super(accountNumber, accountHolderName, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
+		super(accountHolderName, mobileNumber, mailId, accountOpeningDate, accountClosingDate, interestRate, currentBalance);
 		this.loanAmount = loanAmount;
 		this.loanTermMonths = loanTermMonths;
-		this.installmentAmount = installmentAmount;
-		this.interestType = interestType;
+		this.installmentAmount = loanAmount/ (double)loanTermMonths;
+		this.interestType = InterestType.FIXED;
 	}
 
 	public double getLoanAmount() {
