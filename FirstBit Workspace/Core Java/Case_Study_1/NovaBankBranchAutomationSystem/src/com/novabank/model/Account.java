@@ -157,7 +157,7 @@ public abstract class Account {
 		
 		if(date!=null) {
 			for(int i=0; i<transactionCount; i++) {
-				if(transactionArray[i].getTransactionDate().equals(date)) {
+				if(transactionArray[i].getTransactionDate().toLocalDate().equals(date)) {
 					temp[count] = transactionArray[i];
 					count++;
 				}

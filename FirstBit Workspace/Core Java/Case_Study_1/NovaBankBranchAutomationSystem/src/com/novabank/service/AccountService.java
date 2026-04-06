@@ -88,6 +88,18 @@ public class AccountService {
 		
 		return false;
 	}
+	
+	public Account fetchAccount(String accountNumber) {
+		
+		if(accountNumber != null && !accountNumber.isEmpty()) {
+			
+			Account acc = accountDAO.getAccountByNumber(accountNumber);
+			if(acc!=null)
+				return acc;
+		}
+		
+		return null;
+	}
 	 
 	 
 	public boolean closeAccount(String accountNumber) {

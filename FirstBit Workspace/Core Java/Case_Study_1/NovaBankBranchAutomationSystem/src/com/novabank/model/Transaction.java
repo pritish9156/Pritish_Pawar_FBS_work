@@ -1,6 +1,8 @@
 package com.novabank.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class Transaction {
 	
@@ -8,6 +10,7 @@ public class Transaction {
 	TransactionType transactionType;
 	double amount;
 	LocalDateTime transactionDate;
+	DateTimeFormatter formatDate = DateTimeFormatter.ofPattern("dd-mm-yyyy hh:mm:ss");
 	
 	public Transaction(String transactionId, TransactionType transactionType, double amount,
 			LocalDateTime transactionDate) {
@@ -38,8 +41,8 @@ public class Transaction {
 
 	@Override
 	public String toString() {
-		return "TransactionId: " + transactionId + "transaction Type: " + transactionType + ", amount: "
-				+ amount + ", Transaction Date: " + transactionDate;
+		return "TransactionId: " + transactionId + "\ntransaction Type: " + transactionType + "\namount: "
+				+ amount + "\nTransaction Date: " + formatDate.format(transactionDate) + "\n";
 	}
 	
 }

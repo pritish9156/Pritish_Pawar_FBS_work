@@ -75,7 +75,7 @@ public class BankBranch {
 	
 	public boolean addAccount(Account account) throws SavingAccountMinimumLimitException {
 		
-		if(account instanceof SavingAccount) {
+		if(account instanceof SavingAccount && !(account instanceof SalaryAccount)) {
 			if(account.getCurrentBalance() < 10000)
 				throw new SavingAccountMinimumLimitException();
 		}

@@ -27,6 +27,10 @@ public class AccountController {
 		return accountService.withdrawMoney(accountNumber, amount);
 	}
 	
+	public Account fetchAccount(String accountNumber) {
+		return accountService.fetchAccount(accountNumber);
+	}
+	
 	public boolean closeAccount(String accountNumber) {
 		return accountService.closeAccount(accountNumber);
 	}

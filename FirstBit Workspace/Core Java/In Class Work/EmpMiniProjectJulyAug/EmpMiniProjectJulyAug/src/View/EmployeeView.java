@@ -28,6 +28,7 @@ public class EmployeeView {
 			System.out.println("3. Update an Employee");
 			System.out.println("4. Delete an Employee");
 			System.out.println("5. Display all Employees");
+			System.out.println("6. Sort Employee");
 			System.out.println("0. Exit");
 			System.out.println("Enter your choice:");
 			choice = sc.nextInt();

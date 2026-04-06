@@ -1,8 +1,8 @@
-package p1;
+package Comparator;
 
 import java.util.*;
 
-class Employee implements Comparable {
+class Employee{
 	
 	int empId;
 	String empName;
@@ -50,39 +50,39 @@ class Employee implements Comparable {
 		return "\nempId=" + empId + "\nempName=" + empName + "\nbasicSal=" + basicSal + "\n";
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		System.out.println("equls called");
-		if(this.empId == ((Employee)obj).getEmpId()) {
-			return true;
-		}
-		
-		return false;
-	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		System.out.println("equls called");
+//		if(this.empId == ((Employee)obj).getEmpId()) {
+//			return true;
+//		}
+//		
+//		return false;
+//	}
 
 //	@Override
-//	public int compareTo(Object o) {
+//	public int compareTo(Employee o) {
 //		System.out.println("compareTo called");
 //		Employee e1 = (Employee)o;
 //		return this.empId - e1.empId;
 //	}
 	
-	@Override
-	public int compareTo(Object o) {
-		Employee e1 = (Employee)o;
-		return this.empName.compareTo(e1.getEmpName());
-	}
-	
+//	@Override
+//	public int compareTo(Employee o) {
+//		Employee e1 = (Employee)o;
+//		return this.empName.compareTo(e1.getEmpName());
+//	}
+//	
 }
 
 public class TestList {
 
 	public static void main(String[] args) {
 		Employee e1 = new Employee(101, "Raghav", 10000);
-		Employee e2 = new Employee(103, "Shivam", 50000);
+		Employee e2 = new Employee(103, "Shivam", 20000);
 		Employee e3 = new Employee(102, "Krish", 30000);
 		
-		ArrayList l1 = new ArrayList();
+		ArrayList<Employee> l1 = new ArrayList<Employee>();
 		
 		l1.add(e1);
 		l1.add(e2);
@@ -96,11 +96,14 @@ public class TestList {
 		
 		System.out.println("before sort: " + l1);
 		
-		Collections.sort(l1);
+		SortOnId soi = new SortOnId();
+		SortOnSalary sos = new SortOnSalary();
+		
+		Collections.sort(l1, sos);
 		
 		System.out.println("\nAfter sort: " + l1);
 	
-		System.out.println(Collections.binarySearch(l1, new Employee(103,"Shivam",20000)));
+		System.out.println(Collections.binarySearch(l1, new Employee(103,"Shivam",20000), sos));
 		
 	}
 	
@@ -116,7 +119,7 @@ public class TestList {
 		l1.add(e2);
 		l1.add(e3);
 		
-//		System.out.println(l1);
+		System.out.println(l1);
 		
 		System.out.println(l1.contains(new Employee(101, "Raghav", 10000)));
 		
