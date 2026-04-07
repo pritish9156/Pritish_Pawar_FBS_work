@@ -7,6 +7,9 @@ public class MergeTwoArray {
 		int[] a = {3,4,8,10};
 		int[] b = {2,6,18,20};
 		
+//		int[] a = {23,40,51,60};
+//		int[] b = {2,41,45,50};
+		
 		int[] merged_array = new int[a.length+b.length];
 		
 		int j=0, k=0;
