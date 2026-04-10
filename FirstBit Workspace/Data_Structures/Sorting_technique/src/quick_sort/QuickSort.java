@@ -41,7 +41,7 @@ public class QuickSort {
 				System.out.print(array[i] + ", ");
 		}
 
-	} //main ends here
+	}//main ends here
 	
 	static void quickSort(int array[], int beg, int end) {
 		
@@ -52,14 +52,14 @@ public class QuickSort {
 			quickSort(array, d+1, end);
 		
 		}	
-	}
+	}//quick sort method ends here
 	
 	static int divide(int[] array, int beg, int end) {
 		
 		int pivot = array[beg];
 		int i = beg+1, j = end;
 		
-		while(i<=j) {
+		while(i<j) {
 			
 			while(i<=end && array[i] <= pivot) {
 				i++;
@@ -81,6 +81,6 @@ public class QuickSort {
 		array[beg] = array[j];
 		array[j] = temp;
 		return j;
-	}
+	}//divide method ends here
 
 }//class ends here

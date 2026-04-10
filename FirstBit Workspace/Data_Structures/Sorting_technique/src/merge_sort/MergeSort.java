@@ -1,5 +1,6 @@
 package merge_sort;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class MergeSort{
@@ -51,39 +52,42 @@ public class MergeSort{
 		int[] left = new int[l1];
 		int[] right = new int[l2];
 		
-		for(int i=0; i<left.length; i++) {
-			left[i] = array[beg + i];
-		}
+//		for(int i=0; i<left.length; i++) {
+//			left[i] = array[beg + i];
+//		}
 		
-		for(int i=0; i<right.length; i++) {
-			right[i] = array[mid+1+i];
-		}
+//		for(int i=0; i<right.length; i++) {
+//			right[i] = array[mid+1+i];
+//		}
 		
+		left = Arrays.copyOfRange(array, beg, mid+1);
+		right = Arrays.copyOfRange(array, mid+1, end+1);
+	
 		int k=0, j=0, i=beg;
 		
-			while(k<l1 && j<l2) {
-				if(left[k]<right[j]) {
-					array[i] = left[k];
-					k++;
-				}else {
-					array[i] = right[j];
-					j++;
-				}
-				i++;
-			}
-			
-			while(k < l1) {
+		while(k<l1 && j<l2) {
+			if(left[k]<right[j]) {
 				array[i] = left[k];
 				k++;
-				i++;
-			}
-			
-			while(j < l2) {
+			}else {
 				array[i] = right[j];
 				j++;
-				i++;
 			}
+			i++;
 		}
+			
+		while(k < l1) {
+			array[i] = left[k];
+			k++;
+			i++;
+		}
+			
+		while(j < l2) {
+			array[i] = right[j];
+			j++;
+			i++;
+		}
+	}//combine ends here
 	
 	static void mergeSort(int[] array, int beg, int end) {
 		
@@ -95,8 +99,7 @@ public class MergeSort{
 			mergeSort(array, mid+1, end);
 			combine(array, beg, mid, end);
 			
-		}
-		
-	}
+		}	
+	}//mergeSort ends here
 	
 } //mergeSort class ends here

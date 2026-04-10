@@ -1,0 +1,15 @@
+1) select name, commission from salesman;
+
+2) select * from customer where cust_name like "%o%";
+
+3) select * from customer where grade = 200;
+
+4) select sum(purch_amt) as total_purchase_amt from orders;
+
+5) select cust_name, ord_date from customer join orders using(customer_id) where ord_date="2012-08-05";
+
+6) select count(customer_id) from customer where grade = (select min(grade) from customer);
+
+7) select c.cust_name, s.name, c.city from customer as c join salesman as s on c.city=s.city;
+
+8) select ord_no, c.city as cust_city, s.city as salesman_city from orders join customer using(customer_id)
