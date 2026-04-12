@@ -41,6 +41,7 @@ public class MergeSort{
 			else
 				System.out.print(array[i] + ", ");
 		}
+		sc.close();
 		
 	}//main method ends here
 	
