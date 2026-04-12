@@ -10,11 +10,30 @@ public class StackImplementation {
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.print("Enter equation: ");
-		String str = sc.nextLine();
+		String str = sc.nextLine().toLowerCase();
 		
-		Stack stack = new Stack(str.length());
+		if(str.length()!=0) {
+			
+			Stack stack = new Stack(str.length());
+			
+			for(int i=0; i<str.length(); i++)
+				stack.push(str.charAt(i));
+	
+			for(int i=0; i<str.length(); i++) {
+				if(!stack.isEmpty() && str.charAt(i)==stack.peek())
+					stack.pop();
+				else 
+					break;
+			}
 		
-		
+			if(stack.isEmpty())
+				System.out.println("String is palindrome");
+			else
+				System.out.println("String is not palindrome");
+			
+		}else {
+			System.out.println("Please enter some string to check");
+		}
 		
 		sc.close();
 	}
