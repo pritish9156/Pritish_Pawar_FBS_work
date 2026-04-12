@@ -1,12 +1,12 @@
-import java.util.Arrays;
+package stackds.problemstatements.equationbalanced;
 
 public class Stack {
 
-	int[] arr;
+	char[] arr;
 	int top;
 	
-	Stack(int arrSize){
-		arr = new int[arrSize];
+	public Stack(int arrSize){
+		arr = new char[arrSize];
 		top = -1;
 	}
 	
@@ -24,7 +24,7 @@ public class Stack {
 			return false;
 	}
 	
-	public void push(int numToPush) {
+	public void push(char numToPush) {
 		if(isFull()) {
 			System.out.println("Stack Overflow");
 		}else {
@@ -37,16 +37,15 @@ public class Stack {
 		if(isEmpty()) {
 			System.out.println("Stack underflow");
 		}else {
-			System.out.println(arr[top] + " removed");
 			top--;
 		}
 	}
 	
-	public String peek() {
+	public char peek() {
 		if(isEmpty()) {
-			return "stack is empty";
+			return '\0';
 		}else {
-			return Integer.toString(arr[top]);
+			return arr[top];
 		}
 	}
 	
@@ -67,10 +66,10 @@ public class Stack {
 		}
 	}
 
-	@Override
-	public String toString() {
-		int[] array = Arrays.copyOfRange(arr, 0, top+1);
-		return "Stack [arr=" + Arrays.toString(array) + "]";
-	}
+	
+//	public String toString() {
+//		int[] array = Arrays.copyOfRange(arr, 0, top+1);
+//		return "Stack [arr=" + Arrays.toString(array) + "]";
+//	}
 	
 }
