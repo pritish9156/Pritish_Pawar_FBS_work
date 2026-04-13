@@ -9,8 +9,8 @@ public class StackImplementation {
 		
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.print("Enter equation: ");
-		String str = sc.nextLine().toLowerCase();
+		System.out.print("Enter String: ");
+		String str = sc.nextLine().toLowerCase().replace(" ", "");
 		
 		if(str.length()!=0) {
 			
