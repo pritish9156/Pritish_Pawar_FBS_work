@@ -1,11 +1,11 @@
-package queue;
+package queue.simplequeue;
 
-public class Queue {
+public class SimpleQueue {
 	
 	int[] arr;
 	int front, rear;
 	
-	public Queue(int size) {
+	public SimpleQueue(int size) {
 		arr = new int[size];
 		front=-1;
 		rear=-1;

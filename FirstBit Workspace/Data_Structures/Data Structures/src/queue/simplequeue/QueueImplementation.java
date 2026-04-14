@@ -1,4 +1,4 @@
-package queue;
+package queue.simplequeue;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class QueueImplementation {
 		System.out.println("How many elements you want to store: ");
 		int arrSize = sc.nextInt();
 		
-		Queue queue = new Queue(arrSize);
+		SimpleQueue queue = new SimpleQueue(arrSize);
 		int choice;
 		
 		do {
