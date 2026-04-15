@@ -1,8 +1,8 @@
-package queue.circularqueue;
+package queue.priorityqueue;
 
 import java.util.Scanner;
 
-public class CircularQueueImplementation {
+public class SimplePriorityQueueImplementation {
 
 	public static void main(String[] args) {
 		
@@ -11,8 +11,9 @@ public class CircularQueueImplementation {
 		System.out.println("How many elements you want to store: ");
 		int arrSize = sc.nextInt();
 		
-		CircularQueueOptimized queue = new CircularQueueOptimized(arrSize);
+		SimplePriorityQueue queue = new SimplePriorityQueue(arrSize);
 		int choice;
+
 		
 		do {
 			System.out.println("\n1.Enqueue\n2.Dequeue\n3.Display\n4.Exit");
@@ -23,7 +24,8 @@ public class CircularQueueImplementation {
 				case 1:{
 					
 					System.out.println("\nEnter a number to insert: ");
-					int numToEnqueue = sc.nextInt();
+					sc.nextLine();
+					String numToEnqueue = sc.nextLine();
 					queue.enqueue(numToEnqueue);
 					break;
 					
