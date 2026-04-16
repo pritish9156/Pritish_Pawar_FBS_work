@@ -1,100 +1,86 @@
 package queue.circularqueue;
 
+//using formula
 public class CircularQueueOptimized {
-	
+
 	int[] arr;
 	int front, rear;
 	
-	public CircularQueueOptimized(int size){
+	CircularQueueOptimized(int size){
 		arr = new int[size];
 		front=-1;
 		rear=-1;
 	}
 	
-	public boolean isEmpty() {
-		if(rear==-1 && front==-1)
-			return true;
-		else
-			return false;
-	}
-	
 	public boolean isFull() {
 		if(rear==arr.length-1 && front==0 || rear+1==front)
 			return true;
-		else
+		else 
 			return false;
 	}
 	
-	public void enqueue(int ele) {
-		
-		if(isFull()) {
-			System.out.println("Queue is full");
-			return;
-		}
-		
-		if(isEmpty()) {
-			front=0;
-		}
-		
-		if(rear==arr.length-1 && front!=0)
-			rear=0;
-		else
-			rear++;
-		
-		arr[rear]=ele;
-		
+	public boolean isEmpty() {
+		if(rear==-1 && front==-1)
+			return true;
+		else 
+			return false;
 	}
 	
-	public void dequeue() {
+	public boolean enqueue(int ele) {
+		
+		if(isFull()) {
+			System.out.println("Queue is Full");
+			return false;
+		}
+		
 		if(isEmpty()) {
-			System.out.println("Queue is Empty");
-			return;
-		}
-		
-		if(front==rear) {
-			front = -1;
-			rear = -1; 
-			
-			return;
-		}
-		
-		if(front==arr.length-1 && rear != front) {
 			front=0;
 		}
-		else {
-			front++;
-		}
 
-		System.out.println();
-		System.out.println(front);
-		System.out.println(rear);
-		System.out.println();
+		rear=(rear+1)%arr.length;
+		arr[rear]=ele;
+		return true;
+
+	}
+	
+	public boolean dequeue() {
+		
+		if(isEmpty()) {
+			System.out.println("Queue is Empty");
+			return false;
+		}
+		
+		if(rear==front) {
+			front=-1;
+			rear=-1;
+			
+			return true;
+		}
+		
+		front=(front+1)%arr.length;
+		
+		return true;
 	}
 	
 	public void display() {
-		
+			
 		if(isEmpty()) {
 			System.out.println("Queue is Empty");
 			return;
 		}
 		
 		int i=front;
-		
+			
 		System.out.print("[");
-		
+			
 		while(true) {
 			System.out.print(arr[i] + ", ");
-			
-			if(i==rear) {
+				
+			if(i==rear) 
 				break;
-			}else {
-				i++;
-				if(i==arr.length) {
-					i=0;
-				}
-			}
+			else 
+				i=(i+1)%arr.length;
 		}
-			
 	}
-
+	
 }
