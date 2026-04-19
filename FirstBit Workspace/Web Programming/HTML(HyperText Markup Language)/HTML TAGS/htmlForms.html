@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+
+    <style>
+        *{
+            background-color: rgba(236, 157, 54, 0.393);
+            text-align: center;
+            color: brown;
+        }
+    </style>
+    <div>
+        <h1>Forms</h1>
+
+        <form action=" ">
+            <!-- forms are created for taking user input -->
+
+            <label for="name">Name: </label> <!-- for maps with the input id name -->
+            <input type="text" placeholder="Enter your name" id="name" >
+
+            <!-- input 
+             
+                type : color
+                type : number
+                type : password
+                type : email
+                type : file
+                type : date
+                type : url
+                type : radio
+                type : checkbox
+                type : search
+                type : submit
+                type : reset
+
+            
+            -->
+
+            <br><br>
+
+            <label for="number">Phn no: </label>
+            <input type="number" placeholder="Enter your Phn no" id="number">
+
+            <br><br>
+            <label for="email">Email: </label>
+            <input type="email" placeholder="Enter your email" id="email">
+
+            <br><br>
+            <label for="pass">password<span style="color: red;">*</span>: </label>
+            <input type="password" placeholder="Enter your password" id="pass" required>
+
+            <br><br>
+            <label for="DOB">DOB : </label>
+            <input type="date" id="DOB">
+
+            <br><br>
+            <label for="time">time: </label>
+            <input type="time" id="time">
+
+            <br><br>
+            <label for="file">Upload your resume: </label>
+            <input type="file" id="file">
+
+            <br><br>
+            <label for="doc">Upload your documents: </label>
+            <input type="file" id="doc" multiple>
+
+            <br><br>
+            <label for="url">Enter your linkedIN: </label>
+            <input type="url" id="url" placeholder="Enter url">
+
+            <br><br>
+            <label for="">Gender :</label>
+                <label for="male">Male</label>
+                <input type="radio" id="male" value="Male" name="gender" >
+
+                <label for="female">female</label>
+                <input type="radio" id="female" value="Female" name="gender" >
+
+                <label for="others">Others</label>
+                <input type="radio" id="others" value="Others" name="gender" >
+
+            <br><br>
+                <label for="">Languages :</label>
+                <label for="eng">English</label>
+                <input type="checkbox" id="eng" value="English" name="Languages" >
+
+                <label for="hindi">Hindi</label>
+                <input type="checkbox" id="hindi" value="hindi" name="Languages" checked >
+
+                <label for="marathi">Marathi</label>
+                <input type="checkbox" id="marathi" value="Marathi" name="Languages" >
+
+                <label for="bhojpuri">Bhojpuri</label>
+                <input type="checkbox" id="bhojpuri" value="bhojpuri" name="Languages" >
+
+                <br><br>
+            <label for="city">Select your City : </label>
+                <select name="city" id="city">
+                    <option value="" disabled selected> Please select the city </option>
+                    <option value="Pune">Pune</option>
+                    <option value="Patna">Patna</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Jamshedpur">Jamshedpur</option>
+                    <option value="Delhi">Delhi</option>
+                </select>
+
+            <br><br>
+                <button>Submit</button>
+                <input type="submit" value="submit-inp">
+                <input type="reset" value="reset">
+        </form>
+    </div>
+</body>
+</html>
