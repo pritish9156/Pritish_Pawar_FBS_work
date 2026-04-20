@@ -1,4 +1,4 @@
-package linkedlist.singlylinkedlist.problemstatement.stackusinglinkedlist;
+package linkedlist.singlylinkedlist.problemstatement.queueusinglinkedlist;
 
 public class Node {
 
@@ -25,5 +25,5 @@ public class Node {
 	public void setNext(Node next) {
 		this.next = next;
 	}
-	
+
 }
