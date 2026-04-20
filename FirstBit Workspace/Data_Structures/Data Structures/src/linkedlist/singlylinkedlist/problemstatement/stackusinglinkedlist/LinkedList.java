@@ -1,4 +1,4 @@
-package linkedlist.singlylinkedlist;
+package linkedlist.singlylinkedlist.problemstatement.stackusinglinkedlist;
 
 public class LinkedList {
 

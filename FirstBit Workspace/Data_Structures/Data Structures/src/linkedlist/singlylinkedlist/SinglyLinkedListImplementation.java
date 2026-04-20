@@ -12,7 +12,7 @@ public class SinglyLinkedListImplementation {
 		
 		do {
 			System.out.println("\t\n----Linked List Data Structure----");
-			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Exit");
+			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Sort the list\n9.display In Reverse Order\n10.Total size of list\n11.Delete using position\n12.Exit");
 			System.out.println("\nEnter your choice: ");
 			choice = sc.nextInt();
 			
@@ -60,12 +60,32 @@ public class SinglyLinkedListImplementation {
 					break;
 				}
 				case 8:{
+					ll.bubbleSort();
+					break;
+				}
+				case 9:{
+					System.out.println("\nDisplying in reverse order\n");
+//					ll.displayInReverseOrder();
+					ll.displayReverseRecurion();
+					break;
+				}
+				case 10:{
+					System.out.println("\nTotal size of the List: " + ll.getCount() +"\n");
+					break;
+				}
+				case 11:{
+					System.out.println("\nEnter position to delete: ");
+					int position = sc.nextInt();
+					ll.deleteFromPosition(position);
+					break;
+				}
+				case 12:{
 					System.out.println("\nExited Successfully..!");
 					break;
 				}
 			}
 		
-		}while(choice!=8);
+		}while(choice!=12);
 		
 		sc.close();	
 	}
