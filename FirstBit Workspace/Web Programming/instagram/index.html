@@ -1,68 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instagram Clone</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram Clone Advanced</title>
 
-  <!-- Bootstrap -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+}
 
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  width: 240px;
+  height: 100vh;
+  background: white;
+  border-right: 1px solid #ddd;
+  padding: 20px;
+}
 
-  <link rel="stylesheet" href="style.css">
+.sidebar h2 { margin-bottom: 30px; }
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+}
+
+.sidebar a:hover { background: #f2f2f2; }
+
+.sidebar svg { width: 22px; height: 22px; }
+
+/* Layout */
+.container {
+  margin-left: 260px;
+  display: flex;
+  justify-content: center;
+}
+
+.feed { width: 500px; padding: 20px; }
+
+/* Stories */
+.stories {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;   /* prevents vertical scroll */
+  gap: 15px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+
+  flex-wrap: nowrap;
+  scroll-behavior: smooth;  /* smooth scrolling */
+}
+
+.stories::-webkit-scrollbar { display: none; }
+
+.story {
+  flex: 0 0 auto;
+  width: 80px;
+  text-align: center;
+}
+
+.story img {
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(45deg, red, orange, purple);
+}
+
+.story p { font-size: 12px; }
+
+/* Post */
+.post {
+  background: white;
+  border: 1px solid #ddd;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.user { display: flex; align-items: center; }
+
+.user img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.post img { width: 100%; }
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.actions-left svg,
+.actions-right svg {
+  width: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.likes { padding: 0 10px; font-weight: bold; }
+.caption { padding: 5px 10px; }
+.comment-box {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.comment-box input {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+
+/* Right Sidebar */
+.right {
+  width: 300px;
+  padding: 20px;
+}
+
+.profile-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-box img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.suggestion {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.suggestion-left { display: flex; align-items: center; }
+
+.suggestion-left img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.follow { color: blue; cursor: pointer; font-size: 12px; }
+
+.sidebar a:hover {
+  transform: scale(1.02);
+  transition: 0.3s;
+}
+
+.stories, .post {
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.story img:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+
+</style>
 </head>
 
 <body>
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h4>Instagram</h4>
-    <a href="#"><i class="bi bi-house"></i> Home</a>
-    <a href="#"><i class="bi bi-search"></i> Search</a>
-    <a href="#"><i class="bi bi-compass"></i> Explore</a>
-    <a href="#"><i class="bi bi-play-circle"></i> Reels</a>
-    <a href="#"><i class="bi bi-chat"></i> Messages</a>
-    <a href="#"><i class="bi bi-person"></i> Profile</a>
+<div class="sidebar">
+  <h2>Instagram</h2>
+  <a href="#">🏠 Home</a>
+  <a href="#">🔍 Search</a>
+  <a href="#">🧭 Explore</a>
+  <a href="#">🎬 Reels</a>
+  <a href="#">💬 Messages</a>
+  <a href="#">❤️ Notifications</a>
+  <a href="#">➕ Create</a>
+  <a href="#">👤 Profile</a>
+</div>
+
+<div class="container">
+
+<div class="feed">
+
+<div class="stories">
+  <div class="story"><img src="https://i.pravatar.cc/100?img=1"><p>You</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=1"><p>You</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=2"><p>user1</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=3"><p>user2</p></div>
+  <div class="story"><img src="https://i.pravatar.cc/100?img=4"><p>user3</p></div>
+  
+</div>
+
+<div class="post">
+  <div class="post-header">
+    <div class="user">
+      <img src="https://i.pravatar.cc/40?img=5">
+      <b>rahul</b>
+    </div>
+    <div>•••</div>
   </div>
 
-  <!-- Feed -->
-  <div class="feed">
+  <img src="https://picsum.photos/600/400">
 
-    <!-- Post 1 -->
-    <div class="post">
-      <div class="post-header">
-        <img src="https://i.pravatar.cc/40?img=1" class="profile-pic">
-        <span class="username">user_1</span>
-      </div>
-      <img src="https://picsum.photos/600/400?random=1">
-      <div class="post-actions">
-        <i class="bi bi-heart"></i>
-        <i class="bi bi-chat"></i>
-        <i class="bi bi-send"></i>
-      </div>
-      <div class="likes">100 likes</div>
-      <div class="caption"><b>user_1</b> Nice post 👍</div>
-    </div>
-
-    <!-- Post 2 -->
-    <div class="post">
-      <div class="post-header">
-        <img src="https://i.pravatar.cc/40?img=2" class="profile-pic">
-        <span class="username">user_2</span>
-      </div>
-      <img src="https://picsum.photos/600/400?random=2">
-      <div class="post-actions">
-        <i class="bi bi-heart"></i>
-        <i class="bi bi-chat"></i>
-        <i class="bi bi-send"></i>
-      </div>
-      <div class="likes">250 likes</div>
-      <div class="caption"><b>user_2</b> Amazing 🔥</div>
-    </div>
-
+  <div class="actions">
+    <div class="actions-left">❤️ 💬 📤</div>
+    <div class="actions-right">🔖</div>
   </div>
+
+  <div class="likes">120 likes</div>
+  <div class="caption"><b>rahul</b> nice view 🌿</div>
+
+  <div class="comment-box">
+    <input type="text" placeholder="Add a comment...">
+  </div>
+</div>
+
+</div>
+
+<div class="right">
+  <div class="profile-box">
+    <div style="display:flex;align-items:center;">
+      <img src="https://i.pravatar.cc/50?img=6">
+      <div style="margin-left:10px;">
+        <b>your_name</b><br>
+        <small>Profile</small>
+      </div>
+    </div>
+    <span class="follow">Switch</span>
+  </div>
+
+  <h4>Suggested for you</h4>
+
+  <div class="suggestion">
+    <div class="suggestion-left">
+      <img src="https://i.pravatar.cc/40?img=7"> user_a
+    </div>
+    <span class="follow">Follow</span>
+  </div>
+
+</div>
+
+</div>
 
 </body>
 </html>
