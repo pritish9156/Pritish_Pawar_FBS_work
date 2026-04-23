@@ -226,8 +226,10 @@ public class LinkedList<T extends Comparable<T>>{
 	
 	//sorting
 	public void bubbleSort() {
-        boolean swap = false;
+        
         for (Node<T> i = start; i != null; i = i.getNext()) {
+        		boolean swap = false;
+        		
             for (Node<T> j = start; j.getNext() != null; j = j.getNext()) {
                 if (j.getData().compareTo(j.getNext().getData()) > 0) {
                     T temp = j.getData();
@@ -236,7 +238,7 @@ public class LinkedList<T extends Comparable<T>>{
                     swap = true;
                 }
             }
-            if (!swap) return;
+            if (swap==false) return;
         }
     }
 	
