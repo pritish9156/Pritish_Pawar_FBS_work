@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        alert("Welcome to JS Demo");
+        a=prompt("Enter your name");
+        alert("Welcome " + a);
+        console.log("Welcome " + a);
+
+        function display(){
+            a=parseInt(document.getElementById("num1").value);
+            b=parseInt(document.getElementById("num2").value);
+            c=a+b;
+            console.log("The sum of a and b is " + c);
+            document.getElementById("result").innerHTML = "The sum of a and b is " + c;
+        }
+    </script>   
+</head>
+<body>
+    Welcome to JS Demo
+    <br>
+    enter a number <input type="text" id="num1">
+    <br>
+    enter a number <input type="text" id="num2">
+    <br>
+    <button onclick="display()">Click Me</button>
+    <br>
+    <span id="result"></span>
+</body>
+</html>

@@ -1,13 +1,13 @@
-package linkedlist.circularlinkedlist;
+package tree;
 
 import java.util.Scanner;
 
-public class CircularLinkedListImplementation {
+public class TreeImplementation {
 
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		CircularLinkedList ll = new CircularLinkedList();
+		TreeDs ll = new TreeDs();
 		int choice;
 		
 		do {
@@ -18,9 +18,9 @@ public class CircularLinkedListImplementation {
 			
 			switch(choice) {
 				case 1:{
-//					System.out.println("\nEnter number to insert: ");
-//					int ele = sc.nextInt();
-//					ll.insert(ele);
+					System.out.println("\nEnter number to insert: ");
+					int ele = sc.nextInt();
+					ll.insert(ele);
 					break;
 				}
 				
@@ -32,11 +32,11 @@ public class CircularLinkedListImplementation {
 				}
 				
 				case 3:{
-					System.out.println("\nEnter number to insert: ");
-					int ele = sc.nextInt();
-					System.out.println("\nEnter position: ");
-					int position = sc.nextInt();
-					ll.insertByPosition(ele, position);
+//					System.out.println("\nEnter number to insert: ");
+//					int ele = sc.nextInt();
+//					System.out.println("\nEnter position: ");
+//					int position = sc.nextInt();
+//					ll.insertAtPosition(ele, position);
 					break;
 				}
 				
@@ -70,13 +70,13 @@ public class CircularLinkedListImplementation {
 					break;
 				}
 				case 10:{
-					System.out.println("\nTotal size of the List: " + ll.getCount() +"\n");
+//					System.out.println("\nTotal size of the List: " + ll.getCount() +"\n");
 					break;
 				}
 				case 11:{
-					System.out.println("\nEnter position to delete: ");
-					int position = sc.nextInt();
-					ll.deleteByPosition(position);
+//					System.out.println("\nEnter position to delete: ");
+//					int position = sc.nextInt();
+//					ll.deleteByPosition(position);
 					break;
 				}
 				case 12:{

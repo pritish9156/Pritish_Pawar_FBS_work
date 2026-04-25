@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function changeImage(){
+            if(document.getElementById("img").src.includes("IMG_20260410_191707.png"))
+                document.getElementById("img").src="merge sort.png"
+            else
+                document.getElementById("img").src="IMG_20260410_191707.png"
+
+
+            console.log(document.getElementById("img").src);
+        }
+    </script>
+</head>
+<body>
+    <img id="img" src="IMG_20260410_191707.png" width="100px" height="100px"></img>
+    <button onclick="changeImage()">change image</button>
+    <br>
+    <br>
+    <label for="num1">Enter number 1: </label>
+    <input type="number" placeholder="enter a number" id="num1" />
+</body>
+</html>

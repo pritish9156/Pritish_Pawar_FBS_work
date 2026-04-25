@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function factorial(){
+            a=parseInt(document.getElementById("num1").value);
+            fact=1;
+            for(i=1;i<=a;i++){
+                fact=fact*i;
+            }
+            console.log("The factorial of " + a + " is " + fact);
+            document.getElementById("result").innerHTML = "The factorial of " + a + " is " + fact;
+        }
+    </script>
+</head>
+<body>
+    Enter a number <input type="text" id="num1">
+    <br>
+    <button onclick="factorial()">find factorial</button>
+    <br>
+    <span id="result"></span>
+</body>
+</html>

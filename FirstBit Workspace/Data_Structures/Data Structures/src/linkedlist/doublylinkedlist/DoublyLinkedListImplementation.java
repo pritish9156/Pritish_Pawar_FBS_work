@@ -1,33 +1,33 @@
-package linkedlist.circularlinkedlist;
+package linkedlist.doublylinkedlist;
 
 import java.util.Scanner;
 
-public class CircularLinkedListImplementation {
+public class DoublyLinkedListImplementation {
 
 	public static void main(String[] args) {
 		
 		Scanner sc = new Scanner(System.in);
-		CircularLinkedList ll = new CircularLinkedList();
+		DoublyLinkedList ll = new DoublyLinkedList();
 		int choice;
 		
 		do {
 			System.out.println("\t\n----Linked List Data Structure----");
-			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Sort the list\n9.display In Reverse Order\n10.Total size of list\n11.Delete using position\n12.Exit");
+			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Sort the list\n9.Sorted Insert from reverse\n10.Total size of list\n11.Delete using position\n12.Exit");
 			System.out.println("\nEnter your choice: ");
 			choice = sc.nextInt();
 			
 			switch(choice) {
 				case 1:{
-//					System.out.println("\nEnter number to insert: ");
-//					int ele = sc.nextInt();
-//					ll.insert(ele);
+					System.out.println("\nEnter number to insert: ");
+					int ele = sc.nextInt();
+					ll.insert(ele);
 					break;
 				}
 				
 				case 2:{
-//					System.out.println("\nEnter number to insert: ");
-//					int ele = sc.nextInt();
-//					ll.insertAtBeg(ele);
+					System.out.println("\nEnter number to insert: ");
+					int ele = sc.nextInt();
+					ll.insertAtBeg(ele);
 					break;
 				}
 				
@@ -36,7 +36,7 @@ public class CircularLinkedListImplementation {
 					int ele = sc.nextInt();
 					System.out.println("\nEnter position: ");
 					int position = sc.nextInt();
-					ll.insertByPosition(ele, position);
+					ll.insertAtPosition(ele, position);
 					break;
 				}
 				
@@ -46,17 +46,17 @@ public class CircularLinkedListImplementation {
 					break;
 				}
 				case 5:{
-//					System.out.println("\nEnter Element to delete: ");
-//					int element = sc.nextInt();
-//					ll.deleteElement(element);
+					System.out.println("\nEnter Element to delete: ");
+					int element = sc.nextInt();
+					ll.deleteElement(element);
 					break;
 				}
 				case 6:{
-//					ll.deleteFromBeg();
+					ll.deleteFromBeg();
 					break;
 				}
 				case 7:{
-//					ll.deleteFromEnd();
+					ll.deleteFromEnd();
 					break;
 				}
 				case 8:{
@@ -64,9 +64,9 @@ public class CircularLinkedListImplementation {
 					break;
 				}
 				case 9:{
-					System.out.println("\nDisplying in reverse order\n");
-//					ll.displayInReverseOrder();
-//					ll.displayReverseRecurion();
+					System.out.println("\nEnter number to insert: ");
+					int ele = sc.nextInt();
+					ll.sortedInsertFromReverse(ele);
 					break;
 				}
 				case 10:{

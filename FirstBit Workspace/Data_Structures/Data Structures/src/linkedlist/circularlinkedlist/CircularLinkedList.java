@@ -106,6 +106,25 @@ public class CircularLinkedList {
 		
 		count--;
 	}
+	
+	public void display() {
+		if(isEmpty()) {
+			System.out.println("List is Empty...!");
+			return;
+		}
+		
+		Node p = start;
+		
+		System.out.print("[");
+		while(p!=end) {
+			if(p.getNext()==end) {
+				System.out.print(p.getData()+"]");
+			}else {
+				System.out.print(p.getData()+", ");
+			}
+			p=p.getNext();
+		}
+	}
 
 	public int getCount() {
 		return count;
