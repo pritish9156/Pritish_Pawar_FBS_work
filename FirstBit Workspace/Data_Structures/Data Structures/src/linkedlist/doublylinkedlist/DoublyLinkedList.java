@@ -43,6 +43,49 @@ class DoublyLinkedList{
 		
 	}
 	
+	public void sortedInsertFromFront(int ele) {
+		
+		Node newNode = new Node(ele);
+		
+		if(isEmpty()) {
+			start = newNode;
+			count++;
+			return;
+		}
+		
+		Node p = start;
+		
+		while(p.getNext()!=null && p.getData()<ele) {
+			p=p.getNext();
+		}
+		
+		System.out.println();
+		System.out.println("current p: on : " + p.getData());
+		System.out.println();
+		
+		if(p==start && p.getData()>ele) {
+			newNode.setNext(p);
+			p.setPrev(newNode);
+			start = newNode;
+			count++;
+			return;
+		}
+		else if(p.getNext()==null && p.getData()<ele) {
+			p.setNext(newNode);
+			newNode.setPrev(p);
+			count++;
+			return;
+		}
+		else {
+			newNode.setNext(p);
+			newNode.setPrev(p.getPrev());
+			p.getPrev().setNext(newNode);
+			p.setPrev(newNode);
+		}
+		
+		count++;
+	}
+	
 	public void sortedInsertFromReverse(int ele) {
 		
 		Node newNode = new Node(ele);

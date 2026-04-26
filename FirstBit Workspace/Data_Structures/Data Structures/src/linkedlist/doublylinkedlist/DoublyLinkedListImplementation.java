@@ -12,7 +12,7 @@ public class DoublyLinkedListImplementation {
 		
 		do {
 			System.out.println("\t\n----Linked List Data Structure----");
-			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Sort the list\n9.Sorted Insert from reverse\n10.Total size of list\n11.Delete using position\n12.Exit");
+			System.out.println("\n1.insert element\n2.insert At Beginning\n3.insert At position\n4.display\n5.delete Element\n6.delete From begining\n7.delete from end\n8.Sort the list\n9.Sorted Insert from end\n10.Sorted insert from front\n11.Delete using position\n12.Exit");
 			System.out.println("\nEnter your choice: ");
 			choice = sc.nextInt();
 			
@@ -70,7 +70,9 @@ public class DoublyLinkedListImplementation {
 					break;
 				}
 				case 10:{
-					System.out.println("\nTotal size of the List: " + ll.getCount() +"\n");
+					System.out.println("\nEnter number to insert: ");
+					int ele = sc.nextInt();
+					ll.sortedInsertFromFront(ele);
 					break;
 				}
 				case 11:{
