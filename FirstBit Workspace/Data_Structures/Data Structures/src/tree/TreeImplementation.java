@@ -46,9 +46,9 @@ public class TreeImplementation {
 					break;
 				}
 				case 5:{
-//					System.out.println("\nEnter Element to delete: ");
-//					int element = sc.nextInt();
-//					ll.deleteElement(element);
+					System.out.println("\nEnter Element to delete: ");
+					int element = sc.nextInt();
+					ll.delete(element);
 					break;
 				}
 				case 6:{

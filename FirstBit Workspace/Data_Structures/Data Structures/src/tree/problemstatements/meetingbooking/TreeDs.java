@@ -1,4 +1,4 @@
-package tree;
+package tree.problemstatements.meetingbooking;
 
 public class TreeDs {
 	

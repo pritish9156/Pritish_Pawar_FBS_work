@@ -2,6 +2,8 @@ package linkedlist.singlylinkedlist;
 
 import java.util.Scanner;
 
+import linkedlist.singlylinkedlist.problemstatement.hackerrank.LinkedList;
+
 public class SinglyLinkedListImplementation {
 
 	public static void main(String[] args) {
