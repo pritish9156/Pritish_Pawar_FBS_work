@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculator</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+            font-family: Arial;
+        }
+
+        .calculator {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 5px;
+        }
+
+        button {
+            width: 60px;
+            height: 50px;
+            margin: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .row {
+            display: flex;
+        }
+    </style>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // Create calculator structure using innerHTML
+            document.body.innerHTML = `
+                <div class="calculator">
+                    <input type="text" id="display" disabled>
+
+                    <div class="row">
+                        <button>7</button>
+                        <button>8</button>
+                        <button>9</button>
+                        <button>/</button>
+                    </div>
+
+                    <div class="row">
+                        <button>4</button>
+                        <button>5</button>
+                        <button>6</button>
+                        <button>*</button>
+                    </div>
+
+                    <div class="row">
+                        <button>1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>-</button>
+                    </div>
+
+                    <div class="row">
+                        <button>0</button>
+                        <button>C</button>
+                        <button>=</button>
+                        <button>+</button>
+                    </div>
+                </div>
+            `;
+
+            const display = document.getElementById("display");
+            const buttons = document.querySelectorAll("button");
+
+            buttons.forEach(btn => {
+                btn.addEventListener("click", function () {
+                    const value = btn.innerText;
+
+                    if (value === "C") {
+                        display.value = "";
+                    } 
+                    else if (value === "=") {
+                        try {
+                            display.value = eval(display.value);
+                        } catch {
+                            display.value = "Error";
+                        }
+                    } 
+                    else {
+                        const operators = ["+", "-", "*", "/"];
+                        const lastChar = display.value.slice(-1);
+
+                        if (operators.includes(value)) {
+                            if (display.value === "" || operators.includes(lastChar)) {
+                                return; // ❌ prevent invalid operator
+                            }
+                        }
+
+                        display.value += value;
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+</body>
+</html>

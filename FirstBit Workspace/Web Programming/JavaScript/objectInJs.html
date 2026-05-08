@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        arr=[
+            {
+                id:1,
+                name:"pritish",
+                sal:20000,
+                dept:"CS",
+                city:"pune"
+            },
+            {
+                id:2,
+                name:"pritish",
+                sal:20000,
+                dept:"CS",
+                city:"pune"
+            },
+            {
+                id:3,
+                name:"pritish",
+                sal:20000,
+                dept:"CS",
+                city:"pune"
+            },
+            {
+                id:4,
+                name:"pritish",
+                sal:20000,
+                dept:"CS",
+                city:"pune"
+            }
+        ]
+
+        tabletoshow = `<table>
+                            <tr>
+                                <td>id</td>
+                                <td>name</td>
+                                <td>salary</td>
+                                <td>dept</td>
+                                <td>city</td>
+                            </tr>
+                         </table>
+            `
+
+            document.getElementById('showTable').innerHTML=tabletoshow;
+
+    </script>
+</head>
+<body>
+    <div id="showTable"></div>
+</body>
+</html>

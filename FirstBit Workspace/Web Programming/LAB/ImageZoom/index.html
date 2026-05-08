@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Center Focus Slider</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .slider {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 40px;
+        }
+
+        .slider img {
+            width: 150px;
+            height: 100px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            transform: scale(0.8);
+        }
+
+        /* Center Focus Effect */
+        .slider img:hover {
+            transform: scale(1.5);
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Optional: slight zoom on nearby images */
+        .slider img:hover + img {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="slider">
+    <img src="Images/image1.jpg">
+    <img src="Images/image2.jpg">
+    <img src="Images/image3.jpg">
+    <img src="Images/image4.jpg">
+    <img src="Images/image5.jpg">
+</div>
+
+</body>
+</html>

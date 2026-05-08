@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <script src="formvalidation.js"></script>
+    <style>
+        span{
+            color: red;
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Student Registration Form</h2>
+    <form name="registrationForm" action="dummy" method="get" id="regform">
+        <label>Username</label>
+        <input type="text" name="username" id="username" oninput="validateUsername()">
+        <span id="usernameError"></span>
+        <br><br>
+        <label>Email</label>
+        <input type="email" name="email">
+        <span id="emailError"></span>
+        <br><br>
+        <label>Mobile No</label>
+        <input type="text" name="mobile">
+        <span id="mobileError"></span>
+        <br><br>
+        <label>Password</label>
+        <input type="password" name="password" id="password" onfocus="showPasswordRules()" onblur="hidePasswordRules()" oninput="updatePasswordRules()">
+        <span id="passwordError"></span>
+        <div id="passwordRules" style="display:none; margin-left:20px; margin-top:8px; line-height:1.6;">
+            <div id="ruleLength">❌ At least 8 characters</div>
+            <div id="ruleUpper">❌ At least one uppercase letter</div>
+            <div id="ruleLower">❌ At least one lowercase letter</div>
+            <div id="ruleNumber">❌ At least one number</div>
+            <div id="ruleSpecial">❌ At least one special character</div>
+            <div id="passwordStrength" style="margin-top:5px; font-weight:bold;"></div>
+        </div>
+        <br>
+        <br>
+        <label>Gender</label>
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female
+        <input type="radio" name="gender" value="others"> Others
+        <span id="genderError"></span>
+        <br><br>
+        <label>Subjects</label>
+        <input type="checkbox" name="subject" value="java"> Java
+        <input type="checkbox" name="subject" value="python"> Python
+        <input type="checkbox" name="subject" value="meanmern"> MEAN/MERN
+        <input type="checkbox" name="subject" value="softwaretesting"> Software Testing
+        <span id="subjectError"></span>
+        <br><br>
+        <label>State</label>
+        <select name="state">
+            <option value="">Select state</option>
+            <option value="maharashtra">Maharashtra</option>
+            <option value="bihar">Bihar</option>
+            <option value="karnataka">Karnataka</option>
+            <option value="tamilnadu">Tamil Nadu</option>
+        </select>
+        <span id="stateError"></span>
+        <br><br>
+        <button type="button" onclick="submitform()">Register</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Filter</title>
+    <script>
+        let following = [];
+        let followers = [];
+
+        function addFollowing() {
+            let name = document.getElementById("inp").value.trim();
+            if(name) {
+                following.push(name);
+                document.getElementById("inp").value = "";
+                updateFollowingDisplay();
+            }
+        }
+
+        function addFollower() {
+            let name = document.getElementById("inp2").value.trim();
+            if(name) {
+                followers.push(name);
+                document.getElementById("inp2").value = "";
+                updateFollowersDisplay();
+            }
+        }
+
+        function updateFollowingDisplay() {
+            document.getElementById("followingList").innerHTML = "Following: " + following.join(",");
+        }
+
+        function updateFollowersDisplay() {
+            document.getElementById("followersList").innerHTML = "Followers: " + followers.join(",");
+        }
+
+        function filter(){
+            let result = [];
+            for(let i = 0; i < following.length; i++){
+                let found = false;
+                for(let j = 0; j < followers.length; j++){
+                    if(following[i] === followers[j]){
+                        found = true;
+                        break;
+                    }
+                }
+                if(!found){
+                    result.push(following[i]);
+                }
+            }
+            document.getElementById("result").innerHTML = "People you follow who don't follow you back: " + result.join(", ");
+        }
+    </script>
+</head>
+<body>
+    <h2>Instagram Follower Filter</h2>
+    <div>
+        <label for="inp">Following:</label>
+        <input type="text" id="inp" placeholder="Enter a name and press Enter" onkeydown="if(event.key==='Enter') addFollowing()">
+        <div id="followingList"></div>
+    </div>
+    <br>
+    <div>
+        <label for="inp2">Followers:</label>
+        <input type="text" id="inp2" placeholder="Enter a name and press Enter" onkeydown="if(event.key==='Enter') addFollower()">
+        <div id="followersList"></div>
+    </div>
+    <br>
+    <button onclick="filter()">Filter</button>
+    <br><br>
+    <div id="result"></div>
+</body>
+</html>

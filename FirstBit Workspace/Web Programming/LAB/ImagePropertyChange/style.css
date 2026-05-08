@@ -1,0 +1,43 @@
+ body {
+     font-family: Arial;
+     text-align: center;
+ }
+
+ /* Top big image container */
+ .main-image {
+     width: 500px;
+     height: 300px;
+     margin: 20px auto;
+     border: 2px solid black;
+    
+ }
+
+ .main-image img {
+     width: 100%;
+     height: 100%;
+     object-fit: cover;
+ }
+
+ /* Bottom images container */
+ .image-row {
+     display: flex;
+     justify-content: center;
+     gap: 10px;
+ }
+
+ .image-row img {
+     width: 300px;
+     height: 300px;
+     border: 2px solid gray;
+     cursor: pointer;
+ }
+
+ .image-row img:hover {
+     border-color: blue;
+     width: 500px;
+     height: 500px;
+ }
+
+ #show-shape-option {
+    display: none;
+ }

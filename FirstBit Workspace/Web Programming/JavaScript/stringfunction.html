@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS String Functions with Explanation</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            background-color: #eef2f7;
+        }
+        h1 {
+            color: #222;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            white-space: pre-line;
+            max-height: 550px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🔥 JS String Functions (With Explanation)</h1>
+
+<button onclick="runAll()">Run All</button>
+
+<div id="output"></div>
+
+<script>
+function runAll() {
+
+    let out = "";
+    let str = "  Hello JavaScript World  ";
+
+    out += "Original String: [" + str + "]\n\n";
+
+    // 1
+    out += "1. length → Returns total number of characters\n";
+    out += "Output: " + str.length + "\n\n";
+
+    // 2
+    let trimmed = str.trim();
+    out += "2. trim() → Removes spaces from start and end\n";
+    out += "Output: " + trimmed + "\n\n";
+
+    // 3
+    out += "3. toUpperCase() → Converts string to uppercase\n";
+    out += "Output: " + trimmed.toUpperCase() + "\n\n";
+
+    // 4
+    out += "4. toLowerCase() → Converts string to lowercase\n";
+    out += "Output: " + trimmed.toLowerCase() + "\n\n";
+
+    // 5
+    out += "5. includes() → Checks if value exists (true/false)\n";
+    out += "Output: " + trimmed.includes("JavaScript") + "\n\n";
+
+    // 6
+    out += "6. startsWith() → Checks starting text\n";
+    out += "Output: " + trimmed.startsWith("Hello") + "\n\n";
+
+    // 7
+    out += "7. endsWith() → Checks ending text\n";
+    out += "Output: " + trimmed.endsWith("World") + "\n\n";
+
+    // 8
+    out += "8. indexOf() → Finds first position of value\n";
+    out += "Output: " + trimmed.indexOf("JavaScript") + "\n\n";
+
+    // 9
+    out += "9. lastIndexOf() → Finds last position\n";
+    out += "Output: " + "Hello JS Hello".lastIndexOf("Hello") + "\n\n";
+
+    // 10
+    out += "10. slice() → Extracts part of string\n";
+    out += "Output: " + trimmed.slice(0,5) + "\n\n";
+
+    // 11
+    out += "11. substring() → Extracts string between indexes\n";
+    out += "Output: " + trimmed.substring(6,16) + "\n\n";
+
+    // 12
+    out += "12. replace() → Replaces first match\n";
+    out += "Output: " + trimmed.replace("World","Universe") + "\n\n";
+
+    // 13
+    out += "13. replaceAll() → Replaces all matches\n";
+    out += "Output: " + "JS JS".replaceAll("JS","JavaScript") + "\n\n";
+
+    // 14
+    out += "14. replace(regex) → Advanced replace using pattern\n";
+    out += "Output: " + "js JS js".replace(/js/gi,"JavaScript") + "\n\n";
+
+    // 15
+    out += "15. split() → Converts string into array\n";
+    out += "Output: " + trimmed.split(" ") + "\n\n";
+
+    // 16
+    out += "16. charAt() → Returns character at index\n";
+    out += "Output: " + trimmed.charAt(1) + "\n\n";
+
+    // 17
+    out += "17. charCodeAt() → Returns Unicode of character\n";
+    out += "Output: " + trimmed.charCodeAt(1) + "\n\n";
+
+    // 18
+    out += "18. at() → Returns character (supports negative index)\n";
+    out += "Output: " + trimmed.at(-1) + "\n\n";
+
+    // 19
+    out += "19. concat() → Joins strings\n";
+    out += "Output: " + trimmed.concat(" - Learning JS!") + "\n\n";
+
+    // 20
+    out += "20. repeat() → Repeats string\n";
+    out += "Output: " + "Hi ".repeat(2) + "\n\n";
+
+    // 21
+    out += "21. padStart() → Adds characters at start\n";
+    out += "Output: " + "5".padStart(3,"0") + "\n\n";
+
+    // 22
+    out += "22. padEnd() → Adds characters at end\n";
+    out += "Output: " + "5".padEnd(3,"0") + "\n\n";
+
+    // 23
+    out += "23. match() → Finds matches using regex\n";
+    out += "Output: " + "abc123".match(/\\d+/) + "\n\n";
+
+    // 24
+    out += "24. search() → Finds position using regex\n";
+    out += "Output: " + "abc123".search(/\\d/) + "\n\n";
+
+    // 25
+    let matches = [..."a1b2c3".matchAll(/\\d/g)];
+    out += "25. matchAll() → Finds all matches\n";
+    out += "Output: ";
+    matches.forEach(m => out += m[0] + " ");
+    out += "\n\n";
+
+    // 26
+    out += "26. localeCompare() → Compares two strings\n";
+    out += "Output: " + "a".localeCompare("b") + "\n\n";
+
+    // 27
+    out += "27. toString() → Converts to string\n";
+    out += "Output: " + str.toString() + "\n\n";
+
+    // 28
+    out += "28. valueOf() → Returns actual value\n";
+    out += "Output: " + str.valueOf() + "\n\n";
+
+    // 29
+    out += "29. normalize() → Normalizes Unicode text\n";
+    out += "Output: " + str.normalize() + "\n\n";
+
+    document.getElementById("output").innerText = out;
+}
+</script>
+
+</body>
+</html>

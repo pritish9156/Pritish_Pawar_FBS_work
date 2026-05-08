@@ -15,18 +15,21 @@
         }
         .even{
             background-color: lightblue;
+            display: inline-block;
         }
         .odd{
             background-color: lightgreen;
+            display: inline-block;
         }
     </style>
     <script>
         function printTable(){
             a=parseInt(document.getElementById("num1").value);
+            b=parseInt(document.getElementById("num2").value);
 
             str="<div class='MainContainer'>";
 
-            for(j=a; j<a+30; j++){
+            for(j=a; j<=b; j++){
                 
                 if(j%2==0){
                     cname="even";
@@ -37,7 +40,7 @@
                 
                 tb=`<div class=${cname}><table>`
                 for(i=1;i<=10;i++){
-                    tb=tb+`<tr><td>${j}</td><td>x</td><td>${i}</td><td>=</td><td>${j*i}</td></tr>`
+                    tb=tb+`<tr><td>${getImg(j)}</td><td>x</td><td>${getImg(i)}</td><td>=</td><td>${getImg2(j*i)}</td></tr>`
                 }
                 tb=tb+"</table></div>"
 
@@ -47,10 +50,69 @@
             str=str+"</div>";
             document.getElementById("result").innerHTML = str;
         }
+
+        function getImg(j){
+            if(j==7){
+                return `<img src="IMG_20260410_191707.png" width="20px">`;
+            }
+            return j;
+        }
+
+        // function getImg2(value){
+            
+        //     num = reverse(value);
+
+        //     rev = 0;
+
+        //      while(num>0){
+        //         r = num%10;
+        //         if(r==7){
+        //             r = `<img src="IMG_20260410_191707.png" width="20px">`;
+        //         }
+        //         rev = rev*10 + r;
+        //         num = Math.floor(num/10);
+        //     }
+
+        //     return rev;
+
+        // }
+
+        function getImg2(value){
+    let num = value;
+    let result = "";
+
+    while(num > 0){
+        let r = num % 10;
+
+        if(r == 7){
+            result = `<img src="IMG_20260410_191707.png" width="20px">` + result;
+        } else {
+            result = r + result;
+        }
+
+        num = Math.floor(num / 10);
+    }
+
+    return result;
+}
+
+        function reverse(value){
+
+            rev = 0;
+
+            while(value>0){
+                r = value%10;
+                rev = rev*10 + r;
+                value = Math.floor(value/10);
+            }
+
+            return rev;
+        }
     </script>
 </head>
 <body>
-    Enter a number <input type="text" id="num1">
+    Enter a number to start from <input type="text" id="num1">
+    Enter a number to stop at <input type="text" id="num2">
     <br>
     <button onclick="printTable()">Print Table</button>
     <br>
