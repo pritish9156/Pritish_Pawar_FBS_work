@@ -14,7 +14,7 @@ public class ImplementationClass2 {
 		
 		//add elements in l2
 		l2.insert(10);
-		l2.insert(25);
+		l2.insert(20);
 		l2.insert(30);
 		
 		l1.display();
