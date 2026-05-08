@@ -1,8 +1,9 @@
 package com.novabank.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Account {
+public abstract class Account implements Serializable{
 	
 	String accountNumber;
 	String accountHolderName;

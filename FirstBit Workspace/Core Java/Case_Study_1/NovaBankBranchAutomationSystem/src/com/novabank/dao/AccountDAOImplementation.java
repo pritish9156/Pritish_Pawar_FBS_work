@@ -1,5 +1,7 @@
 package com.novabank.dao;
 
+import java.util.ArrayList;
+
 import com.novabank.exceptions.SavingAccountMinimumLimitException;
 import com.novabank.model.Account;
 import com.novabank.model.BankBranch;
@@ -7,6 +9,8 @@ import com.novabank.model.BankBranch;
 public class AccountDAOImplementation implements AccountDAO{
 	
 	BankBranch branch;
+	
+	ArrayList<Account> accArray = new ArrayList<>();
 	
 	public AccountDAOImplementation(BankBranch branch){
 		this.branch = branch;

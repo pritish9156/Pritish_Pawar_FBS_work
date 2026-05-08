@@ -42,4 +42,13 @@ public class AccountController {
 	public Transaction[] showDailyTransactions(LocalDate date) {
 		return accountService.generateDailyTransactionReport(date);
 	}
+	
+	public Account[] getAllAccounts() {
+		
+		return accountService.getAllAccounts();
+	}
+	
+	public boolean isSoftwareClosing(boolean isClosing) {
+		return accountService.isSoftwareClosing(isClosing);
+	}
 }

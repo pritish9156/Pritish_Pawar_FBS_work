@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.novabank.dao.AccountDAO;
+import com.novabank.dao.FileHandlingDAO;
 import com.novabank.exceptions.SavingAccountMinimumLimitException;
 import com.novabank.model.*;
 
@@ -160,6 +161,21 @@ public class AccountService {
 			 } 
 		 }	 
 		 return null;
+	 }
+	 
+	 public Account[] getAllAccounts() {
+			
+			return accountDAO.getAllAccounts();
+		}
+	 
+	 public boolean isSoftwareClosing(boolean isClosing) {
+		 
+		 if(accountDAO instanceof FileHandlingDAO) {
+			 FileHandlingDAO fileHandlingDAO = (FileHandlingDAO) accountDAO;
+			 return fileHandlingDAO.isSoftwareClosing(isClosing);
+		 }
+		 else
+			 return false;
 	 }
 
 }

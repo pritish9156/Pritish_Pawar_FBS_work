@@ -39,7 +39,8 @@ public class BankApplicationView {
 			System.out.println("\t4.Fetch Account Information   |");
 			System.out.println("\t5.Account Closure Request     |");
 			System.out.println("\t6.Daily Transaction Report    |");
-			System.out.println("\t7.Close Application           |");
+			System.out.println("\t7.Show All Account Details    |");
+			System.out.println("\t8.Close Application           |");
 			System.out.println("------------------------------------- |");
 			System.out.println("\nEnter Your Choice: ");
 			choice = sc.nextInt();
@@ -71,6 +72,13 @@ public class BankApplicationView {
 					break;
 				}
 				case 7:{
+					showAllAccDetails();
+					break;
+				}
+				case 8:{
+					if(accountController.isSoftwareClosing(true))
+						System.out.println("\n\n\tAll data saved successfully...!");
+					
 					System.out.println("\n\n\t===========================================");
 					System.out.println("\t|  🙏🏻Thankyou For Using Our Services🙏🏻    |");
 					System.out.println("\t |........... together we can............|");
@@ -80,9 +88,19 @@ public class BankApplicationView {
 			
 			}
 			
-		}while(choice != 7);
+		}while(choice != 8);
 		
 		sc.close();
+	}
+	
+	void showAllAccDetails() {
+		Account[] acc = accountController.getAllAccounts();
+		
+		for(int i=0; i<acc.length; i++) {
+			System.out.println();
+			System.out.println(acc[i].toString());
+			System.out.println();
+		}
 	}
 	
 	void openAccount() {
