@@ -60,6 +60,11 @@ public class EmployeeController {
 		// TODO Auto-generated method stub
 		return es.deleteEmployee(id);
 	}
+
+	public ArrayList<Employee> sortEmployeeBySal(int subChoice) {
+		// TODO Auto-generated method stub
+		return es.sortEmpBySal(subChoice);
+	}
 	
 	
 }

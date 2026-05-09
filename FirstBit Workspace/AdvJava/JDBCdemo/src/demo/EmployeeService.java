@@ -50,4 +50,10 @@ public class EmployeeService {
 		// TODO Auto-generated method stub
 		return empDao.deleteEmployee(id);
 	}
+
+
+	public ArrayList<Employee> sortEmpBySal(int subChoice) {
+		// TODO Auto-generated method stub
+		return empDao.sortEmpBySal(subChoice);
+	}
 }

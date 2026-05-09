@@ -159,5 +159,41 @@ public class EmployeeDao {
 		
 		return false;
 	}
+
+	public ArrayList<Employee> sortEmpBySal(int subChoice) {
+		
+		Connection con = dbc.getConnection();
+		PreparedStatement ptmt;
+		ArrayList<Employee> resArray = null;
+		try {
+			if(subChoice==1) {
+				resArray = new ArrayList<Employee>();
+				ptmt = con.prepareStatement("select * from employee order by salary asc");
+				ResultSet res = ptmt.executeQuery();
+				
+				while(res.next()) {
+					Employee tempEmp = new Employee(res.getInt(1), res.getString(2), res.getDouble(3));
+					resArray.add(tempEmp);
+				}
+				
+			}
+			else {
+				resArray = new ArrayList<Employee>();
+				ptmt = con.prepareStatement("select * from employee order by salary desc");
+				ResultSet res = ptmt.executeQuery();
+				
+				while(res.next()) {
+					Employee tempEmp = new Employee(res.getInt(1), res.getString(2), res.getDouble(3));
+					resArray.add(tempEmp);
+				}
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return resArray;
+	}
 	
 }

@@ -210,12 +210,54 @@ public class Demo {
 					}
 				break;
 
-			case 6:
+			case 6:{
 				// SORT
 				System.out.println("Sort Employees");
-				// write logic here
+				int choiceForSort;
+				System.out.println();
+				do {
+					System.out.println("Enter Your choice");
+					System.out.println("1.Sort by salary");
+					System.out.println("2.Exit to main menu");
+					System.out.println("Enter your choice: ");
+					choiceForSort = sc.nextInt();
+					
+					switch(choiceForSort) {
+						case 1:{
+							System.out.println("\nSelecting sorting order");
+							System.out.println("1. asscending \n2.descending");
+							System.out.println("Enter your choice: ");
+							int subChoice = sc.nextInt();
+							
+							if(subChoice==1 || subChoice==2) {
+								ArrayList<Employee> ascEmp = ec.sortEmployeeBySal(subChoice);
+								
+								if(ascEmp==null) {
+									System.out.println("Employees Data not aviliable...!");
+									break;
+								}
+								
+								System.out.println();
+								for(Employee emp : ascEmp) {
+									System.out.println(emp.toString());
+								}
+							}
+							else {
+								System.out.println("\n\tWrong Choice...!");
+							}
+							
+							break;
+						}
+						case 2:{
+							
+							break;
+						}
+					}
+				}while(choiceForSort!=2);
+				
+				
 				break;
-
+			}
 			case 7:
 				System.out.println("Exiting...");
 				for(int i=0; i<1000; i++) {
