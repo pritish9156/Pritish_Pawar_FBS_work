@@ -1,0 +1,115 @@
+
+<style>
+  .wrap { padding: 1.5rem 0; font-family: var(--font-sans); }
+  .top-bar { display: flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+  .sheet-title { font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .badge { font-size: 12px; padding: 3px 10px; border-radius: 99px; font-weight: 500; background: #E6F1FB; color: #0C447C; }
+  .task-grid { display: flex; flex-direction: column; gap: 14px; }
+  .task-card {
+    background: var(--color-background-primary);
+    border: 0.5px solid var(--color-border-tertiary);
+    border-radius: var(--border-radius-lg);
+    padding: 1rem 1.25rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0 14px;
+  }
+  .task-card.tough { border: 0.5px solid #F0997B; }
+  .task-num { font-size: 22px; font-weight: 500; color: var(--color-text-secondary); grid-row: 1 / 5; padding-top: 2px; min-width: 28px; }
+  .task-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .task-name { font-size: 15px; font-weight: 500; color: var(--color-text-primary); }
+  .diff { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+  .easy   { background: #EAF3DE; color: #27500A; }
+  .medium { background: #FAEEDA; color: #633806; }
+  .hard   { background: #FCEBEB; color: #791F1F; }
+  .tough-badge { background: #D85A30; color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 500; }
+  .task-desc { font-size: 14px; color: var(--color-text-secondary); line-height: 1.65; margin-bottom: 8px; }
+  .task-desc code { font-family: var(--font-mono); font-size: 12.5px; background: var(--color-background-secondary); padding: 1px 5px; border-radius: 4px; }
+  .what-to-do { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+  .what-to-do li { margin-bottom: 3px; }
+  .concept-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .pill { font-size: 11px; padding: 2px 8px; border-radius: 99px; background: var(--color-background-secondary); color: var(--color-text-secondary); border: 0.5px solid var(--color-border-tertiary); font-family: var(--font-mono); }
+  .ask-btn { margin-top: 1.25rem; display: inline-flex; align-items: center; gap: 6px; font-size: 13px; padding: 7px 14px; border-radius: var(--border-radius-md); border: 0.5px solid var(--color-border-secondary); background: transparent; color: var(--color-text-primary); cursor: pointer; }
+  .ask-btn:hover { background: var(--color-background-secondary); }
+</style>
+
+<div class="wrap">
+  <h2 class="sr-only">Student Dashboard — 7 Assignments</h2>
+  <div class="top-bar">
+    <span class="sheet-title">Assignment Sheet</span>
+    <span class="badge">7 tasks</span>
+  </div>
+
+  <div class="task-grid">
+
+    <div class="task-card">
+      <div class="task-num">1</div>
+      <div class="task-head"><span class="task-name">Greeting personalize karo</span><span class="diff easy">Easy</span></div>
+      <div class="task-desc">Header mein jo "Namaste, Student!" dikh raha hai — uski jagah user ka asli naam dikhao. Page load hote hi ek <code>prompt()</code> se naam lo aur greeting element mein set karo.</div>
+      <div class="concept-pills"><span class="pill">textContent</span><span class="pill">template literal</span><span class="pill">prompt()</span></div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">2</div>
+      <div class="task-head"><span class="task-name">Attendance color warning</span><span class="diff easy">Easy</span></div>
+      <div class="task-desc">Attendance 75% se kam ho to <code>#attendanceStat</code> card ki border aur number red ho jaye. 75% ya usse zyada ho to green. Value <code>attendanceVal.textContent</code> se lo aur number mein convert karo.</div>
+      <div class="concept-pills"><span class="pill">parseInt()</span><span class="pill">if/else</span><span class="pill">style.border</span><span class="pill">style.color</span></div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">3</div>
+      <div class="task-head"><span class="task-name">Naya subject dynamically add karo</span><span class="diff medium">Medium</span></div>
+      <div class="task-desc"><code>index.html</code> mein ek input (subject naam), ek number input (percentage), aur ek button banao. Button click hone par subject <code>subjects</code> array mein add ho aur <code>renderSubjects()</code> dobara call ho — progress bar khud ban jaye.</div>
+      <div class="concept-pills"><span class="pill">array.push()</span><span class="pill">getElementById</span><span class="pill">functions call</span><span class="pill">innerHTML reset</span></div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">4</div>
+      <div class="task-head"><span class="task-name">Profile pic click — change karo</span><span class="diff medium">Medium</span></div>
+      <div class="task-desc">Profile picture pe click event lagao. Click hone par <code>prompt()</code> se naya image URL lo. Agar user ne kuch likha ho (empty nahi) tabhi <code>profilePic.src</code> badlo — warna kuch mat karo.</div>
+      <div class="concept-pills"><span class="pill">addEventListener('click')</span><span class="pill">.src property</span><span class="pill">truthy check</span></div>
+    </div>
+
+    <div class="task-card">
+      <div class="task-num">5</div>
+      <div class="task-head"><span class="task-name">Notice board mein nayi notice add karo</span><span class="diff medium">Medium</span></div>
+      <div class="task-desc">HTML mein ek text input aur ek <code>&lt;select&gt;</code> dropdown banao jisme teen options hon — urgent, info, normal. Button click hone par naya <code>&lt;p&gt;</code> element banao, sahi CSS class lagao dropdown value se, aur <code>noticeContainer</code> mein daalo.</div>
+      <div class="concept-pills"><span class="pill">createElement</span><span class="pill">classList.add</span><span class="pill">appendChild</span><span class="pill">select.value</span></div>
+    </div>
+
+    <div class="task-card tough">
+      <div class="task-num">6</div>
+      <div class="task-head"><span class="task-name">To-Do list localStorage mein save karo</span><span class="diff hard">Hard</span><span class="tough-badge">Tough</span></div>
+      <div class="task-desc">
+        Page reload ke baad bhi to-do tasks dikhenein chahiye. Iske liye <code>localStorage</code> use karo.<br><br>
+        <ul class="what-to-do">
+          <li>Har naya task add hone par pure tasks array ko <code>JSON.stringify</code> karke localStorage mein save karo.</li>
+          <li>Page load hone par <code>localStorage.getItem()</code> se data lo, <code>JSON.parse</code> karo, aur har task ke liye <code>addTask()</code> jaisi function call karo.</li>
+          <li>Task delete hone par bhi localStorage update hona chahiye.</li>
+        </ul>
+      </div>
+      <div class="concept-pills"><span class="pill">localStorage.setItem</span><span class="pill">localStorage.getItem</span><span class="pill">JSON.stringify</span><span class="pill">JSON.parse</span><span class="pill">array management</span></div>
+    </div>
+
+    <div class="task-card tough">
+      <div class="task-num">7</div>
+      <div class="task-head"><span class="task-name">Live search — subjects filter karo</span><span class="diff hard">Hard</span><span class="tough-badge">Tough</span></div>
+      <div class="task-desc">
+        Subjects section ke upar ek search input banao. Jaise-jaise user type kare, sirf wahi subject rows dikhein jinka naam us text se match karta ho — baaki hide ho jayein. Clear hone par sab wapas dikhein.<br><br>
+        <ul class="what-to-do">
+          <li><code>keyup</code> event use karo input par.</li>
+          <li><code>querySelectorAll('.subject-row')</code> se sabhi rows lo.</li>
+          <li>Har row ka subject naam check karo — match nahi karta to <code>style.display = 'none'</code>, karta hai to <code>'flex'</code>.</li>
+          <li>Case-insensitive match hona chahiye (<code>toLowerCase()</code> use karo).</li>
+        </ul>
+      </div>
+      <div class="concept-pills"><span class="pill">keyup event</span><span class="pill">querySelectorAll</span><span class="pill">forEach loop</span><span class="pill">style.display</span><span class="pill">toLowerCase()</span><span class="pill">includes()</span></div>
+    </div>
+
+  </div>
+
+  <button class="ask-btn" onclick="sendPrompt('Mujhe assignment mein help chahiye — explain karo step by step')">
+    <i class="ti ti-help-circle" aria-hidden="true"></i>
+    Kisi pe atak gaye? Puchho ↗
+  </button>
+</div>

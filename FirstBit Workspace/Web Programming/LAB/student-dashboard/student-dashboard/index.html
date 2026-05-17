@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Login Page</title>
+
+  <!-- Toastify CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#141e30,#243b55);
+      overflow:hidden;
+    }
+
+    .container{
+      width:900px;
+      height:560px;
+      display:flex;
+      border-radius:20px;
+      overflow:hidden;
+      box-shadow:0 10px 40px rgba(0,0,0,0.4);
+      background:white;
+    }
+
+    .left{
+      width:50%;
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      color:white;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      padding:40px;
+      position:relative;
+    }
+
+    .left h1{
+      font-size:45px;
+      margin-bottom:20px;
+    }
+
+    .left p{
+      text-align:center;
+      line-height:28px;
+      font-size:18px;
+    }
+
+    .circle1,
+    .circle2{
+      position:absolute;
+      border-radius:50%;
+      background:rgba(255,255,255,0.15);
+    }
+
+    .circle1{
+      width:200px;
+      height:200px;
+      top:-60px;
+      left:-60px;
+    }
+
+    .circle2{
+      width:150px;
+      height:150px;
+      bottom:-40px;
+      right:-40px;
+    }
+
+    .right{
+      width:50%;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:#f4f7fb;
+    }
+
+    .login-box{
+      width:80%;
+    }
+
+    .login-box h2{
+      text-align:center;
+      margin-bottom:35px;
+      color:#333;
+      font-size:32px;
+    }
+
+    .input-group{
+      margin-bottom:25px;
+    }
+
+    .input-group label{
+      display:block;
+      margin-bottom:8px;
+      color:#555;
+      font-weight:bold;
+    }
+
+    .input-group input{
+      width:100%;
+      padding:14px;
+      border:none;
+      outline:none;
+      border-radius:10px;
+      background:white;
+      box-shadow:0 2px 10px rgba(0,0,0,0.08);
+      font-size:16px;
+    }
+
+    .input-group input:focus{
+      border:2px solid #0072ff;
+    }
+
+    button{
+      width:100%;
+      padding:15px;
+      border:none;
+      border-radius:12px;
+      background:linear-gradient(135deg,#00c6ff,#0072ff);
+      color:white;
+      font-size:18px;
+      cursor:pointer;
+      transition:0.3s;
+      font-weight:bold;
+    }
+
+    button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 5px 20px rgba(0,114,255,0.4);
+    }
+
+    .demo{
+      margin-top:20px;
+      background:white;
+      padding:15px;
+      border-radius:10px;
+      box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .demo h3{
+      margin-bottom:10px;
+      color:#0072ff;
+    }
+
+    .demo p{
+      margin:5px 0;
+      font-size:14px;
+    }
+
+    @media(max-width:850px){
+
+      .container{
+        width:95%;
+        flex-direction:column;
+        height:auto;
+      }
+
+      .left,
+      .right{
+        width:100%;
+      }
+
+      .left{
+        padding:50px 20px;
+      }
+
+      .right{
+        padding:40px 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="left">
+
+      <div class="circle1"></div>
+      <div class="circle2"></div>
+
+      <h1>Welcome</h1>
+
+      <p>
+        Login to access your dashboard.
+      </p>
+
+    </div>
+
+    <div class="right">
+
+      <div class="login-box">
+
+        <h2>Login</h2>
+
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Enter Email">
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="password" placeholder="Enter Password">
+        </div>
+
+        <button onclick="login()">Login</button>
+
+        <div class="demo">
+
+          <h3>Demo Users</h3>
+
+          <p>admin@gmail.com / admin123</p>
+          <p>john@gmail.com / john123</p>
+          <p>priya@gmail.com / priya123</p>
+          <p>alex@gmail.com / alex123</p>
+          <p>user@gmail.com / user123</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- Toastify JS -->
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  <script>
+
+    const users = [
+      {
+        email:"admin@gmail.com",
+        password:"admin123"
+      },
+
+      {
+        email:"john@gmail.com",
+        password:"john123"
+      },
+
+      {
+        email:"priya@gmail.com",
+        password:"priya123"
+      },
+
+      {
+        email:"alex@gmail.com",
+        password:"alex123"
+      },
+
+      {
+        email:"user@gmail.com",
+        password:"user123"
+      }
+    ];
+
+
+    function showToast(message,color){
+
+      Toastify({
+        text:message,
+        duration:3000,
+        gravity:"top",
+        position:"right",
+        style:{
+          background:color
+        }
+      }).showToast();
+    }
+
+
+
+    function login(){
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+
+      if(email === "" || password === ""){
+
+        showToast("Please fill all fields","#ff4b2b");
+        return;
+      }
+
+
+      const validUser = users.find(function(user){
+
+        return user.email === email &&
+               user.password === password;
+
+      });
+
+
+      if(validUser){
+
+        showToast("Login Successful","#00b09b");
+
+        setTimeout(function(){
+
+          window.location.href = "dashboard.html";
+
+        },1500);
+
+      }
+
+      else{
+
+        showToast("Invalid Credentials","#ff0000");
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
