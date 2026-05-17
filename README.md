@@ -80,6 +80,24 @@ The repository is **structured to support multiple programming modules**, includ
 - Database integration
 - Real-world projects
 
+### 🔹 Web Programming
+- **Current Status:** Updated with JavaScript demos, API fetch scripting, and student-dashboard lab work
+- **Topics Covered:**
+  - HTML, CSS, JavaScript
+  - DOM manipulation
+  - API data fetching
+  - Interactive UI development
+- **Recent Work:**
+  - `Web Programming/JavaScript/amazonStyleProductFetch.html`
+  - `Web Programming/JavaScript/prac.js`
+  - `Web Programming/LAB/student-dashboard/`
+
+### 🔹 Jenkins
+- **Current Status:** Added Jenkins module assets
+- **Contents:**
+  - `jenkins/jenkins.png`
+  - `jenkins/jenkins.war`
+
 ### 🔹 MySQL
 - **Current Status:** Revision Ongoing
 - **Topics Covered:**
@@ -163,6 +181,8 @@ The repository is **structured to support multiple programming modules**, includ
     - TestTimeAddition.java
 
 - ⏳ **Full Stack Modules:** Planned
+- ✅ **Web Programming:** Updated with JavaScript fetch scripts and student dashboard lab work
+- ✅ **Jenkins:** Added Jenkins module assets
 - ⏳ **MySQL:** In Progress
   - **Assignments:**
     - Assignment 0 to Assignment 5
