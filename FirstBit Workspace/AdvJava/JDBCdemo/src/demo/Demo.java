@@ -1,9 +1,7 @@
 package demo;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.Scanner;
 
 public class Demo {
@@ -33,23 +31,27 @@ public class Demo {
 
 			case 1:{
 
-				System.out.println("Enter id name salary");
+				System.out.println("\nEnter id: ");
 				int id = sc.nextInt();
+				System.out.println("Enter name: ");
 				String name = sc.next();
+				System.out.println("Enter salary: ");
 				double salary = sc.nextDouble();
+				
 				Employee emp = new Employee(id, name, salary);
 
 				int res = ec.addEmployee(emp);
 				if (res != 0)
-					System.out.println("Employee added successfully");
+					System.out.println("\n\tEmployee added successfully");
 				else
-					System.out.println("failed");
+					System.out.println("\nfailed");
 
 				break;
 			}
 			case 2:
 			{
 				ArrayList<Employee> emplist = ec.displayAllEmployees();
+				System.out.println();
 				for (Employee e : emplist)
 					System.out.println(e);
 
@@ -57,7 +59,7 @@ public class Demo {
 			}
 			case 3:{
 				// SEARCH
-				System.out.println("Search Employee");
+				System.out.println("\nSearch Employee");
 				int searchChoice;
 				do {
 				System.out.println("\n\t----Select your choice---\n");
@@ -115,7 +117,7 @@ public class Demo {
 				Employee empToUpdate = searchEmployeeDML();
 				
 				if(empToUpdate==null) {
-					System.out.println("Employee Not Found...!");
+					System.out.println("\n\tEmployee Not Found...!");
 					break;
 				}
 				System.out.println();
@@ -171,7 +173,7 @@ public class Demo {
 							}
 						}
 						else {
-							System.out.println("Wrong Credentials..! Try again");
+							System.out.println("\n\tWrong Credentials..! Try again");
 						}
 						
 						break;
@@ -191,7 +193,7 @@ public class Demo {
 				
 				if(empToDelete==null) {
 					
-					System.out.println("Employee Not Found..!");
+					System.out.println("\n\tEmployee Not Found..!");
 					break;
 				}
 				
@@ -212,11 +214,11 @@ public class Demo {
 
 			case 6:{
 				// SORT
-				System.out.println("Sort Employees");
+				System.out.println("\nSort Employees");
 				int choiceForSort;
-				System.out.println();
+				
 				do {
-					System.out.println("Enter Your choice");
+					System.out.println("\nEnter Your choice");
 					System.out.println("1.Sort by salary");
 					System.out.println("2.Exit to main menu");
 					System.out.println("Enter your choice: ");
@@ -233,7 +235,7 @@ public class Demo {
 								ArrayList<Employee> ascEmp = ec.sortEmployeeBySal(subChoice);
 								
 								if(ascEmp==null) {
-									System.out.println("Employees Data not aviliable...!");
+									System.out.println("\n\tEmployees Data not aviliable...!");
 									break;
 								}
 								
@@ -267,7 +269,7 @@ public class Demo {
 				break;
 
 			default:
-				System.out.println("Invalid choice!");
+				System.out.println("\n\tInvalid choice! Please try again");
 			}
 
 		} while (choice != 7);

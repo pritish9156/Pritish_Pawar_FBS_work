@@ -11,7 +11,9 @@ import java.util.Properties;
 public class DataBaseConnection{
 	
 	
-	private Connection getConnection() {
+	public static Connection getConnection() {
+		
+		Connection connection = null;
 		
 		try {
 			FileInputStream fis = new FileInputStream(".//Resources//application.properties");
@@ -23,39 +25,21 @@ public class DataBaseConnection{
 			String password = (String) properties.get("password");
 			
 			System.out.println(url + " " + username + " " + password +"\n");
-			Connection connection = DriverManager.getConnection(url, username, password);
+			connection = DriverManager.getConnection(url, username, password);
 			
 			
 			return connection;
 			
 		} catch (IOException e) {
 			System.out.println("Not Able to fetch properties file...!");
-			return null;
 			
 		} catch (SQLException e) {
 			System.out.println("Please check your database credentials...!");
-			return null;
+			
 		}	
+		
+		return connection;
 		
 	}
 	
-	public Statement getStatement(){
-	
-		Connection con = getConnection();
-
-		try {
-			
-			if(con!=null) {
-				Statement stm = con.createStatement();
-				return stm;
-			}
-			
-			return null;
-			
-		} catch (SQLException e) {
-			
-			return null;
-		}
-			
-	}
 }

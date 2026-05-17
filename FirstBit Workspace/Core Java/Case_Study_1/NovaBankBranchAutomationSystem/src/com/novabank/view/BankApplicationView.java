@@ -10,400 +10,725 @@ import com.novabank.controller.AccountController;
 
 public class BankApplicationView {
 
-	AccountController accountController; 
+	AccountController accountController;
 	Scanner sc = new Scanner(System.in);
-	
+	int count=0;
+
 	public BankApplicationView(AccountController accountController){
 		this.accountController = accountController;
 	}
-	
+
 	public void startApplication() {
-		System.out.println("\n\t=================================");
-		System.out.println("\t|    🙏🏻Welcome to NovaBank🙏🏻    |");
-		System.out.println("\t |...... together we can.......|");
-		System.out.println("\t=================================\n");
+
+		System.out.println("\n\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║                                                              ║");
+		System.out.println("\t\t\t║           ███╗   ██╗ ██████╗ ██╗   ██╗ █████╗                ║");
+		System.out.println("\t\t\t║           ████╗  ██║██╔═══██╗██║   ██║██╔══██╗               ║");
+		System.out.println("\t\t\t║           ██╔██╗ ██║██║   ██║██║   ██║███████║               ║");
+		System.out.println("\t\t\t║           ██║╚██╗██║██║   ██║╚██╗ ██╔╝██╔══██║               ║");
+		System.out.println("\t\t\t║           ██║ ╚████║╚██████╔╝ ╚████╔╝ ██║  ██║               ║");
+		System.out.println("\t\t\t║           ╚═╝  ╚═══╝ ╚═════╝   ╚═══╝  ╚═╝  ╚═╝               ║");
+		System.out.println("\t\t\t║                                                              ║");
+		System.out.println("\t\t\t║                    🏦 NOVABANK SYSTEM                        ║");
+		System.out.println("\t\t\t║                                                              ║");
+		System.out.println("\t\t\t║              Together We Can Grow Financially                ║");
+		System.out.println("\t\t\t║                                                              ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
+
+		loadingAnimation("Initializing Secure Banking Services");
+
 		showMainMenu();
 	}
-	
+
 	void showMainMenu() {
-		
+
 		int choice;
-		
+
 		do {
-			System.out.println("\n--------------------------------------|");
-			System.out.println("        Select Your Service           |");
-			System.out.println("--------------------------------------|");
-			System.out.println("\t1.Open Account                |");
-			System.out.println("\t2.Deposit Money               |");
-			System.out.println("\t3.Withdraw Money              |");
-			System.out.println("\t4.Fetch Account Information   |");
-			System.out.println("\t5.Account Closure Request     |");
-			System.out.println("\t6.Daily Transaction Report    |");
-			System.out.println("\t7.Show All Account Details    |");
-			System.out.println("\t8.Close Application           |");
-			System.out.println("------------------------------------- |");
-			System.out.println("\nEnter Your Choice: ");
+
+			System.out.println("\n\n");
+
+			System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║                    🏦 NOVABANK DASHBOARD                     ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t╠══════════════════════════════════════════════════════════════╣");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [1] 📝 Open New Account                                     ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [2] 💰 Deposit Money                                        ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [3] 💸 Withdraw Money                                       ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [4] 🔍 Fetch Account Details                                ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [5] ❌ Account Closure Request                              ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [6] 📊 Daily Transaction Report                             ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [7] 📋 Show All Accounts                                    ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t║   [8] 🚪 Close Application                                    ║");
+			System.out.println("\t\t\t║                                                              ║");
+			System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
+
+			System.out.print("\n\t\t\t👉 Enter Your Choice : ");
+
 			choice = sc.nextInt();
-			
+
 			switch(choice) {
-			
+
 				case 1:{
-					openAccount();	
+					openAccount();
 					break;
 				}
+
 				case 2:{
 					depositMoney();
 					break;
 				}
+
 				case 3:{
 					withdrawMoney();
 					break;
 				}
+
 				case 4:{
 					fetchAccount();
 					break;
 				}
+
 				case 5:{
 					closeAccount();
 					break;
 				}
+
 				case 6:{
 					showDailyTransactions();
 					break;
 				}
+
 				case 7:{
 					showAllAccDetails();
 					break;
 				}
+
 				case 8:{
-					if(accountController.isSoftwareClosing(true))
-						System.out.println("\n\n\tAll data saved successfully...!");
+
+					loadingAnimation("Saving All Banking Data");
+
+					showSuccessBox("DATA SAVED SUCCESSFULLY");
+
+					System.out.println("\n");
+
+					loadingAnimation("🔄 REDIRECTING TO LOGIN");
 					
-					System.out.println("\n\n\t===========================================");
-					System.out.println("\t|  🙏🏻Thankyou For Using Our Services🙏🏻    |");
-					System.out.println("\t |........... together we can............|");
-					System.out.println("\t===========================================");
-					break;	
+					for(int i=0; i<120; i++) {
+						System.out.println("\n");
+					}
+		        
+			        LoginView loginView = new LoginView();
+			        loginView.showLoginPage();
+
+					break;
 				}
-			
 			}
-			
+
 		}while(choice != 8);
-		
+
 		sc.close();
 	}
-	
+
 	void showAllAccDetails() {
+
 		Account[] acc = accountController.getAllAccounts();
-		
-		for(int i=0; i<acc.length; i++) {
-			System.out.println();
-			System.out.println(acc[i].toString());
-			System.out.println();
+
+		System.out.println("\n");
+
+		System.out.println("\t╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗");
+		System.out.println("\t║                                                     🏦 ALL ACCOUNT DETAILS                                                      ║");
+		System.out.println("\t╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝");
+
+		if(acc == null || acc.length == 0) {
+
+			showErrorBox("NO ACCOUNT RECORDS FOUND");
+			return;
 		}
-	}
-	
-	void openAccount() {
-		
-		int choice;
-		
-		System.out.println("\n\t==========================================");
-		System.out.println("\t| 	 Account Opening Form (AOF)      |");
-		System.out.println("\t==========================================\n");
-		
+
+		System.out.println();
+
+		System.out.println("==========================================================================================================================================================================");
+		System.out.printf("%-15s %-20s %-15s %-20s %-15s %-15s\n",
+				"ACCOUNT NO",
+				"HOLDER NAME",
+				"BALANCE",
+				"ACCOUNT TYPE",
+				"STATUS",
+				"INTEREST");
+
+		System.out.println("==========================================================================================================================================================================");
+
+		for(int i=0; i<acc.length; i++) {
+
+			String type = "";
+
+			if(acc[i] instanceof SalaryAccount)
+				type = "SALARY";
+
+			else if(acc[i] instanceof SavingAccount)
+				type = "SAVING";
+
+			else if(acc[i] instanceof CurrentAccount)
+				type = "CURRENT";
+
+			else if(acc[i] instanceof LoanAccount)
+				type = "LOAN";
+
+			System.out.printf("%-15s %-20s %-15.2f %-20s %-15s %-15.2f\n",
+
+					acc[i].getAccountNumber(),
+					acc[i].getAccountHolderName(),
+					acc[i].getCurrentBalance(),
+					type,
+					acc[i].getAccountStatus(),
+					acc[i].getInterestRate()
+			);
+		}
+
+		System.out.println("==========================================================================================================================================================================");
+
 		sc.nextLine();
-		System.out.println("Enter your Name: ");
+		pauseScreen();
+	}
+
+	void openAccount() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║              📝 OPEN ACCOUNT                 ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t👤 Enter Full Name : ");
 		String holderName = sc.nextLine();
-		
-		System.out.println("\nEnter your phone number: ");
+
+		System.out.print("\n\t\t\t📱 Enter Phone Number : ");
 		String phoneNumber = sc.nextLine();
-		
-		System.out.println("\nEnter your mail Id: ");
+
+		System.out.print("\n\t\t\t📧 Enter Mail ID : ");
 		String mailId = sc.nextLine();
-		
-		System.out.println("\nChoose the type of account -");
-		System.out.println("\n--------------------------------------|");
-		System.out.println("        Account Menu                  |");
-		System.out.println("--------------------------------------|");
-		System.out.println("\t1.Saving Account              |");
-		System.out.println("\t2.Current Account             |");
-		System.out.println("\t3.Loan Account                |");
-		System.out.println("\t4.Salary Account              |");
-		System.out.println("\t5.Back to Main Menu           |");
-		System.out.println("--------------------------------------|");
-		System.out.println("\nEnter Your Choice: ");
-		choice = sc.nextInt();
-			
+
+		System.out.println("\n");
+
+		System.out.println("\t\t\t[1] Saving Account");
+		System.out.println("\t\t\t[2] Current Account");
+		System.out.println("\t\t\t[3] Loan Account");
+		System.out.println("\t\t\t[4] Salary Account");
+
+		System.out.print("\n\t\t\t👉 Select Account Type : ");
+
+		int choice = sc.nextInt();
+
 		switch(choice) {
-			
-			case 1: {
-				int flag=0;
-				System.out.println("\nMinimum amount to deposit - 10000rs");
-				
-				do {
-					System.out.println("\nEnter Amount to deposit: ");
-					double currBalance = sc.nextDouble();
-						
-						SavingAccount savingAccount = new SavingAccount(
-								holderName, 
-								phoneNumber,
-								mailId,
-								LocalDate.now(), 
-								null, 
-								0, 
-								currBalance
-						);
-						
-						if(accountController.openAccount(savingAccount)) {
-							System.out.println("\n\t=============================================");
-							System.out.println("\t|          🙏🏻Welcome to NovaBank🙏🏻          |");
-							System.out.println("\t |......Account Created Successfully.......|");
-							System.out.println("\t=============================================\n");
-							System.out.println("\n" + savingAccount);
-							
-							flag=1;
-						}else {
-							System.out.println("\n\t1.Retry to deposit");
-							System.out.println("\t2.Exit");
-							System.out.println("\nEnter your choice: ");
-							int subChoice = sc.nextInt();
-							
-							if(subChoice==2)
-								flag=1;
-						}
-					
-				}while(flag!=1);
-				
-				
-				break;
-			}
-					
-			case 2: {
-				CurrentAccount currentAccount = new CurrentAccount(
-						holderName, 
-						phoneNumber,
-						mailId,
-						LocalDate.now(), 
-						null, 
-						0, 
-						0, 
-						0
-				);
-				
-				
-				if(accountController.openAccount(currentAccount)) {
-					System.out.println("\n\t=============================================");
-					System.out.println("\t|          🙏🏻Welcome to NovaBank🙏🏻          |");
-					System.out.println("\t |......Account Created Successfully.......|");
-					System.out.println("\t=============================================\n");
-					System.out.println("\n" + currentAccount);
+
+			case 1:{
+
+				System.out.print("\n\t\t\t💰 Enter Initial Deposit : ");
+				double currBalance = sc.nextDouble();
+
+				if(currBalance < 10000) {
+
+					showErrorBox("SAVING ACCOUNT REQUIRES\nMINIMUM BALANCE OF 10000");
+
+					sc.nextLine();
+					pauseScreen();
+					return;
 				}
-				
-				break;
-			}
-				
-			case 3: {
-				
-				System.out.println("\nEnter amount you want to loan: ");
-				double loanAmount = sc.nextDouble();
-				System.out.println("Loan Repay Duration in months: ");
-				int loanTermMonths = sc.nextInt();
-				
-				LoanAccount loanAccount = new LoanAccount(
-						holderName, 
+
+				loadingAnimation("Creating Saving Account");
+
+				SavingAccount savingAccount = new SavingAccount(
+						holderName,
 						phoneNumber,
 						mailId,
-						LocalDate.now(), 
-						null, 
-						0, 
-						loanAmount, 
-						loanAmount, 
+						LocalDate.now(),
+						null,
+						0,
+						currBalance
+				);
+
+				if(accountController.openAccount(savingAccount)) {
+
+					showSuccessBox("ACCOUNT CREATED\nSUCCESSFULLY");
+
+					System.out.println("\n" + savingAccount);
+
+				}else {
+
+					showErrorBox("FAILED TO CREATE ACCOUNT");
+				}
+
+				break;
+			}
+
+			case 2:{
+
+				loadingAnimation("Creating Current Account");
+
+				CurrentAccount currentAccount = new CurrentAccount(
+						holderName,
+						phoneNumber,
+						mailId,
+						LocalDate.now(),
+						null,
+						0,
+						0,
+						50000
+				);
+
+				if(accountController.openAccount(currentAccount)) {
+
+					showSuccessBox("CURRENT ACCOUNT CREATED");
+
+					System.out.println("\n" + currentAccount);
+
+				}else {
+
+					showErrorBox("FAILED TO CREATE ACCOUNT");
+				}
+
+				break;
+			}
+
+			case 3:{
+
+				System.out.print("\n\t\t\t💰 Enter Loan Amount : ");
+				double loanAmount = sc.nextDouble();
+
+				if(loanAmount <= 0) {
+
+					showErrorBox("INVALID LOAN AMOUNT");
+
+					sc.nextLine();
+					pauseScreen();
+					return;
+				}
+
+				System.out.print("\n\t\t\t📅 Loan Duration Months : ");
+				int loanTermMonths = sc.nextInt();
+
+				loadingAnimation("Processing Loan Account");
+
+				LoanAccount loanAccount = new LoanAccount(
+						holderName,
+						phoneNumber,
+						mailId,
+						LocalDate.now(),
+						null,
+						0,
+						loanAmount,
+						loanAmount,
 						loanTermMonths
 				);
-				
+
 				if(accountController.openAccount(loanAccount)) {
-					System.out.println("\n\t=============================================");
-					System.out.println("\t|          🙏🏻Welcome to NovaBank🙏🏻          |");
-					System.out.println("\t |......Account Created Successfully.......|");
-					System.out.println("\t=============================================\n");
+
+					showSuccessBox("LOAN ACCOUNT CREATED");
+
 					System.out.println("\n" + loanAccount);
+
+				}else {
+
+					showErrorBox("FAILED TO CREATE ACCOUNT");
 				}
-				
+
 				break;
 			}
-					
-			case 4: {
+
+			case 4:{
+
+				loadingAnimation("Creating Salary Account");
+
 				SalaryAccount salaryAccount = new SalaryAccount(
-						holderName, 
+						holderName,
 						phoneNumber,
 						mailId,
-						LocalDate.now(), 
-						null, 
-						0, 
-						0, 
+						LocalDate.now(),
+						null,
+						0,
+						0,
 						LocalDate.now()
 				);
-				
+
 				if(accountController.openAccount(salaryAccount)) {
-					System.out.println("\n\t=============================================");
-					System.out.println("\t|          🙏🏻Welcome to NovaBank🙏🏻          |");
-					System.out.println("\t |......Account Created Successfully.......|");
-					System.out.println("\t=============================================\n");
+
+					showSuccessBox("SALARY ACCOUNT CREATED");
+
 					System.out.println("\n" + salaryAccount);
+
+				}else {
+
+					showErrorBox("FAILED TO CREATE ACCOUNT");
 				}
-				
+
 				break;
 			}
-				
-			case 5: {
-				break;
-			}
-		}	
-	}
-	
-	void depositMoney() {
-		System.out.println("\n\t==========================================");
-		System.out.println("\t|     	   Account Deposit Section      |");
-		System.out.println("\t==========================================\n");
-		
-		int flag = 0;
-		
-		do {
-			sc.nextLine();
-			System.out.println("Enter your account number: ");
-			String accNumber = sc.nextLine();
-			
-			System.out.println("\nEnter Amount: ");
-			double amount = sc.nextDouble();
-			
-			if(accountController.deposit(accNumber, amount)) {
-				System.out.println("\n\t=============================================");
-				System.out.println("\t |......Amount Deposited Successfully........|");
-				System.out.println("\t=============================================\n");
-				flag = 1;
-			}
-			else {
-				System.out.println("\n\t1.Retry to deposit");
-				System.out.println("\t2.Exit");
-				System.out.println("\nEnter your choice: ");
-				int subChoice = sc.nextInt();
-				
-				if(subChoice==2)
-					flag=1;
-			}
-			
-		}while(flag!=1);
-		
-	}
-	
-	void withdrawMoney() {
-		System.out.println("\n\t==========================================");
-		System.out.println("\t|     	   Account Withdraw Section      |");
-		System.out.println("\t==========================================\n");
-		
-		int flag = 0;
-		
-		do {
-			sc.nextLine();
-			System.out.println("Enter your account number: ");
-			String accNumber = sc.nextLine();
-			
-			System.out.println("\nEnter Amount: ");
-			double amount = sc.nextDouble();
-			
-			if(accountController.withdraw(accNumber, amount)) {
-				System.out.println("\n\t=============================================");
-				System.out.println("\t |......Amount Withdrawed Successfully........|");
-				System.out.println("\t=============================================\n");
-				flag = 1;
-			}
-			else {
-				System.out.println("\n\t1.Retry to Withdraw");
-				System.out.println("\t2.Exit");
-				System.out.println("\nEnter your choice: ");
-				int subChoice = sc.nextInt();
-				
-				if(subChoice==2)
-					flag=1;
-			}
-			
-		}while(flag!=1);
-	}
-	
-	void closeAccount() {
-		System.out.println("\n\t==========================================");
-		System.out.println("\t|     	   Account Clouser Section      |");
-		System.out.println("\t==========================================\n");
-		
-		int flag = 0;
-		
-		do {
-			sc.nextLine();
-			System.out.println("Enter your account number: ");
-			String accNumber = sc.nextLine();
-			
-			if(accountController.closeAccount(accNumber)) {
-				System.out.println("\n\t=============================================");
-				System.out.println("\t |......Account Closed Successfully........|");
-				System.out.println("\t=============================================\n");
-				flag = 1;
-			}
-			else {
-				System.out.println("\n\t1.Retry");
-				System.out.println("\t2.Exit");
-				System.out.println("\nEnter your choice: ");
-				int subChoice = sc.nextInt();
-				
-				if(subChoice==2)
-					flag=1;
-			}
-			
-		}while(flag!=1);
-	}
-	
-	void fetchAccount() {
-		System.out.println("\n\t==========================================");
-		System.out.println("\t|     	   Fetch Account Details          |");
-		System.out.println("\t==========================================\n");
-		
-		sc.nextLine();
-		System.out.println("Enter Account Number: ");
-		String accNumber = sc.nextLine();
-		
-		Account acc = accountController.fetchAccount(accNumber);
-		
-		if(acc != null) {
-			System.out.println("\n\t     	   Your Account Details          ");
-			System.out.println("\t==========================================");
-			
-			System.out.println("\n" + acc);
-		}else {
-			System.out.println("\n\tPlease check your account details and try again");
-			System.out.println("\t================================================");
 		}
-	}
-	
-	void showDailyTransactions() {
-		System.out.println("\n\t==========================================");
-		System.out.println("\t|     	   Daily Transaction Report      |");
-		System.out.println("\t==========================================\n");
-		
+
 		sc.nextLine();
-		System.out.println("Enter Date: ");
+		pauseScreen();
+	}
+
+	void depositMoney() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║              💰 DEPOSIT MONEY                ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t🏦 Enter Account Number : ");
+		String accNumber = sc.nextLine();
+
+		Account acc = accountController.fetchAccount(accNumber);
+
+		if(acc == null) {
+
+			showErrorBox("ACCOUNT NOT FOUND");
+			pauseScreen();
+			return;
+		}
+
+		System.out.print("\n\t\t\t💵 Enter Amount : ");
+		double amount = sc.nextDouble();
+
+		if(amount <= 0) {
+
+			showErrorBox("DEPOSIT AMOUNT MUST\nBE POSITIVE");
+
+			sc.nextLine();
+			pauseScreen();
+			return;
+		}
+		
+		if(acc instanceof SalaryAccount) {
+
+			SalaryAccount salary = (SalaryAccount) acc;
+
+			if(salary.getLastTransactionDate()
+					.plusMonths(2)
+					.isBefore(LocalDate.now())) {
+
+				showErrorBox(
+						"SALARY ACCOUNT FROZEN\nWITHDRAWAL NOT POSSIBLE"
+				);
+
+				sc.nextLine();
+				pauseScreen();
+				return;
+			}
+		}
+
+		if(acc instanceof SalaryAccount) {
+
+			SalaryAccount sal = (SalaryAccount) acc;
+
+			if(sal.getLastTransactionDate()
+					.plusMonths(2)
+					.isBefore(LocalDate.now())) {
+
+				showErrorBox(
+						"SALARY ACCOUNT FROZEN\nNO TRANSACTION FOR 2 MONTHS"
+				);
+
+				sc.nextLine();
+				pauseScreen();
+				return;
+			}
+		}
+
+		loadingAnimation("Processing Deposit");
+
+		if(accountController.deposit(accNumber, amount)) {
+
+			showSuccessBox("AMOUNT DEPOSITED\nSUCCESSFULLY");
+
+		}else {
+
+			showErrorBox("DEPOSIT FAILED");
+		}
+
+		sc.nextLine();
+		pauseScreen();
+	}
+
+	void withdrawMoney() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║             💸 WITHDRAW MONEY                ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t🏦 Enter Account Number : ");
+		String accNumber = sc.nextLine();
+
+		Account acc = accountController.fetchAccount(accNumber);
+
+		if(acc == null) {
+
+			showErrorBox("ACCOUNT NOT FOUND");
+			pauseScreen();
+			return;
+		}
+
+		System.out.print("\n\t\t\t💵 Enter Amount : ");
+		double amount = sc.nextDouble();
+
+		if(amount <= 0) {
+
+			showErrorBox("WITHDRAW AMOUNT MUST\nBE POSITIVE");
+
+			sc.nextLine();
+			pauseScreen();
+			return;
+		}
+		
+		if(acc instanceof LoanAccount) {
+
+			showErrorBox(
+					"WITHDRAWAL NOT ALLOWED\nIN LOAN ACCOUNT"
+			);
+
+			sc.nextLine();
+			pauseScreen();
+			return;
+		}
+
+		if(acc instanceof CurrentAccount) {
+
+			CurrentAccount current = (CurrentAccount) acc;
+
+			double allowedLimit =
+					acc.getCurrentBalance()
+					+ current.getMaxOverdraftLimit();
+
+			if(amount > allowedLimit) {
+
+				showErrorBox("OVERDRAFT LIMIT EXCEEDED");
+
+				sc.nextLine();
+				pauseScreen();
+				return;
+			}
+		}
+
+		loadingAnimation("Processing Withdrawal");
+
+		if(accountController.withdraw(accNumber, amount)) {
+
+			showSuccessBox("WITHDRAW SUCCESSFUL");
+
+		}else {
+
+			showErrorBox("WITHDRAW FAILED");
+		}
+
+		sc.nextLine();
+		pauseScreen();
+	}
+
+	void closeAccount() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║             ❌ CLOSE ACCOUNT                 ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t🏦 Enter Account Number : ");
+		String accNumber = sc.nextLine();
+
+		System.out.println("\n");
+		System.out.println("\t\t\t⚠ ARE YOU SURE ?");
+		System.out.println("\n\t\t\t1. YES");
+		System.out.println("\t\t\t2. NO");
+
+		System.out.print("\n\t\t\t👉 Enter Choice : ");
+
+		int confirm = sc.nextInt();
+
+		if(confirm == 2) {
+			return;
+		}
+
+		loadingAnimation("Closing Account");
+
+		if(accountController.closeAccount(accNumber)) {
+
+			showSuccessBox("ACCOUNT CLOSED");
+
+		}else {
+
+			showErrorBox("FAILED TO CLOSE ACCOUNT");
+		}
+
+		sc.nextLine();
+		pauseScreen();
+	}
+
+	void fetchAccount() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║            🔍 FETCH ACCOUNT DETAILS          ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t🏦 Enter Account Number : ");
+		String accNumber = sc.nextLine();
+
+		loadingAnimation("Fetching Account Details");
+
+		Account acc = accountController.fetchAccount(accNumber);
+
+		if(acc != null) {
+
+			showSuccessBox("ACCOUNT FOUND");
+
+			System.out.println("\n" + acc);
+
+		}else {
+
+			showErrorBox("ACCOUNT NOT FOUND");
+		}
+
+		pauseScreen();
+	}
+
+	void showDailyTransactions() {
+
+		System.out.println("\n\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════════════╗");
+		System.out.println("\t\t\t║          📊 DAILY TRANSACTION REPORT         ║");
+		System.out.println("\t\t\t╚══════════════════════════════════════════════╝");
+
+		sc.nextLine();
+
+		System.out.print("\n\t\t\t📅 Enter Date (dd-MM-yyyy) : ");
 		String inputDate = sc.nextLine();
-		
-		DateTimeFormatter dateFormat= DateTimeFormatter.ofPattern("dd-MM-yyyy");
-		
+
+		DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
 		LocalDate date = LocalDate.parse(inputDate, dateFormat);
-		
+
+		loadingAnimation("Generating Report");
+
 		Transaction[] dailyReport = accountController.showDailyTransactions(date);
-		
+
 		if(dailyReport.length > 0) {
+
+			showSuccessBox("TRANSACTION REPORT GENERATED");
+
 			for(Transaction report : dailyReport) {
+
 				System.out.println("\n" + report);
 			}
-		}else
-			System.out.println("\n\tTransactions Not Available for selected Date\n");
+
+		}else {
+
+			showErrorBox("NO TRANSACTIONS AVAILABLE");
+		}
+
+		pauseScreen();
+	}
+
+	void showSuccessBox(String msg) {
+
+		System.out.println("\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════╗");
+		System.out.println("\t\t\t║             ✅ SUCCESS               ║");
+		System.out.println("\t\t\t╠══════════════════════════════════════╣");
+
+		String[] lines = msg.split("\n");
+
+		for(String line : lines) {
+
+			System.out.printf(
+					"\t\t\t║ %-36s ║\n",
+					line
+			);
+		}
+
+		System.out.println("\t\t\t╚══════════════════════════════════════╝");
+	}
+
+	void showErrorBox(String msg) {
+
+		System.out.println("\n");
+
+		System.out.println("\t\t\t╔══════════════════════════════════════╗");
+		System.out.println("\t\t\t║              ❌ ERROR                ║");
+		System.out.println("\t\t\t╠══════════════════════════════════════╣");
+
+		String[] lines = msg.split("\n");
+
+		for(String line : lines) {
+
+			System.out.printf(
+					"\t\t\t║ %-36s ║\n",
+					line
+			);
+		}
+
+		System.out.println("\t\t\t╚══════════════════════════════════════╝");
+	}
+
+	void loadingAnimation(String text) {
+
+		System.out.print("\n\t\t" + text + " ");
+		int limit;
 		
+		if(count==0)
+			limit = 20;
+		else
+			limit = 6;
+		
+		count = count+1;
+
+		for(int i=0; i<limit; i++) {
+
+			try {
+				Thread.sleep(300);
+			}
+			catch(Exception e) {
+
+			}
+
+			System.out.print("● ");
+		}
+
+		System.out.println();
+	}
+
+	void pauseScreen() {
+
+		System.out.println("\n");
+		System.out.print("\t\t\tPress Enter To Continue...");
+		sc.nextLine();
 	}
 }

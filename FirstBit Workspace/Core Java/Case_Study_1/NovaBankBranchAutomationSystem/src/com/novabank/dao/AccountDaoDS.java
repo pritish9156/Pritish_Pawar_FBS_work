@@ -1,9 +1,11 @@
 package com.novabank.dao;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import com.novabank.exceptions.SavingAccountMinimumLimitException;
 import com.novabank.model.Account;
@@ -16,43 +18,37 @@ import com.novabank.model.SavingAccount;
 public class AccountDaoDS implements AccountDAO{
 	
 	BankBranch bankBranch;
-	DataBaseConnection dbc;
+	Connection dbc;
 	
 	public AccountDaoDS(BankBranch bankBranch) {
 		this.bankBranch = bankBranch;
+		DDL();
 	}
 	
-	public static void main(String[] args) {
-		
-		TempDDL();
-	
-		
-	}
-	
-	static public void TempDDL() {
-		
-		try {
-			DataBaseConnection dbc = new DataBaseConnection();
-			
-			Statement statement = dbc.getStatement();
-			
-			ResultSet res = statement.executeQuery("select * from account");
-			
-			ResultSetMetaData metaData = res.getMetaData();
-		
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+//	static public void TempDDL() {
+//		
+//		try {
+//			DataBaseConnection dbc = new DataBaseConnection();
+//			
+//			Statement statement = dbc.getStatement();
+//			
+//			ResultSet res = statement.executeQuery("select * from account");
+//			
+//			ResultSetMetaData metaData = res.getMetaData();
+//		
+//			
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 	
 	public boolean DDL() {
 		
 		try {
-			dbc = new DataBaseConnection();
+			dbc = DataBaseConnection.getConnection();
 			
-			Statement statement = dbc.getStatement();
+			Statement statement = dbc.createStatement();
 			
 
 			// ACCOUNT TABLE
@@ -138,14 +134,10 @@ public class AccountDaoDS implements AccountDAO{
 	@Override
 	public boolean addAccount(Account account) throws SavingAccountMinimumLimitException {
 
-	    DDL();
-
 	    try {
-	    	dbc = new DataBaseConnection();
-	        Statement statement = dbc.getStatement();
+	    	dbc = DataBaseConnection.getConnection();
+	        Statement statement = dbc.createStatement();
 
-	        
-	        // ================= ACCOUNT TABLE =================
 
 	        String accountQuery =
 	                "INSERT INTO account "
@@ -170,9 +162,6 @@ public class AccountDaoDS implements AccountDAO{
 	        statement.execute(accountQuery);
 
 
-
-	        // ================= SAVING ACCOUNT =================
-
 	        if(account instanceof SavingAccount) {
 
 	            SavingAccount savingAccount = (SavingAccount) account;
@@ -189,8 +178,6 @@ public class AccountDaoDS implements AccountDAO{
 	        }
 
 
-
-	        // ================= SALARY ACCOUNT =================
 
 	        if(account instanceof SalaryAccount) {
 
@@ -209,8 +196,6 @@ public class AccountDaoDS implements AccountDAO{
 
 
 
-	        // ================= CURRENT ACCOUNT =================
-
 	        if(account instanceof CurrentAccount) {
 
 	            CurrentAccount currentAccount = (CurrentAccount) account;
@@ -227,8 +212,6 @@ public class AccountDaoDS implements AccountDAO{
 	        }
 
 
-
-	        // ================= LOAN ACCOUNT =================
 
 	        if(account instanceof LoanAccount) {
 

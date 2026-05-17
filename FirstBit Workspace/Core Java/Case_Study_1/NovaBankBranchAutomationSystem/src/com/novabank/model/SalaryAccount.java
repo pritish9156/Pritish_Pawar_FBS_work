@@ -20,17 +20,54 @@ public class SalaryAccount extends SavingAccount {
 	@Override
 	public boolean deposit(double amount) {
 		
+		if(checkAccountInactivity()) {
+			return false;
+		}
+		
+		if(amount > 0) {
+			
+			currentBalance += amount;
+			
+			lastTransactionDate = LocalDate.now();
+			
+			return true;
+		}
+		
 		return false;
 	}
 
 	@Override
 	public boolean withdraw(double amount) {
 		
+		if(checkAccountInactivity()) {
+			return false;
+		}
+		
+		if(amount > 0 && 
+				(currentBalance - amount) >= getMinimumBalance()) {
+			
+			currentBalance -= amount;
+			
+			lastTransactionDate = LocalDate.now();
+			
+			return true;
+		}
+		
 		return false;
 	}
 	
-	void checkAccountInactivity() {
+	boolean checkAccountInactivity() {
 		
+		if(lastTransactionDate
+				.plusMonths(2)
+				.isBefore(LocalDate.now())) {
+			
+			accountStatus = AccountStatus.FROZEN;
+			
+			return true;
+		}
+		
+		return false;
 	}
 
 }
