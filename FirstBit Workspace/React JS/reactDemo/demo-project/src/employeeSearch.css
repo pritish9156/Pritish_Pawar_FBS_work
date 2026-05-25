@@ -1,0 +1,11 @@
+.search-wrapper input {
+    width: 500px;
+    margin-right: 19px;
+    border: 2px solid rgb(114, 111, 111);
+}
+
+.search-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
