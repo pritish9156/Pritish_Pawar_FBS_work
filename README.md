@@ -196,6 +196,19 @@ The repository is **structured to support multiple programming modules**, includ
 
 ---
 
+## 🔄 Recent Updates (May 2026)
+
+- **2026-05-25 — AdvJava:** Added multiple projects including `JDBCdemo`, `LoginProject`, `LoginWithServer`, and `ProductAPI`. Updated Tomcat server configuration and included demo compiled classes and resources for JDBC examples.
+- **2026-05-25 — Core Java:** Large update and fixes to the NovaBankBranchAutomationSystem; added `NovaInstitute` module with controllers, DAOs, service interfaces and implementations, models, views, and utility classes. Added domain-specific exceptions and expanded in-class exception exercises.
+- **2026-05-25 — Web Programming:** Added JavaScript demos (API fetch examples, form validation), `LAB` student-dashboard work, and various frontend practice files to demonstrate DOM and API usage.
+- **2026-05-25 — Data Structures:** Updated linked-list implementations including `ImplementationClass2.java` (HackerRank-style examples) and small algorithmic fixes.
+- **2026-05-25 — React JS:** Added `reactDemo` projects (E-commerce and demo-project) with Vite-based starter apps, components, styles, and sample pages to showcase modern frontend component work.
+- **Other updates:** Jenkins assets and MySQL practice materials were added/updated to support CI and database learning modules.
+
+Notes:
+- Commits were made as focused, per-module commits so the git history documents the learning milestones clearly.
+- To publish these local commits to the remote repository, run `git push` from the repository root.
+
 This repository will be continuously updated as new modules, assignments, and tests are completed.
 
 👤 **Author:**
