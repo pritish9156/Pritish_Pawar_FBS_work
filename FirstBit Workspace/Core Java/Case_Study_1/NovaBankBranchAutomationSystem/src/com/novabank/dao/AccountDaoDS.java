@@ -1,11 +1,8 @@
 package com.novabank.dao;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
 
 import com.novabank.exceptions.SavingAccountMinimumLimitException;
 import com.novabank.model.Account;
@@ -22,28 +19,10 @@ public class AccountDaoDS implements AccountDAO{
 	
 	public AccountDaoDS(BankBranch bankBranch) {
 		this.bankBranch = bankBranch;
-		DDL();
+		createTables();
 	}
 	
-//	static public void TempDDL() {
-//		
-//		try {
-//			DataBaseConnection dbc = new DataBaseConnection();
-//			
-//			Statement statement = dbc.getStatement();
-//			
-//			ResultSet res = statement.executeQuery("select * from account");
-//			
-//			ResultSetMetaData metaData = res.getMetaData();
-//		
-//			
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
-	public boolean DDL() {
+	public boolean createTables() {
 		
 		try {
 			dbc = DataBaseConnection.getConnection();
@@ -126,9 +105,9 @@ public class AccountDaoDS implements AccountDAO{
 			
 		} catch (SQLException e) {
 			System.out.println("Connection Could Not be Established Please try again...!");
-			return false;
 		}
 		
+		return false;	
 	}
 
 	@Override

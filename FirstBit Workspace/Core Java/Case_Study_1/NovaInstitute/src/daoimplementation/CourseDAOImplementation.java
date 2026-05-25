@@ -84,7 +84,7 @@ public class CourseDAOImplementation implements CourseDAOInterface{
 		try {
 			Connection con = DBUtil.getConnection();
 			
-			String query = "select * from course where cid = ?";
+			String query = "select * from course where course_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setInt(1, cid);
@@ -113,7 +113,7 @@ public class CourseDAOImplementation implements CourseDAOInterface{
 		try {
 			Connection con = DBUtil.getConnection();
 			
-			String query = "update course set fees = ? where cid = ?";
+			String query = "update course set fees = ? where course_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setDouble(1, cfees);
@@ -138,7 +138,7 @@ public class CourseDAOImplementation implements CourseDAOInterface{
 		try {
 			Connection con = DBUtil.getConnection();
 			
-			String query = "delete from course where cid = ?";
+			String query = "delete from course where course_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setInt(1, cid);

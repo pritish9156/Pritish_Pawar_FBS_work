@@ -93,7 +93,7 @@ public class StudentDAOImplementation implements StudentDAOInterface{
 			
 			Connection con = DBUtil.getConnection();
 			
-			String query = "select * from student where sid = ?";
+			String query = "select * from student where student_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setInt(1, id);
@@ -123,7 +123,7 @@ public class StudentDAOImplementation implements StudentDAOInterface{
 			
 			Connection con = DBUtil.getConnection();
 			
-			String query = "update student set fees_paid = ? where sid = ?";
+			String query = "update student set fees_paid = ? where student_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setDouble(1, fees);
@@ -148,7 +148,7 @@ public class StudentDAOImplementation implements StudentDAOInterface{
 			
 			Connection con = DBUtil.getConnection();
 			
-			String query = "delete from student where sid = ?";
+			String query = "delete from student where student_id = ?";
 			PreparedStatement ps = con.prepareStatement(query);
 			
 			ps.setInt(1, id);

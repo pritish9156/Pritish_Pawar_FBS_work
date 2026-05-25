@@ -2,11 +2,11 @@ package view;
 
 import java.util.Scanner;
 
-public class TrainerView {
+public class AttendanceView {
 
 	Scanner sc = new Scanner(System.in);
 
-	public void showTrainerView() {
+	public void showAttendanceView() {
 
 		int choice;
 
@@ -21,27 +21,22 @@ public class TrainerView {
 			switch(choice) {
 
 				case 1:{
-					addTrainer();
+					markAttendance();
 					break;
 				}
 
 				case 2:{
-					viewAllTrainer();
+					viewAttendance();
 					break;
 				}
 
 				case 3:{
-					searchTrainer();
+					searchAttendance();
 					break;
 				}
 
 				case 4:{
-					updateTrainerSalary();
-					break;
-				}
-
-				case 5:{
-					removeTrainer();
+					attendanceReport();
 					break;
 				}
 
@@ -60,11 +55,11 @@ public class TrainerView {
 
 		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════════════╗");
 		System.out.println("\t\t\t║                                                                      ║");
-		System.out.println("\t\t\t║                👨‍🏫 TRAINER MANAGEMENT PANEL                          ║");
+		System.out.println("\t\t\t║                 📝 ATTENDANCE MANAGEMENT PANEL                       ║");
 		System.out.println("\t\t\t║                                                                      ║");
 		System.out.println("\t\t\t╠══════════════════════════════════════════════════════════════════════╣");
 		System.out.println("\t\t\t║                                                                      ║");
-		System.out.println("\t\t\t║                 🚀 MANAGE TRAINER OPERATIONS                         ║");
+		System.out.println("\t\t\t║                  📅 TRACK STUDENT ATTENDANCE                         ║");
 		System.out.println("\t\t\t║                                                                      ║");
 		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════════════╝");
 	}
@@ -75,124 +70,88 @@ public class TrainerView {
 
 		System.out.println("\t\t\t┌──────────────────────────────────────────────────────────────┐");
 		System.out.println("\t\t\t│                                                              │");
-		System.out.println("\t\t\t│   [1] ➕ Add Trainer                                          │");
+		System.out.println("\t\t\t│   [1] ✅ Mark Attendance                                      │");
 		System.out.println("\t\t\t│                                                              │");
-		System.out.println("\t\t\t│   [2] 📋 View All Trainers                                    │");
+		System.out.println("\t\t\t│   [2] 📋 View Attendance Records                              │");
 		System.out.println("\t\t\t│                                                              │");
-		System.out.println("\t\t\t│   [3] 🔍 Search Trainer                                       │");
+		System.out.println("\t\t\t│   [3] 🔍 Search Attendance                                    │");
 		System.out.println("\t\t\t│                                                              │");
-		System.out.println("\t\t\t│   [4] 💰 Update Trainer Salary                                │");
-		System.out.println("\t\t\t│                                                              │");
-		System.out.println("\t\t\t│   [5] ❌ Remove Trainer                                       │");
+		System.out.println("\t\t\t│   [4] 📊 Attendance Report                                    │");
 		System.out.println("\t\t\t│                                                              │");
 		System.out.println("\t\t\t│   [0] 🔙 Back To Dashboard                                    │");
 		System.out.println("\t\t\t│                                                              │");
 		System.out.println("\t\t\t└──────────────────────────────────────────────────────────────┘");
 	}
 
-	void addTrainer() {
+	void markAttendance() {
 
 		System.out.println("\n\n");
 
 		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
-		System.out.println("\t\t\t║                     ➕ ADD TRAINER                           ║");
+		System.out.println("\t\t\t║                    ✅ MARK ATTENDANCE                        ║");
 		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
 
-		System.out.println();
-
-		System.out.print("\t\t\t👤 Enter Trainer Name : ");
 		sc.nextLine();
 
-		showSuccessBox("TRAINER ADDED SUCCESSFULLY");
+		System.out.print("\n\t\t\t👨‍🎓 Enter Student ID : ");
+		sc.nextInt();
+
+		showSuccessBox("ATTENDANCE MARKED");
 
 		pauseScreen();
 	}
 
-	void viewAllTrainer() {
+	void viewAttendance() {
 
 		System.out.println("\n");
 
-		System.out.println("\t╔════════════════════════════════════════════════════════════════════════════════════════════╗");
-		System.out.println("\t║                                      👨‍🏫 TRAINER RECORDS                                  ║");
-		System.out.println("\t╚════════════════════════════════════════════════════════════════════════════════════════════╝");
+		System.out.println("\t╔════════════════════════════════════════════════════════════════════════════════════╗");
+		System.out.println("\t║                              📋 ATTENDANCE RECORDS                                ║");
+		System.out.println("\t╚════════════════════════════════════════════════════════════════════════════════════╝");
 
 		System.out.println();
 
-		System.out.println("======================================================================================================================");
-		System.out.printf("%-10s %-20s %-25s %-15s %-15s\n",
-				"ID",
+		System.out.println("=====================================================================================");
+		System.out.printf("%-15s %-20s %-20s %-15s\n",
+				"STUDENT ID",
 				"NAME",
-				"EMAIL",
-				"SPECIALIZATION",
-				"SALARY");
+				"DATE",
+				"STATUS");
 
-		System.out.println("======================================================================================================================");
+		System.out.println("=====================================================================================");
 
-		System.out.printf("%-10d %-20s %-25s %-15s %-15.2f\n",
+		System.out.printf("%-15d %-20s %-20s %-15s\n",
 				101,
 				"Rahul Sharma",
-				"rahul@gmail.com",
-				"JAVA",
-				45000.00);
+				"22-05-2026",
+				"PRESENT");
 
-		System.out.println("======================================================================================================================");
-
-		pauseScreen();
-	}
-
-	void searchTrainer() {
-
-		System.out.println("\n\n");
-
-		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
-		System.out.println("\t\t\t║                    🔍 SEARCH TRAINER                         ║");
-		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
-
-		System.out.println();
-
-		System.out.print("\t\t\t👉 Enter Trainer ID : ");
-		sc.nextInt();
-
-		showSuccessBox("TRAINER FOUND");
+		System.out.println("=====================================================================================");
 
 		pauseScreen();
 	}
 
-	void updateTrainerSalary() {
+	void searchAttendance() {
 
 		System.out.println("\n\n");
 
 		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
-		System.out.println("\t\t\t║                 💰 UPDATE TRAINER SALARY                    ║");
+		System.out.println("\t\t\t║                   🔍 SEARCH ATTENDANCE                       ║");
 		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
 
 		System.out.println();
 
-		System.out.print("\t\t\t👉 Enter Trainer ID : ");
+		System.out.print("\t\t\t👉 Enter Student ID : ");
 		sc.nextInt();
 
-		System.out.print("\t\t\t👉 Enter New Salary : ");
-		sc.nextDouble();
-
-		showSuccessBox("SALARY UPDATED SUCCESSFULLY");
+		showSuccessBox("ATTENDANCE FOUND");
 
 		pauseScreen();
 	}
 
-	void removeTrainer() {
+	void attendanceReport() {
 
-		System.out.println("\n\n");
-
-		System.out.println("\t\t\t╔══════════════════════════════════════════════════════════════╗");
-		System.out.println("\t\t\t║                    ❌ REMOVE TRAINER                         ║");
-		System.out.println("\t\t\t╚══════════════════════════════════════════════════════════════╝");
-
-		System.out.println();
-
-		System.out.print("\t\t\t👉 Enter Trainer ID : ");
-		sc.nextInt();
-
-		showSuccessBox("TRAINER REMOVED SUCCESSFULLY");
+		showSuccessBox("ATTENDANCE REPORT GENERATED");
 
 		pauseScreen();
 	}
